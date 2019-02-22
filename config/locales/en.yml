@@ -31,3 +31,22 @@
 
 en:
   hello: "Hello world"
+  remember_me: 'Remember me'
+  enter_email: 'Enter Email'
+  password: 'Password'
+  forgot_password: 'Forgot password?'
+  back_to_store: 'Back to Store'
+  login: 'Log In'
+  dont_have_account: "Don’t have an Account?"
+  signup: 'Sign up'
+  your_name: 'Your first name'
+  your_last_name: 'Your last name'
+  password: 'Password'
+  confirm_password: 'Confirm Password'
+  have_account: 'Have an Account?'
+  we_send_email_password: "We'll email you instructions on how to reset it"
+  email_instuctions: 'Email Instructions'
+  cancel: 'Cancel'
+  set_new_password: 'Set new password'
+  type_new_password: 'Type a new Password'
+  change: Change

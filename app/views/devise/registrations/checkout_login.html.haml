@@ -1,0 +1,24 @@
+%main.container
+  .row
+    .col-md-5.mb-40
+      .text-center
+        %h3.general-subtitle= t('returning_customer')
+        = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+          %i.fa.fa-facebook-official
+        %p.general-login-text= t('or')
+      = render 'devise/sessions/login_form', resource: @built_user
+    .col-md-5.col-md-offset-1.mb-60
+      .text-center
+        %h3.general-subtitle= t('new_customer')
+        = link_to user_facebook_omniauth_authorize_path, class: "general-login-icon" do
+          %i.fa.fa-facebook-official
+        %p.general-login-text= t('or')
+      = form_for(@built_user, url: user_registration_path, class: "general-form") do |f|
+        .mb-40
+          %p.mb-5= t('quick_register')
+          %p.general-info-text.font-12.mb-20= t('password_later')
+          .form-group.mb-30
+            = f.label :email, t('enter_email'), class: "control-label input-label"
+            = f.email_field :email, placeholder: t('enter_email'), class: "form-control"
+            = hidden_field_tag :checkout_signup
+            = f.submit t('continue_checkout'), class: "btn btn-default mb-20"
