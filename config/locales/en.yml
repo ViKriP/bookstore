@@ -30,7 +30,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+  welcome: 'Welcome to our amazing Bookstore!'
+  shop_description: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
   remember_me: 'Remember me'
   enter_email: 'Enter Email'
   password: 'Password'
@@ -49,4 +51,6 @@ en:
   cancel: 'Cancel'
   set_new_password: 'Set new password'
   type_new_password: 'Type a new Password'
-  change: Change
+  change: 'Change'
+  get_started: 'Get Started'
+  best_sellers: 'Best Sellers'
