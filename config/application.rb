@@ -22,7 +22,7 @@ module Bookstore
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
-    config.assets.initialize_on_precompile = false
+    config.serve_static_assets = true
 
     # Don't generate system test files.
     config.generators.system_tests = nil
