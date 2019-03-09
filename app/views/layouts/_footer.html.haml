@@ -4,9 +4,9 @@
       .col-sm-9
         %ul.list-inline.general-align.mb-25
           %li
-            %a.nav-link{href: "#"} Home
+            = link_to t('home'), root_path, class: "nav-link"
           %li
-            %a.nav-link{href: "#"} Shop
+            = link_to t('shop'), books_path, class: "nav-link"
           %li
             %a.nav-link{href: "#"} Orders
           %li

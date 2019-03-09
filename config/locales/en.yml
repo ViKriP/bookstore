@@ -1,35 +1,5 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  site_name: 'Bookstore'
   hello: 'Hello world'
   welcome: 'Welcome to our amazing Bookstore!'
   shop_description: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
@@ -38,9 +8,10 @@ en:
   password: 'Password'
   forgot_password: 'Forgot password?'
   back_to_store: 'Back to Store'
+  logout: 'Log out'
   login: 'Log In'
-  dont_have_account: "Don’t have an Account?"
   signup: 'Sign up'
+  dont_have_account: "Don’t have an Account?"
   your_name: 'Your first name'
   your_last_name: 'Your last name'
   password: 'Password'
@@ -54,3 +25,27 @@ en:
   change: 'Change'
   get_started: 'Get Started'
   best_sellers: 'Best Sellers'
+  get_started: 'Get Started'
+  read_more: 'Read more'
+  back_to_results: 'Back to results'
+  book_description: 'Description'
+  book_quantity: 'Quantity'
+  book_year: 'Year of publication'
+  book_dimensions: 'Dimensions'
+  book_materials: 'Materials'
+  catalog: 'Сatalog'
+  no_books: 'Sorry, any books in this category'
+  filter_by: 'Filter by category'
+  sort_by: 'Sort by'
+  title_asc: 'Title: A - Z'
+  title_desc: 'Title: Z - A'
+  price_asc: 'Price: Low to high'
+  price_desc: 'Price: High to low'
+  newest_first: 'Newest first'
+  popular_first: 'Popular first'
+  buy_now: 'Buy Now'
+  previous: 'Previous'
+  next: 'Next'
+  home: 'Home'
+  orders: 'Orders'
+  settings_label: 'Settings'

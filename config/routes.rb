@@ -10,4 +10,12 @@ Rails.application.routes.draw do
   }
 
   root 'homepage#index'
+
+  scope '/categories/:category_id', as: 'category' do
+    resources :books, only: [:index]
+  end
+
+  resources :books, only: [:index, :show] do
+    resources :reviews, only: [:index, :create]
+  end
 end

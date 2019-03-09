@@ -1,0 +1,18 @@
+- @last_books.each_with_index do |book, index|
+  .item{class: ("active" if index == 0)}
+    .item
+      .row
+        .col-sm-5
+          .general-img-wrap
+            %img.img-shadow.general-thumbnail-img{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+        .col-sm-7
+          .mb-60
+            %h1= book.title
+            %p.lead= book.decorate.preview_description
+            %p.lead.small
+              = book.decorate.book_authors
+            .general-align
+              - if book.ended?
+                %button.disabled.btn= I18n.t('buy_now')
+              - else
+                %button.btn.btn-primary Buy Now
