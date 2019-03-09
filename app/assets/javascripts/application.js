@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require jquery-mask-plugin
 //= require bootstrap-sprockets
 //= require activestorage
 //= require turbolinks

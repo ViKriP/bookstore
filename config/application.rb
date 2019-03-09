@@ -23,6 +23,7 @@ module Bookstore
     config.load_defaults 5.2
 
     config.serve_static_assets = true
+    config.generators.assets = false
 
     # Don't generate system test files.
     config.generators.system_tests = nil
