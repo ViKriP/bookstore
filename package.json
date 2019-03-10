@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Viktor",
   "license": "ISC",
   "devDependencies": {
     "bootstrap-sass": "^3.3.7",
