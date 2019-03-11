@@ -1,0 +1,6 @@
+%main.container
+  - flash.each do |type, message|
+    - if message.is_a?(String)
+      %div{class: "alert alert-#{type == 'notice' ? 'success' : 'warning'}"}
+        %a{type: "button", class: "close", "data-dismiss": "alert", "aria-label": "Close"} &times;
+        = message

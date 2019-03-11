@@ -6,7 +6,7 @@
     = devise_error_messages!
     .form-group.mb-25
       = f.email_field :email, autofocus: true, placeholder: I18n.t('enter_email'), id: "email", class: "form-control"
-      = f.button I18n.t('email_instuctions'), class: "btn btn-default center-block mb-20"
+    = f.button I18n.t('email_instuctions'), class: "btn btn-default center-block mb-20"
     .text-center
-      = link_to :back, class: "in-gold-500 mb-20"
-      = I18n.t('cancel')
+      = link_to :back, class: "in-gold-500 mb-20" do
+        = t('cancel')
