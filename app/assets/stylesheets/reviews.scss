@@ -1,0 +1,22 @@
+// Place all the styles related to the Reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.rating > label > input {
+    visibility: hidden;
+    position: absolute;
+  }
+  
+  .rating > label > .fa-star {
+    cursor:pointer;
+    font-size: 17px;
+    color: #c3c3c3;
+  }
+  
+  .rating > label > .fa-star:hover {
+    color: #c59c71;
+  }
+  
+  .rating > label > input:checked + .fa-star{
+    color: #c59c71;
+  }

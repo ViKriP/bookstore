@@ -1,0 +1,21 @@
+.mb-80
+  %h3= t('write_review')
+  %p.general-info-text= t('score')
+  = form_for(@book.reviews.build, url: book_reviews_path(@book), html: { class: "row" }) do |f|
+    = f.hidden_field(:book_id, value: @book.id)
+    .col-md-6
+      .mb-40
+        .form-group.mb-15.rating
+          - 5.times do |rate|
+            %label
+              = f.radio_button :rating, "#{rate + 1}"
+              %i.fa.fa-star
+        .form-group
+          = f.label :title, t('title'), class: "control-label input-label in-grey-600"
+          = f.text_field :title, id: "title", maxlength: 80, class: "form-control"
+        .form-group
+          = f.label :title, t('review'), class: "control-label input-label in-grey-600"
+          = f.text_area :comment, id: "review", maxlength: 500, class: "form-control"
+          %span#review-body-count.general-info-text{style: 'float: right'}
+      .text-right
+        = f.submit t('post'), class: "btn btn-default mb-20"

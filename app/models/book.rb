@@ -1,6 +1,7 @@
 class Book < ApplicationRecord
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :authors
+  has_many :reviews, dependent: :destroy
 
   validates :title, :price, :quantity, :description, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1 }

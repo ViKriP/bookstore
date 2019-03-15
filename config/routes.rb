@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  namespace :users do
-    get 'omniauth_callbacks/facebook'
-  end
   
   devise_for :users, controllers: {
-    omniauth_callbacks: "users/omniauth_callbacks"
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    sessions: 'users/sessions'
   }
+
+  devise_scope(:user) do
+    get('users/checkout_login', to: 'users/registrations#checkout_login', as: 'checkout_login')
+  end
 
   root 'homepage#index'
 

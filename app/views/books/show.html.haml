@@ -46,3 +46,6 @@
         .clearfix
           %p.pull-left= I18n.t('book_materials')
           %p.lead.small.pull-right= @book.materials
+  - if can? :create, Review
+    = render 'reviews/review_form'
+  = render template: 'reviews/index'

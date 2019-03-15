@@ -9,7 +9,12 @@ class BooksController < ApplicationController
     @sort_title = BookSortingService.new(params).sort_title
   end
 
+  #def show
+  #  @book = Book.find(params[:id])
+  #end
+
   def show
     @book = Book.find(params[:id])
+    @reviews = @book.reviews.approved
   end
 end

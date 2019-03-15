@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_many :reviews, dependent: :destroy
+
+  validates :first_name, :last_name, presence: true, length: { maximum: 50 }
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:facebook]
