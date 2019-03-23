@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
+  has_many :addresses, dependent: :destroy
+
+  accepts_nested_attributes_for :addresses
 
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }
   

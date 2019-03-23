@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks',
@@ -21,4 +21,6 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show] do
     resources :reviews, only: [:index, :create]
   end
+
+  resource :settings
 end

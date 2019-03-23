@@ -14,9 +14,9 @@
         %a{type: "button", "data-toggle": "collapse", href: "#account-menu", "aria-expanded": "false", "aria-controls": "account-menu"}= t('my_account')
         %ul#account-menu.collapse.list-unstyled.pl-30.mb-10{"aria-expanded": "false"}
           %li
-            =# link_to t('orders'), orders_path, class: "collapse-link"
+            = link_to t('orders'), root_path, class: "collapse-link"
           %li
-            =# link_to t('settings_label'), settings_path, class: "collapse-link"
+            = link_to t('settings_label'), settings_path, class: "collapse-link"
           %li
             = link_to t('logout'), destroy_user_session_path, method: :delete, class: "collapse-link"
     - else
