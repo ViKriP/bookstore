@@ -20,61 +20,50 @@
               = t('shipping_address')
       .row
         .col-md-5.mb-40
-          = form_for @user, url: settings_path, method: :patch do |f|
-
-            =# Address.address_types
-            =# @user.addresses.address_types
-            =# @user_billing_address.address_type
-            =# '---'
-            =# @user.addresses.where(address_type: :billing).first.city
-            =# @my_addresses.first.city
-
-            = render 'address_form', f: f, adress: @user_billing_address, address_type: :billing_address
-
-            .text-center.general-text-align
-              = f.button 'Save', method: :put, class: "btn btn-default", name: "commit", value: "billing_address"
+          = render 'address_form', address_type: :billing, address: @user_address[:billing]
         .col-md-5.col-md-offset-1.mb-25
-          = form_for @user, url: settings_path, method: :patch do |f|
-
-            = render 'address_form', f: f, adress: @user_shipping_address, address_type: :shipping_address
-
-            .text-center.general-text-align
-              = f.button 'Save', method: :put, class: "btn btn-default", name: "commit", value: "shipping_address"
+          = render 'address_form', address_type: :shipping, address: @user_address[:shipping]
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5
           %p.in-gold-500.font-18.mb-25
             = t('email_label')
           = form_for @user, url: settings_path, method: :patch, class: "general-form-md" do |f|
-            .form-group.mb-35
+            .form-group.mb-35{class: "#{error_class(@user, :email)}"}
               = f.label :email, t('enter_email'),class: "control-label input-label"
               = f.email_field :email, placeholder: t('enter_email'), class: "form-control"
+              %span.help-block= show_errors(@user, :email)
             .general-text-align
               = f.button t('save'), class: 'btn btn-default mb-35', name: "commit", value: "email"
           %p.in-gold-500.font-18.mb-25
             = t('info')
           = form_for @user, url: settings_path, method: :patch, class: "general-form-md" do |f|
-            .form-group.mb-35
+            .form-group.mb-35{class: "#{error_class(@user, :first_name)}"}
               = f.label :first_name, t('your_name'), class: "control-label input-label"
               = f.text_field :first_name, class: "form-control"
-            .form-group.mb-35
+              %span.help-block= show_errors(@user, :first_name)
+            .form-group.mb-35{class: "#{error_class(@user, :last_name)}"}
               = f.label :last_name, t('your_last_name'), class: "control-label input-label"
               = f.text_field :last_name, class: "form-control"
+              %span.help-block= show_errors(@user, :last_name)
             .general-text-align
               = f.button t('save'), class: 'btn btn-default mb-35', name: "commit", value: "info"
         .col-sm-5.col-sm-offset-1
           %p.in-gold-500.font-18.mb-25
             = t('password')
           = form_for @user, url: settings_path, method: :patch, class: "general-form-md divider-lg-bottom pb-25" do |f|
-            .form-group.mb-30
+            .form-group.mb-30{class: "#{error_class(@user, :current_password)}"}
               = f.label :current_password, "Old Password", class: "control-label input-label"
               = f.password_field :current_password, placeholder: "Old Password", class: "form-control"
-            .form-group.mb-30
+              %span.help-block= show_errors(@user, :current_password)
+            .form-group.mb-30{class: "#{error_class(@user, :password)}"}
               = f.label :password, t('type_new_password'), class: "control-label input-label"
               = f.password_field :password, placeholder: t('type_new_password'), id: "password", class: "form-control"
-            .form-group.mb-40
+              %span.help-block= show_errors(@user, :password)
+            .form-group.mb-40{class: "#{error_class(@user, :password_confirmation)}"}
               = f.label :password_confirmation, t('confirm_password'), class: "control-label input-label"
               = f.password_field :password_confirmation, placeholder: t('confirm_password'), id: "confirmPassword", class: "form-control"
+              %span.help-block= show_errors(@user, :password_confirmation)
             .general-text-align
               = f.button t('save'), class: "btn btn-default mb-10", name: "commit", value: "password"
         .col-sm-12

@@ -7,6 +7,7 @@ class Address < ApplicationRecord
   belongs_to :user
   enum address_type: {billing: 0, shipping: 1}
 
+  validates :user, presence: true
   validates :first_name, :last_name, :address, :city, :zip, :country, :phone, presence: true
   validates :first_name, :last_name, :address, :city, length: { maximum: 50, too_long: '50 characters only' }
   validates :first_name, :last_name, :city,
@@ -17,8 +18,6 @@ class Address < ApplicationRecord
                   format: { with: VALID_ZIP_REGEX, message: 'only allows numbers' }
   validates :phone, length: { maximum: 15 },
                     format: { with: VALID_PHONE_REGEX, message: 'should start with +' }
-
-  #scope :user_billing_address, -> { where(user_id: 7) }
 
   def country_name
     ISO3166::Country[country].name

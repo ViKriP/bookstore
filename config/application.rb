@@ -26,6 +26,9 @@ module Bookstore
     config.generators.system_tests = nil
 
     config.generators.test_framework :rspec
-    config.generators.fixture_replacement :factory_bot, dir: 'spec/factories'    
+    config.generators.fixture_replacement :factory_bot, dir: 'spec/factories'
+    #config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+    #  "<div class=\"field_with_errors control-group has-error\">#{html_tag}</div>".html_safe
+    #}
   end
 end

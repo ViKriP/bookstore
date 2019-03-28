@@ -1,34 +1,38 @@
-= f.fields_for address_type, adress do |ff|
-  .visible-xs.visible-sm
-    %h3.general-subtitle= t("#{adress.address_type}_address")
-    %p.general-info-text= t('all_fields_required')
-  %div{id: "#{'shipping' if adress.address_type == :shipping}"}
-    .form-group{class: "#{error_class(adress, :first_name)}"}
-      = ff.label :first_name, class: "control-label input-label"
-      = ff.text_field :first_name, id: "firstName", placeholder: t('first_name'), class: "form-control"
-      %span.help-block= show_errors(adress, :first_name)
-    .form-group{class: "#{error_class(adress, :last_name)}"}
-      = ff.label :last_name, class: "control-label input-label"
-      = ff.text_field :last_name, id: "lastName", placeholder: t('last_name'), class: "form-control"
-      %span.help-block= show_errors(adress, :last_name)
-    .form-group{class: "#{error_class(adress, :address)}"}
-      = ff.label :address, class: "control-label input-label"
-      = ff.text_field :address, id: "address", placeholder: t('address_label'), class: "form-control"
-      %span.help-block= show_errors(adress, :address)
-    .form-group{class: "#{error_class(adress, :city)}"}
-      = ff.label :city, class: "control-label input-label"
-      = ff.text_field :city, id: "city", placeholder: t('city'), class: "form-control"
-      %span.help-block= show_errors(adress, :city)
-    .form-group{class: "#{error_class(adress, :zip)}"}
-      = ff.label :zip, class: "control-label input-label"
-      = ff.text_field :zip, id: "zip", placeholder: t('zip'), class: "form-control"
-      %span.help-block= show_errors(adress, :zip)
-    .form-group{class: "#{error_class(adress, :country)}"}
-      = ff.label :country, class: "control-label input-label"
-      = ff.country_select :country, { include_blank: t('country_select') }, id: "country", class: "form-control"
-      %span.help-block= show_errors(adress, :country)
-    .form-group{class: "#{error_class(adress, :phone)}"}
-      = ff.label :phone, class: "control-label input-label"
-      = ff.phone_field :phone, id: "phone", placeholder: t('example_phone'), class: 'form-control'
-      %span.help-block= show_errors(adress, :phone)
-  = yield if block_given?
+= form_for @user, url: settings_path, method: :patch do |user_form|
+  = user_form.fields_for address do |ff|
+    - addr = address
+    .visible-xs.visible-sm
+      %h3.general-subtitle= t("#{address_type.to_s}_address")
+      %p.general-info-text= t('all_fields_required')
+    %div{id: "#{'shipping' if address_type == :shipping}"}
+      .form-group{class: "#{error_class(addr, :first_name)}"}
+        = ff.label :first_name, class: "control-label input-label"
+        = ff.text_field :first_name, id: "firstName", placeholder: t('first_name'), class: "form-control"
+        %span.help-block= show_errors(addr, :first_name)
+      .form-group{class: "#{error_class(addr, :last_name)}"}
+        = ff.label :last_name, class: "control-label input-label"
+        = ff.text_field :last_name, id: "lastName", placeholder: t('last_name'), class: "form-control"
+        %span.help-block= show_errors(addr, :last_name)
+      .form-group{class: "#{error_class(addr, :address)}"}
+        = ff.label :address, class: "control-label input-label"
+        = ff.text_field :address, id: "address", placeholder: t('address_label'), class: "form-control"
+        %span.help-block= show_errors(addr, :address)
+      .form-group{class: "#{error_class(addr, :city)}"}
+        = ff.label :city, class: "control-label input-label"
+        = ff.text_field :city, id: "city", placeholder: t('city'), class: "form-control"
+        %span.help-block= show_errors(addr, :city)
+      .form-group{class: "#{error_class(addr, :zip)}"}
+        = ff.label :zip, class: "control-label input-label"
+        = ff.text_field :zip, id: "zip", placeholder: t('zip'), class: "form-control"
+        %span.help-block= show_errors(addr, :zip)
+      .form-group{class: "#{error_class(addr, :country)}"}
+        = ff.label :country, class: "control-label input-label"
+        = ff.country_select :country, { include_blank: t('country_select') }, id: "country", class: "form-control"
+        %span.help-block= show_errors(addr, :country)
+      .form-group{class: "#{error_class(addr, :phone)}"}
+        = ff.label :phone, class: "control-label input-label"
+        = ff.phone_field :phone, id: "phone", placeholder: t('example_phone'), class: 'form-control'
+        %span.help-block= show_errors(addr, :phone)
+    = yield if block_given?
+    .text-center.general-text-align
+      = user_form.button 'Save', method: :put, class: "btn btn-default", name: "commit", value: "#{address_type.to_s}_address"
