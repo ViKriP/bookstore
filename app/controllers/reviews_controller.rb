@@ -1,8 +1,7 @@
 class ReviewsController < ApplicationController
   load_and_authorize_resource
 
-  def index
-  end
+  def index; end
 
   def create
     @review = current_user.reviews.new(review_params)

@@ -5,9 +5,9 @@ class Address < ApplicationRecord
   VALID_PHONE_REGEX = /\A^\+[0-9]+\z/.freeze
 
   belongs_to :user
-  enum address_type: {billing: 0, shipping: 1}
+  enum address_type: { billing: 0, shipping: 1 }
 
-  validates :user, presence: true
+  #validates :user, presence: true
   validates :first_name, :last_name, :address, :city, :zip, :country, :phone, presence: true
   validates :first_name, :last_name, :address, :city, length: { maximum: 50, too_long: '50 characters only' }
   validates :first_name, :last_name, :city,

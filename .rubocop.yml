@@ -15,4 +15,4 @@ Style/FrozenStringLiteralComment:
 Metrics/LineLength:
   Max: 120
 Style/Documentation:
-Enabled: false
+  Enabled: false

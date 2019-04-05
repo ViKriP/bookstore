@@ -3,10 +3,19 @@ class SettingsController < ApplicationController
   before_action :set_user
 
   def update
-    SettingsService.new(@user, params, @user_address).call
+    settings_service = SettingsService.new(@user, params, @user_address)
 
-    if user_settings_valid?
-      bypass_sign_in(@user) if params[:commit] == 'password'
+    settings_service.call
+
+    #puts "----------- #{settings_service.update_required} -----------------------"
+    set_user_addresses if settings_service.update_required
+
+    #@user_address[:billing].valid? if @params[:commit] == 'billing_address'
+    #@user_address[:shipping].valid? if @params[:commit] == 'shipping_address'
+    #@user.valid?
+
+    if settings_service.form_valid?
+      bypass_sign_in(@user) if params[:commit] == I18n.t('password_params')
       redirect_to settings_path, notice: I18n.t('update_success')
     else
       flash[:alert] = I18n.t('fail')
@@ -27,24 +36,21 @@ class SettingsController < ApplicationController
 
   def set_user
     @user = current_user
-    @user_billing_address = @user.addresses.billing.first
-    @user_shipping_address = @user.addresses.shipping.first
 
-    @user_billing_address ||= create_address(:billing)
-    @user_shipping_address ||= create_address(:shipping)
-
-    @user_address = {billing: @user_billing_address, shipping: @user_shipping_address}
+    set_user_addresses
   end
 
-  def user_settings_valid?
-    @user.valid? && @user_address[:billing].valid? && @user_address[:shipping].valid?
-  end
+  def set_user_addresses
+    user_billing_address = @user.addresses.billing.first
+    user_shipping_address = @user.addresses.shipping.first
 
-  def create_address(type_address)
-    @new_address = @user.addresses.new(first_name: @user.first_name,
-                                       last_name: @user.last_name,
-                                       address_type: type_address)
-    @new_address.save(validate: false)
-    @new_address
+    user_billing_address ||= Address.new(first_name: @user.first_name,
+                                         last_name: @user.last_name,
+                                         address_type: :billing)
+    user_shipping_address ||= Address.new(first_name: @user.first_name,
+                                          last_name: @user.last_name,
+                                          address_type: :shipping)
+
+    @user_address = { billing: user_billing_address, shipping: user_shipping_address }
   end
 end

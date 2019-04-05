@@ -32,9 +32,6 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
-  gem 'factory_bot_rails'
-  gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
 end
 
 group :development do
@@ -47,11 +44,15 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
   gem 'chromedriver-helper'
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
 end

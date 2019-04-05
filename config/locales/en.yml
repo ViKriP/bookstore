@@ -15,7 +15,7 @@ en:
   dont_have_account: "Don’t have an Account?"
   your_name: 'Your first name'
   your_last_name: 'Your last name'
-  password: 'Password'
+  password_params: 'password'
   confirm_password: 'Confirm Password'
   have_account: 'Have an Account?'
   we_send_email_password: "We'll email you instructions on how to reset it"
@@ -80,3 +80,4 @@ en:
   fail: 'Some errors occured. Make sure you corectly filled all the fields'
   update_success: 'Settings were successfully updated'
   destroy_success: 'Profile was successfully removed'
+  all_books_category: 'All'

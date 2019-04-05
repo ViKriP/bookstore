@@ -1,9 +1,10 @@
 FactoryBot.define do
   factory :review do
-    user { nil }
-    book { nil }
-    title { "MyString" }
-    comment { "MyText" }
-    approved { false }
+    user
+    book
+    title { 'Test title' }
+    comment { 'Test comment' }
+    approved { true }
+    rating { 5 }
   end
 end

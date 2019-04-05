@@ -4,7 +4,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
-      #add_user_to_order
       set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
     else
       session['devise.facebook_data'] = request.env['omniauth.auth']

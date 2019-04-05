@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    title { "Specific category" }
+    title { 'Web development' }
   end
 end
