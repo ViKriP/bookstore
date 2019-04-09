@@ -1,6 +1,6 @@
 ActiveAdmin.register Book do
   permit_params :title, :price, :quantity, :year, :description, :materials,
-  :height, :width, :depth, author_ids: [], category_ids: []
+  :height, :width, :depth, author_ids: [], category_ids: [], images: []
 
   form do |f|
     f.inputs do
@@ -15,6 +15,7 @@ ActiveAdmin.register Book do
       f.input :depth
       f.input :categories
       f.input :authors, as: :select, collection: Author.pluck(:last_name, :id)
+      f.file_field :images, multiple: true
     end
     f.actions
   end
