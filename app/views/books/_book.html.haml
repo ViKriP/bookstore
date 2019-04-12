@@ -18,8 +18,8 @@
           %p.pull-right.font-16.in-gold-500= book.decorate.book_price
           %p.title.mr-55= book.title.truncate(20)
         %span.divider-sm
-          %p.lead.small
-            = book.decorate.book_authors
+        %p.lead.small
+          = book.decorate.book_authors
 - else
   .jumbotron.text-center.mb-0
   %p= I18n.t('no_books')
