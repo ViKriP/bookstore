@@ -2,6 +2,8 @@ class Book < ApplicationRecord
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :authors
   has_many :reviews, dependent: :destroy
+  has_many :order_items, dependent: :nullify
+  has_many :orders, through: :order_items
 
   mount_uploaders :images, ImageUploader
 

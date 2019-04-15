@@ -18,4 +18,7 @@
               - if book.ended?
                 %button.disabled.btn= I18n.t('buy_now')
               - else
-                %button.btn.btn-primary Buy Now
+                = form_for current_user_order.order_items.build do |f|
+                  = f.hidden_field :book_id, value: book.id
+                  = f.hidden_field :quantity, value: 1
+                  = f.button t('buy_now'), class: "btn btn-primary"

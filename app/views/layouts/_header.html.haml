@@ -7,12 +7,12 @@
         %span.icon-bar
         %span.icon-bar
       = link_to t('site_name'), root_path, class: "navbar-brand"
-      %a.shop-link.pull-right.visible-xs{href: "#"}
+      = link_to cart_path, class: "shop-link pull-right visible-xs" do
         %span.shop-icon
-          %span.shop-quantity 3
-    %a.shop-link.pull-right.hidden-xs{href: "#"}
+          %span.shop-quantity= current_user_order.order_items.count
+    = link_to cart_path, class: "shop-link pull-right hidden-xs" do
       %span.shop-icon
-        %span.shop-quantity 3
+        %span.shop-quantity= current_user_order.order_items.count
     #navbar.navbar-collapse.collapse.pl-30{"aria-expanded": "false"}
       = render 'layouts/mobile_nav'
       = render 'layouts/nav'            

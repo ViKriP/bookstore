@@ -1,0 +1,33 @@
+.visible-xs
+  - @order.order_items.each do |order_item|
+    .general-cart-item.divider-lg-bottom
+      = link_to order_item, method: :delete, data: {confirm: "Sure?"}, class: "close general-cart-close", "aria-label": "Close" do
+        %span{'aria-hidden': "true"} &times;
+      .general-img-wrap-table
+        = image_tag (order_item.book.covers.first.image_url), class: "cart-img-shadow"
+      %p.title= link_to "#{order_item.book.title}", order_item.book, class: "in-gold-500"
+      %table.table
+        %tr
+          %td
+            %span.in-grey-600= t('price')
+          %td
+            %span.font-16.in-gold-500= order_item.book.decorate.book_price
+        %tr
+          %td.vertical-middle
+            %span.in-grey-600= t('book_quantity')
+          %td
+            .input-group
+              = form_for order_item, method: :patch do |f|
+                = f.hidden_field :quantity, value: order_item.quantity + 1
+                = f.button "", class: "btn btn-link input-link" do
+                  %i.fa.fa-plus.line-heaght-40
+              %input#order-quantity.form-control.quantity-input{type: "text", value: "#{order_item.quantity}"}
+              = form_for order_item, method: :patch do |f|
+                = f.hidden_field :quantity, value: order_item.quantity - 1
+                = f.button "", class: "btn btn-link input-link" do
+                  %i.fa.fa-minus.line-heaght-40
+        %tr
+          %td
+            %span.in-grey-600= t('subtotal')
+          %td
+            %span.font-16.in-gold-500= order_item.decorate.order_item_subtotal

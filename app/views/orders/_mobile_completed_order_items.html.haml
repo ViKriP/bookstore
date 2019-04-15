@@ -1,0 +1,23 @@
+.visible-xs
+  - @order.order_items.each do |order_item|
+    .general-cart-item.divider-lg
+      .general-img-wrap-table
+        = image_tag (order_item.book.covers.first.image_url), class: "cart-img-shadow"
+      %p.title= order_item.book.title
+      %P.in-grey-600.fw-300= order_item.book.decorate.preview_description
+      %table.table
+        %tr
+          %td
+            %span.in-grey-600= t('price')
+          %td
+            %span.font-16.in-gold-500= order_item.book.decorate.book_price
+        %tr
+          %td.vertical-middle
+            %span.in-grey-600= t('quantity')
+          %td
+            %span= order_item.quantity
+        %tr
+          %td
+            %span.in-grey-600= t('subtotal')
+          %td
+            %span.font-16.in-gold-500= order_item.decorate.order_item_subtotal

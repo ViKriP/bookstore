@@ -1,0 +1,59 @@
+%main.container.general-main-wrap
+  %h1.mt-0.mb-25= t('my_orders')
+  %p.lead.small.mb-10.visible-xs= t('sort_by')
+  = render 'dropdown'
+  .visible-xs
+    - if @orders.none?
+      .jumbotron.text-center.mb-0
+        %p= t('no_orders')
+    - else
+      - @orders.each do |order|
+        .general-cart-item.divider-lg-bottom.pt-0
+          %table.table
+            %tr
+              %td.col-half
+                %span.in-grey-600= t('number')
+              %td.col-half
+                = link_to order.track_number, order_path(order.id), class: "general-order-number"
+            %tr
+              %td
+                %span.in-grey-600= t('completed_at')
+              %td
+                %span.in-grey-900.font-16.fw-300= order.decorate.order_date
+            %tr
+              %td
+                %span.in-grey-600= t('status')
+              %td
+                %span.font-16.in-grey-900.fw-300= order.state.titleize
+            %tr
+              %td
+                %span.in-grey-600= t('total')
+              %td
+                %strong.font-16= order.decorate.order_total
+  .hidden-xs.mb-res-50
+    - if @orders.none?
+      .jumbotron.text-center.mb-0
+        %p= t('no_orders')
+    - else
+      %table.table.table-hover
+        %thead
+          %tr
+            %th
+              %span.in-grey-600= t('number')
+            %th
+              %span.in-grey-600= t('completed_at')
+            %th
+              %span.in-grey-600= t('status')
+            %th
+              %span.in-grey-600= t('total')
+        %tbody
+          - @orders.each do |order|
+            %tr
+              %td
+                = link_to order.track_number, order_path(order.id), class: "general-order-number"
+              %td
+                %span.in-grey-900.font-16.fw-300= order.decorate.order_date
+              %td
+                %span.font-16.in-grey-900.fw-300= order.state.titleize
+              %td
+                %strong.font-16= order.decorate.order_total

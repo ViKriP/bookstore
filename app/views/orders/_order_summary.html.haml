@@ -1,0 +1,20 @@
+%tr
+  %td
+    %p.font-16 Subtotal:
+  %td
+    %p.font-16= @order.decorate.order_subtotal
+%tr
+  %td
+    %p.font-16 Delivery:
+  %td
+    %p.font-16= @order.decorate.delivery_price
+%tr
+  %td
+    %p.font-16 Coupon:
+  %td
+    %p.font-16= @order.decorate.order_discount
+%tr
+  %td
+    %strong.font-18 Order Total:
+  %td
+    %strong.font-18= @order.decorate.order_total
