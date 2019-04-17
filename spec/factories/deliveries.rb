@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :delivery do
-    name { "MyString" }
+    name { FFaker::Lorem.words.join }
     period { "MyString" }
-    price { 1.5 }
+    price { 1.55 }
   end
 end

@@ -13,7 +13,7 @@
             = form_for current_user_order.order_items.build, :html => {:class => 'thumb-hover-link'} do |f|
               = f.hidden_field :book_id, value: book.id
               = f.hidden_field :quantity, value: 1
-              = f.button "", class: "btn btn-link" do
+              = f.button "", class: "btn btn-link", style: "padding: 0px;" do
                 %i.fa.fa-shopping-cart.thumb-icon
     .mb-35
       .clearfix
