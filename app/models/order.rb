@@ -36,13 +36,10 @@ class Order < ApplicationRecord
   end
 
   def subtotal
-    puts "=== subtotal - #{order_items.map(&:subtotal)} | #{order_items.map(&:subtotal).sum} ==="
     items_price = order_items.map(&:subtotal).sum
   end
 
   def total
-    puts "=== total ==="
-    puts "=== total - #{subtotal - discount} | #{subtotal} #{discount} ==="
     total = subtotal - discount
     total += delivery.price if delivery
     return total if total > discount
