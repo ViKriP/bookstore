@@ -2,7 +2,7 @@
   - @order.order_items.each do |order_item|
     .general-cart-item.divider-lg
       .general-img-wrap-table
-        = image_tag (order_item.book.covers.first.image_url), class: "cart-img-shadow"
+        = image_tag BookImageService.new(order_item.book).image_url, class: "cart-img-shadow"
       %p.title= order_item.book.title
       %P.in-grey-600.fw-300= order_item.book.decorate.preview_description
       %table.table

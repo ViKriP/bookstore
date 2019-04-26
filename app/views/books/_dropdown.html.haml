@@ -1,7 +1,7 @@
 %a.dropdown-toggle.lead.small{href: "#", "data-toggle": "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-  = @sort_title
+  = @books_index.sort_title
   %i.fa.fa-angle-down.dropdown-icon.pull-right
-- if @category
+- if @books_index.category
   = render 'category_sort_list'
 - else
   %ul.dropdown-menu

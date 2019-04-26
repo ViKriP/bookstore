@@ -1,8 +1,8 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin Cart
+  %h1.general-title-margin= t('cart')
   - if @order.order_items.any?
-    = render 'shared/mobile_order_items'
-    = render 'shared/order_items'
+    = render 'orders/mobile_order_items'
+    = render 'orders/order_items'
     = render 'coupon_section'
   - else
     .jumbotron.text-center.mb-0

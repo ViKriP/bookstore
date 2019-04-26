@@ -4,7 +4,6 @@ class OrderItemsController < ApplicationController
   load_and_authorize_resource
 
   def create
-  #puts "============ #{current_user_order.id} ===================="
     @order_item = current_user_order.order_items.new(order_item_params)
     if @order_item.save
       redirect_to request.referer, notice: I18n.t('item_added')

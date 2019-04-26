@@ -2,9 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new
-
-    if user.persisted?
+    if user
       can :manage, User, id: user.id
       can :create, Review
       can :manage, Order, user_id: user.id

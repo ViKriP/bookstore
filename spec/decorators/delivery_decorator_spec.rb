@@ -5,7 +5,6 @@ describe BookDecorator do
 
   describe '#delivery_price' do
     it 'returns proper delivery price' do
-      puts "--- #{delivery.delivery_price} --- #{delivery.price.round(2)}"
       expect(delivery.delivery_price).to eq("€#{delivery.price.round(2)}")
     end
   end

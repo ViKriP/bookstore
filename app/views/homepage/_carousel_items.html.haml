@@ -1,13 +1,10 @@
-- @last_books.each_with_index do |book, index|
+- @homepage_index.last_books.each_with_index do |book, index|
   .item{class: ("active" if index == 0)}
     .item
       .row
         .col-sm-5
           .general-img-wrap
-            - if book.images.any?
-              = image_tag book.images.first.url, class: 'img-shadow general-thumbnail-img'
-            - else
-              = image_tag 'noimage.png', class: 'img-shadow general-thumbnail-img'
+            = image_tag BookImageService.new(book).image_url, class: 'img-shadow general-thumbnail-img'
         .col-sm-7
           .mb-60
             %h1= book.title

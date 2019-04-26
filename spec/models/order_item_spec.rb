@@ -1,5 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe OrderItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:order_item) { create(:order_item) }
+
+  it { is_expected.to belong_to(:order) }
+  it { is_expected.to belong_to(:book) }
+
+  it { is_expected.to validate_presence_of(:book_id) }
+
+  it { is_expected.to validate_presence_of(:order_id) }
+
+  it { is_expected.to validate_presence_of(:quantity) }
+
+  it do
+    is_expected.to validate_numericality_of(:quantity).is_greater_than(0)
+    is_expected.to validate_numericality_of(:quantity).only_integer
+  end
+
+  describe '#subtotal' do
+    it 'returns total price for item' do
+      expect(order_item.subtotal).to eq(order_item.book.price * order_item.quantity)
+    end
+  end
 end

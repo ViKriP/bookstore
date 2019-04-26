@@ -11,12 +11,12 @@
       .res-mr-200.text-center.general-text-right
         %p.in-gold-500.font-18 Order Summary
         %table.general-summary-table.general-summary-table-right.general-text-right
-          = render 'shared/order_summary'
+          = render 'orders/order_summary'
         - if current_user
-          = button_to t('checkout'), checkout_path(:address), method: :get, class: "btn btn-default mb-20 visible-xs-inline-block"
+          = button_to t('checkout'), class: "btn btn-default mb-20 visible-xs-inline-block"
         - else
           = link_to t('checkout'), checkout_login_path, class: "btn btn-default mb-20 visible-xs-inline-block"
 - if current_user
-  = button_to t('checkout'), checkout_path(:address), method: :get, class: "btn btn-default mb-20 hidden-xs center-block"
+  = button_to t('checkout'), class: "btn btn-default mb-20 hidden-xs center-block"
 - else
 = button_to t('checkout'), checkout_login_path, method: :get, class: "btn btn-default mb-20 hidden-xs center-block"

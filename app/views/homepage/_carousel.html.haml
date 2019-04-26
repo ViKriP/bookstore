@@ -1,7 +1,7 @@
 %main.container
   #slider.carousel.slide{"data-ride": "carousel"}
     %ol.carousel-indicators
-      - @last_books.size.times do |number|
+      - @homepage_index.last_books.size.times do |number|
         %li{class: ("active" if number == 0), "data-target": "#slider", "data-slide-to": "#{number}"}
     .carousel-inner{role: "listbox"}
       = render 'carousel_items'

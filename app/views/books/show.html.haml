@@ -6,10 +6,7 @@
     .col-sm-6
       .product-gallery
         .mb-20
-          - if @book.images.any?
-            = image_tag @book.images.first.url, style: 'img-responsive;'
-          - else
-            = image_tag('noimage.png')
+          = image_tag BookImageService.new(@book).image_url, style: 'img-responsive;'
         .images.clearfix
           - if @book.images.drop(1).any?
             - @book.images.drop(1).each do |img|

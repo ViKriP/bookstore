@@ -1,12 +1,8 @@
 class BooksController < ApplicationController
-  include Pagy::Backend
-
+  load_and_authorize_resource
+  
   def index
-    @categories = Category.all
-    @category = Category.find_by(id: params[:category_id])
-    sorted_books = BookSortingService.new(params).sort(@category&.books)
-    @pagy, @books = pagy(sorted_books, items: Book::BOOKS_PER_PAGE)
-    @sort_title = BookSortingService.new(params).sort_title
+    @books_index = Books::IndexPresenter.new(params)
   end
 
   def show

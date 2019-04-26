@@ -16,7 +16,7 @@
         %tr
           %td
             .general-img-wrap-table
-              = image_tag (order_item.book.covers.first.image_url), class: "cart-img-shadow"
+              = image_tag BookImageService.new(order_item.book).image_url, class: "cart-img-shadow"
           %td
             %p.title= order_item.book.title
             %p.in-grey-600.fw-300= order_item.book.decorate.preview_description

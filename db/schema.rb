@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_002518) do
+ActiveRecord::Schema.define(version: 2019_04_20_210445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,9 +108,9 @@ ActiveRecord::Schema.define(version: 2019_04_14_002518) do
 
   create_table "credit_cards", force: :cascade do |t|
     t.string "name"
-    t.integer "number"
+    t.string "number"
     t.string "exp_date"
-    t.integer "cvv"
+    t.string "cvv"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -136,16 +136,13 @@ ActiveRecord::Schema.define(version: 2019_04_14_002518) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "discount"
+    t.integer "user_id"
+    t.integer "discount", default: 0
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "delivery_id"
-    t.bigint "credit_card_id"
-    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
-    t.index ["delivery_id"], name: "index_orders_on_delivery_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.integer "delivery_id"
+    t.integer "credit_card_id"
   end
 
   create_table "reviews", force: :cascade do |t|

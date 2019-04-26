@@ -3,7 +3,7 @@ class Order < ApplicationRecord
 
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
-  belongs_to :credit_card
+  belongs_to :credit_card, optional: true
   has_many :order_items, dependent: :destroy
 
   accepts_nested_attributes_for :credit_card

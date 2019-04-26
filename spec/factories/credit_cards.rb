@@ -1,9 +1,13 @@
 FactoryBot.define do
   factory :credit_card do
-    name { "MyString" }
-    number { 1 }
-    exp_date { "MyString" }
-    cvv { 1 }
-    user { nil }
+    number { '1234567890123456' }
+    cvv { '333' }
+    exp_date { '12/25' }
+    name { FFaker::Name.html_safe_name }
+    user
+
+    trait :skip_validate do
+      to_create {|instance| instance.save(validate: false)}
+    end
   end
 end

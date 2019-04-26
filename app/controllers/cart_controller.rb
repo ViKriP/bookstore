@@ -1,7 +1,10 @@
 class CartController < ApplicationController
-  before_action :initial_order
+  load_and_authorize_resource :class => Order
 
-  def show; end
+  def show
+    @order = current_user_order
+    @order_items = Orders::ItemsPresenter.new.sort_items(@order)
+  end
 
   def update
     @coupon = Coupon.find_by(code: params[:code])
@@ -12,12 +15,5 @@ class CartController < ApplicationController
     else
       redirect_to cart_path, alert: I18n.t('invalid_coupon')
     end
-  end
-
-  private
-
-  def initial_order
-    @order = current_user_order
-    @order_items = @order.order_items.sort_by(&:created_at)
   end
 end

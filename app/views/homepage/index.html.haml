@@ -8,4 +8,4 @@
   .mb-35
     %h3= I18n.t('best_sellers')
     .row
-      = render partial: 'books/book', locals: {books: @best_sellers}
+      = render partial: 'books/book', locals: {books: @homepage_index.best_sellers}

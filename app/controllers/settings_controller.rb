@@ -7,7 +7,6 @@ class SettingsController < ApplicationController
 
     settings_service.call
 
-    #puts "----------- #{settings_service.update_required} -----------------------"
     set_user_addresses if settings_service.update_required
 
     #@user_address[:billing].valid? if @params[:commit] == 'billing_address'
