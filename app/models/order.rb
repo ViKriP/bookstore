@@ -41,6 +41,7 @@ class Order < ApplicationRecord
   end
 
   def total
+    puts "=== total ==="
     puts "=== total - #{subtotal - discount} | #{subtotal} #{discount} ==="
     total = subtotal - discount
     total += delivery.price if delivery
