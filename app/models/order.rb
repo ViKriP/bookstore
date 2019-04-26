@@ -36,6 +36,7 @@ class Order < ApplicationRecord
   end
 
   def subtotal
+    puts "=== subtotal - #{order_items.map(&:subtotal)} | #{order_items.map(&:subtotal).sum} ==="
     items_price = order_items.map(&:subtotal).sum
   end
 

@@ -10,6 +10,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def order_total
+    puts "=== order_total - #{total} ==="
     h.number_to_currency(total, unit: '€', precision: 2)
   end
 
