@@ -1,5 +1,5 @@
 class CartController < ApplicationController
-  load_and_authorize_resource :class => Order
+  #load_and_authorize_resource :class => Order
 
   def show
     @order = current_user_order
