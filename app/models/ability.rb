@@ -4,9 +4,10 @@ class Ability
   def initialize(user)
     if user
       can :manage, User, id: user.id
-      can :create, Review
+      can :create, Review, user_id: user.id
       can :manage, Order, user_id: user.id
     end
+
     can :read, Book
     can :read, Review
     can :manage, OrderItem
