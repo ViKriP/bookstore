@@ -56,6 +56,7 @@ group :test do
   gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 group :production do

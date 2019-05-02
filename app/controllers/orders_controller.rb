@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @orders = OrdersFilterService.new(current_user.orders, params).filter.order(:id)
+    @orders = OrdersFilterService.new(current_user.orders, params).filter
     @filter_title = OrdersFilterService.new(current_user.orders, params).filter_title
   end
 
