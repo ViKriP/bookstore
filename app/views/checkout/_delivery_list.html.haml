@@ -1,0 +1,22 @@
+.hidden-xs.mb-res-50
+  %table.table.table-hover
+    %thead
+      %tr
+        %th.col-method
+          %span.in-grey-600.ml-40= t('delivery.method')
+        %th
+          %span.in-grey-600= t('delivery.days')
+        %th
+          %span.in-grey-600= t('price')
+    %tbody
+      - @deliveries.each do |delivery|
+        %tr
+          %td
+            .form-group.radio.mt-0.mb-0
+              %label.radio-label
+                = f.radio_button :delivery_id, delivery.id, checked: (delivery == @deliveries.first), class: "radio-input"
+                %span.radio-text= delivery.name
+          %td
+            %span= delivery.decorate.period
+          %td
+            %span.font-16.in-gold-500= delivery.decorate.delivery_price

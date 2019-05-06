@@ -3,6 +3,6 @@ class CreditCardDecorator < Draper::Decorator
 
   def secure_card_number
     #"**** **** **** #{card_number.split('').last(4).join}"
-    card_number.last(4).join
+    number.last(4)
   end
 end

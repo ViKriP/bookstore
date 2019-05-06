@@ -119,3 +119,29 @@ en:
   password_later: "You’ll be able to create password later"
   continue_checkout: 'Continue to Checkout'
   cart: 'Cart'
+  use_billing: 'Use Billing Adress'
+  save_and_continue: 'Save and Continue'
+  delivery:
+    method: 'Method'
+    days: 'Days'
+  complete:
+    thank_you: 'Thank You for your Order!'
+    info_sent_to: 'An order confirmation has been has been sent to %{email}'
+  place_order: 'Place Orde'
+  delivery_label: 'Delivery'
+  payment:
+    credit_card: 'Credit Card'
+    card_number: 'Card Number'
+    name_on_card: 'Name on Card'
+    exp: 'MM / YY'
+    cvv: 'CVV'
+  admin:
+    view_on_site: 'View on site'
+    approve: 'Approve'
+    review_approved: 'Review(s) have been approved'
+    show: 'Show'
+    date: 'Date'
+    edit: 'Edit'
+    unapproved_reviews: 'Unapproved reviews'
+    orders_in_queue: 'Orders in queue'
+    order_items: 'Order Items'

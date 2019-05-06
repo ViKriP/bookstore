@@ -1,12 +1,12 @@
 %main.container.general-main-wrap
-  %h1.general-title-margin
-    = t('order')
-    = @order.track_number
+  %h1.general-title-margin= t('checkout')
+  = render 'steps'
   .row.mb-20
     .col-sm-3
-      %h3.general-subtitle.mt-0= t('shipping_address')
+      %h3.general-subtitle= t('shipping_address')
       %p.general-address
         = @order.user.addresses.shipping.first.first_name
+        = link_to 'edit', wizard_path(:address), class: "general-edit"
         %br
         = @order.user.addresses.shipping.first.address
         %br
@@ -17,9 +17,10 @@
         = t('phone')
         = @order.user.addresses.shipping.first.phone
     .col-sm-3
-      %h3.general-subtitle.mt-0= t('billing_address')
+      %h3.general-subtitle= t('billing_address')
       %p.general-address
         = @order.user.addresses.billing.first.first_name
+        = link_to 'edit', wizard_path(:address), class: "general-edit"
         %br
         = @order.user.addresses.billing.first.address
         %br
@@ -30,18 +31,22 @@
         = t('phone')
         = @order.user.addresses.billing.first.phone
     .col-sm-3
-      %h3.general-subtitle.mt-0= t('shipments')
+      %h3.general-subtitle= t('shipments')
       %p.general-address
         = @order.delivery.name
+        = link_to 'edit', wizard_path(:delivery), class: "general-edit"
     .col-sm-3
-      %h3.general-subtitle.mt-0= t('payment_info')
+      %h3.general-subtitle= t('payment_info')
       %p.general-address
         = @order.credit_card.decorate.secure_card_number
+        = link_to 'edit', wizard_path(:payment), class: "general-edit"
         %br
         = @order.credit_card.exp_date
-  = render 'mobile_completed_order_items'
-  = render 'completed_order_items'
+  = render 'orders/mobile_completed_order_items'
+  = render 'orders/completed_order_items'
   .text-center.general-text-right
     %p.in-gold-500.font-18= t('order_summary')
     %table.general-summary-table.general-summary-table-right.general-text-right
-      = render 'order_summary'
+      = render 'orders/order_summary'
+  .text-center
+    = link_to t('place_order'), wizard_path, method: :put, class: "btn btn-default mb-20"

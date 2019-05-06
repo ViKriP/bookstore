@@ -4,7 +4,7 @@ RSpec.describe CreditCard, type: :model do
   OUTDATED_EXP_DATE = '01/11'
   INVALID_MONTH_EXP_DATE = '13/20'
 
-  it { is_expected.to belong_to(:user) }
+  it { is_expected.to belong_to(:order) }
 
   it { is_expected.to validate_presence_of(:number) }
   it { is_expected.to validate_presence_of(:exp_date) }

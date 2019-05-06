@@ -20,9 +20,15 @@
               = t('shipping_address')
       .row
         .col-md-5.mb-40
-          = render 'address_form', address_type: :billing, address: @user_address[:billing]
+          = form_for @user, url: settings_path, method: :patch do |f|
+            = render 'address_form', f: f, address_type: :billing, address: @user_address[:billing]
+            .text-center.general-text-align
+              = f.button 'Save', method: :put, class: "btn btn-default", name: "commit", value: "billing_address"
         .col-md-5.col-md-offset-1.mb-25
-          = render 'address_form', address_type: :shipping, address: @user_address[:shipping]
+          = form_for @user, url: settings_path, method: :patch do |f|
+            = render 'address_form', f: f, address_type: :shipping, address: @user_address[:shipping]
+            .text-center.general-text-align
+              = f.button 'Save', method: :put, class: "btn btn-default", name: "commit", value: "shipping_address"
     #privacy.tab-pane.fade{role: "tabpanel"}
       .row.mb-60
         .col-sm-5

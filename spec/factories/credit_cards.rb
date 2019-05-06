@@ -4,7 +4,7 @@ FactoryBot.define do
     cvv { '333' }
     exp_date { '12/25' }
     name { FFaker::Name.html_safe_name }
-    user
+    order
 
     trait :skip_validate do
       to_create {|instance| instance.save(validate: false)}

@@ -6,8 +6,8 @@ class CreditCard < ApplicationRecord
   VALID_CARDHOLDER_NAME_REGEX = /\A[a-z A-Z]+\z/.freeze
   VALID_EXP_DATE_REGEX = /\A[0-9]{2}\/[0-9]{2}\z/.freeze
 
-  belongs_to :user
-
+  belongs_to :order
+  
   validates :number, :exp_date, :cvv, :name, presence: true
   validates :number, length: { is: 16 }, format: { with: VALID_CARD_NUMBER_REGEX }
   validates :cvv, length: { in: 3..4 }, format: { with: VALID_CVV_REGEX }

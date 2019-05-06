@@ -1,0 +1,33 @@
+%main.container.mb-res-50
+  %h1.general-title-margin= t('checkout')
+  = render 'steps'
+  %h3.general-subtitle= t('payment.credit_card')
+  = form_for @order, url: wizard_path, method: :put, html: { class: "max-600 mb-80" } do |f|
+    = f.fields_for :credit_card, @order.credit_card do |ff|
+      .form-group{class: "#{error_class(@order.credit_card, :number)}"}
+        = ff.label :number, t('payment.card_number'), class: "control-label input-label"
+        = ff.text_field :number, id: "credit-card", class: "form-control", placeholder: t('payment.card_number')
+        %span.help-block= show_errors(@order.credit_card, :number)
+      .row
+        .col-sm-6
+          .form-group{class: "#{error_class(@order.credit_card, :name)}"}
+            = ff.label :name, t('payment.name_on_card'), class: "control-label input-label"
+            = ff.text_field :name, class: "form-control", placeholder: t('payment.name_on_card')
+            %span.help-block= show_errors(@order.credit_card, :name)
+        .col-sm-3
+          .form-group{class: "#{error_class(@order.credit_card, :exp_date)}"}
+            = ff.label :exp_date, t('payment.exp'), class: "control-label input-label"
+            = ff.text_field :exp_date, id: "exp-date",class: "form-control", placeholder: t('payment.exp'), maxlength: 5
+            %span.help-block= show_errors(@order.credit_card, :exp_date)
+        .col-sm-3
+          .form-group.relative{class: "#{error_class(@order.credit_card, :cvv)}"}
+            = ff.label :cvv, t('payment.cvv'), class: "control-label input-label"
+            = ff.text_field :cvv, id: "cvv", class: "form-control", placeholder: t('payment.cvv'), maxlength: 4
+            %span.help-block= show_errors(@order.credit_card, :cvv)
+            %i.fa.fa-question-circle.general-form-help{"data-placement" => "bottom", "data-toggle" => "tooltip", title: "3-4 numbers on the back of your card"}
+    .general-text-align
+      %p.in-gold-500.font-18= t('order_summary')
+      %table.general-summary-table
+        = render 'orders/order_summary'
+    .text-center
+      = f.submit t('save_and_continue'), class: "btn btn-default center-block mb-80"

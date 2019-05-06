@@ -7,6 +7,7 @@ class CartController < ApplicationController
   end
 
   def update
+    @order = current_user_order
     @coupon = Coupon.find_by(code: params[:code])
     if @coupon
       @order.update(discount: @coupon.discount)
