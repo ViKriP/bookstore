@@ -1,11 +1,16 @@
 class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
-  has_many :addresses, dependent: :destroy
-  has_many :orders
+  has_one :billing_address, as: :addressable, dependent: :destroy
+  has_one :shipping_address, as: :addressable, dependent: :destroy
+  has_many :orders, dependent: :destroy
   has_many :order_items, through: :orders
   has_many :books, through: :order_items
 
-  accepts_nested_attributes_for :addresses
+  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :shipping_address
+
+  validates_associated :billing_address
+  validates_associated :shipping_address
 
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }
   

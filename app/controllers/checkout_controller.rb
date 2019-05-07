@@ -35,10 +35,6 @@ class CheckoutController < ApplicationController
 
   def set_order
     @order = current_user_order
-    #card = CreditCard.create(number: '1111222233334444', name: 'Gold', exp_date: '10/20', cvv: '111') #unless @order.user.credit_card
-    #card.save
-    #@order.user.credit_card.save(false) unless @order.user.credit_card
-    #@order.user.credit_card.save
   end
 
   def check_cart_emptiness
@@ -50,11 +46,8 @@ class CheckoutController < ApplicationController
   end
 
   def select_user_defined_address
-    #@billing_address = current_user.billing_address || @order.build_billing_address
-    #@shipping_address = current_user.shipping_address || @order.build_shipping_address
-    puts "======== #{current_user.addresses.billing.first} | #{@order.user.addresses.billing} ========"
-    @billing_address = current_user.addresses.billing.first #|| @order.user.addresses.build_billing
-    @shipping_address = current_user.addresses.shipping.first #|| @order.user.addresses.build_shipping
+    @billing_address = current_user.billing_address || @order.build_billing_address
+    @shipping_address = current_user.shipping_address || @order.build_shipping_address
   end
 
   def end_checkout

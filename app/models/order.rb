@@ -4,10 +4,16 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
   has_many :order_items, dependent: :destroy
+  has_one :billing_address, as: :addressable, dependent: :destroy
+  has_one :shipping_address, as: :addressable, dependent: :destroy
   has_one :credit_card, dependent: :destroy
 
+  accepts_nested_attributes_for :billing_address
+  accepts_nested_attributes_for :shipping_address
   accepts_nested_attributes_for :credit_card
 
+  validates_associated :billing_address
+  validates_associated :shipping_address
   validates_associated :credit_card
 
   aasm column: 'state', whiny_transitions: false do

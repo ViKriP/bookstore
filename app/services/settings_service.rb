@@ -1,11 +1,9 @@
 class SettingsService
   attr_accessor :update_required
 
-  def initialize(user, params, user_address)
+  def initialize(user, params)
     @user = user
     @params = params
-    @user_address = user_address
-    @update_required = false
   end
 
   def call
@@ -40,29 +38,26 @@ class SettingsService
   end
 
   def user_billing_address
-    if @user.addresses.find_by(address_type: :billing)
-      @user_address[:billing].update(user_params['address'])
+    if @user.billing_address
+      @user.billing_address.update(user_params[:billing_address_attributes])
     else
-      #puts "billing - user_params['address'] ==== #{user_params['address']} --- "
-      @user.addresses.billing.create(user_params['address'])
-      @update_required = true
+      @user.create_billing_address(user_params[:billing_address_attributes])
     end
   end
 
   def user_shipping_address
-    if @user.addresses.find_by(address_type: :shipping)
-      @user_address[:shipping].update(user_params['address'])
+    if @user.shipping_address
+      @user.shipping_address.update(user_params[:shipping_address_attributes])
     else
-      #puts "shipping - user_params['address'] ==== #{user_params['address']} --- "
-      @user.addresses.shipping.create(user_params['address'])
-      @update_required = true
+      @user.create_shipping_address(user_params[:shipping_address_attributes])
     end
   end
 
   def user_params
     @params.require(:user).permit(
       :email, :first_name, :last_name, :current_password, :password, :password_confirmation,
-      address: %i[first_name last_name address zip city country phone]
+      billing_address_attributes: %i[first_name last_name address zip city country phone],
+      shipping_address_attributes: %i[first_name last_name address zip city country phone]
     )
   end
 end

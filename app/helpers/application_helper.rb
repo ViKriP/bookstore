@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def error_class(object, field)
-    puts "--- #{object} ---"
+    #puts "--- #{object} ---"
     'has-error' if object.errors.include?(field) if object
   end
 end

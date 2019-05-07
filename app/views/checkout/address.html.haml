@@ -12,10 +12,9 @@
           %p.general-info-text= t('all_fields_required')
     .row
       .col-md-5.mb-40
-        =# render 'settings/address_form', address_type: :billing, address: @user_address[:billing]
-        = render 'settings/address_form', f: f, address_type: :billing, address: (@billing_address || @order.user.addresses.billing.first)
+        = render 'settings/address_form', f: f, address_type: :billing_address, address: (@billing_address || @order.billing_address)
       .col-md-5.col-md-offset-1.mb-60
-        = render 'settings/address_form', f: f, address_type: :shipping, address: (@shipping_address || @order.user.addresses.shipping.first) do
+        = render 'settings/address_form', f: f, address_type: :shipping_address, address: (@shipping_address || @order.shipping_address) do
           .form-group.checkbox
             %label.checkbox-label
               = check_box_tag "use_billing", "true", false, class: "checkbox-input"

@@ -18,9 +18,7 @@ class CheckoutStepSelectService
   private
 
   def addresses_exist?
-    #puts "+++ #{@order.user.first_name} +++" 
-    @order.user.addresses.billing && @order.user.addresses.shipping
-   #@order.billing_address && @order.shipping_address
+    @order.billing_address && @order.shipping_address
   end
 
   def delivery_exist?

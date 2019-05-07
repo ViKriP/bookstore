@@ -1,8 +1,8 @@
-= f.fields_for address do |ff|
+= f.fields_for address_type, address do |ff|
   .visible-xs.visible-sm
-    %h3.general-subtitle= t("#{address_type.to_s}_address")
+    %h3.general-subtitle= t(address_type.to_s)
     %p.general-info-text= t('all_fields_required')
-  %div{id: "#{'shipping' if address_type == :shipping}"}
+  %div{id: "#{'shipping' if address_type == :shipping_address}"}
     .form-group{class: "#{error_class(address, :first_name)}"}
       = ff.label :first_name, class: "control-label input-label"
       = ff.text_field :first_name, id: "firstName", placeholder: t('first_name'), class: "form-control"

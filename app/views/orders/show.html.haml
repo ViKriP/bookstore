@@ -6,29 +6,29 @@
     .col-sm-3
       %h3.general-subtitle.mt-0= t('shipping_address')
       %p.general-address
-        = @order.user.addresses.shipping.first.first_name
+        = @order.shipping_address.decorate.full_name
         %br
-        = @order.user.addresses.shipping.first.address
+        = @order.shipping_address.address
         %br
-        = @order.user.addresses.shipping.first.zip
+        = @order.shipping_address.zip
         %br
-        = @order.user.addresses.shipping.first.country_name
+        = @order.shipping_address.country_name
         %br
         = t('phone')
-        = @order.user.addresses.shipping.first.phone
+        = @order.shipping_address.phone
     .col-sm-3
       %h3.general-subtitle.mt-0= t('billing_address')
       %p.general-address
-        = @order.user.addresses.billing.first.first_name
+        = @order.billing_address.decorate.full_name
         %br
-        = @order.user.addresses.billing.first.address
+        = @order.billing_address.address
         %br
-        = @order.user.addresses.billing.first.zip
+        = @order.billing_address.zip
         %br
-        = @order.user.addresses.billing.first.country_name
+        = @order.billing_address.country_name
         %br
         = t('phone')
-        = @order.user.addresses.billing.first.phone
+        = @order.billing_address.phone
     .col-sm-3
       %h3.general-subtitle.mt-0= t('shipments')
       %p.general-address

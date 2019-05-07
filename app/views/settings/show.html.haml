@@ -21,12 +21,12 @@
       .row
         .col-md-5.mb-40
           = form_for @user, url: settings_path, method: :patch do |f|
-            = render 'address_form', f: f, address_type: :billing, address: @user_address[:billing]
+            = render 'address_form', f: f, address_type: :billing_address, address: @user.billing_address, namespace: 'billing_address'
             .text-center.general-text-align
               = f.button 'Save', method: :put, class: "btn btn-default", name: "commit", value: "billing_address"
         .col-md-5.col-md-offset-1.mb-25
           = form_for @user, url: settings_path, method: :patch do |f|
-            = render 'address_form', f: f, address_type: :shipping, address: @user_address[:shipping]
+            = render 'address_form', f: f, address_type: :shipping_address, address: @user.shipping_address, namespace: 'shipping_address'
             .text-center.general-text-align
               = f.button 'Save', method: :put, class: "btn btn-default", name: "commit", value: "shipping_address"
     #privacy.tab-pane.fade{role: "tabpanel"}

@@ -10,16 +10,16 @@
         %p.general-order-number.mb-0= @order.track_number
         %p.general-address.mb-30= @order.decorate.order_date
       %p.general-address
-        = @order.user.addresses.shipping.first.first_name
+        = @order.shipping_address.decorate.full_name
         %br
-        = @order.user.addresses.shipping.first.address
+        = @order.shipping_address.address
         %br
-        = @order.user.addresses.shipping.first.zip
+        = @order.shipping_address.zip
         %br
-        = @order.user.addresses.shipping.first.country_name
+        = @order.shipping_address.country_name
         %br
         = t('phone')
-        = @order.user.addresses.shipping.first.phone
+        = @order.shipping_address.phone
     .col-sm-6.hidden-xs.text-right
       %p.general-order-number.mb-0
       = t('order')
