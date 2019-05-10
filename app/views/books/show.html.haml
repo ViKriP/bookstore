@@ -1,5 +1,5 @@
 %main.container
-  = link_to :back, class: "general-back-link" do
+  = link_to category_books_path(@book.categories.first), class: "general-back-link" do
     %i.fa.fa-long-arrow-left.mr-15
     = I18n.t('back_to_results')
   .row
@@ -24,7 +24,7 @@
           %p.h1.in-gold-500.mt-10= @book.decorate.book_price
         = form_for current_user_order.order_items.build do |f|
           = f.hidden_field :book_id, value: @book.id
-          = f.hidden_field :book_id, id: 'quantity', value: @book.quantity.to_s
+          = f.hidden_field :book_quantity, id: 'quantity', value: @book.quantity.to_s
           .col-xs-5.col-md-3
             .input-group.general-position
               %a#decrease.input-link{href: "#"}

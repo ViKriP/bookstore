@@ -7,7 +7,14 @@ FactoryBot.define do
     zip { 5555 }
     country { 'Ukraine' }
     phone { '+0998887766' }
-    address_type { 1 }
-    user
+    association :addressable, factory: :user
+
+    factory :billing_address, class: BillingAddress do
+      type { 'BillingAddress' }
+    end
+
+    factory :shipping_address, class: ShippingAddress do
+      type { 'ShippingAddress' }
+    end
   end
 end

@@ -23,14 +23,14 @@
       %td
         .input-group{style: "width: 100%;"}
           = form_for order_item, method: :patch do |f|
-            = f.hidden_field :quantity, value: order_item.quantity + 1
-            = f.button "", class: "btn btn-link input-link", style: "padding-left: 0px;padding-right: 0px;" do
-              %i.fa.fa-plus.line-heaght-40
-          %input#order-quantity.form-control.quantity-input{type: "text", value: "#{order_item.quantity}"}
-          = form_for order_item, method: :patch do |f|
             = f.hidden_field :quantity, value: order_item.quantity - 1
             = f.button "", class: "btn btn-link input-link", style: "padding-left: 0px;padding-right: 0px;" do
               %i.fa.fa-minus.line-heaght-40
+          %input#order-quantity.form-control.quantity-input{type: "text", value: "#{order_item.quantity}"}
+          = form_for order_item, method: :patch do |f|
+            = f.hidden_field :quantity, value: order_item.quantity + 1
+            = f.button "", class: "btn btn-link input-link", style: "padding-left: 0px;padding-right: 0px;" do
+              %i.fa.fa-plus.line-heaght-40
       %td
         %span.font-16.in-gold-500= order_item.decorate.order_item_subtotal
       %td

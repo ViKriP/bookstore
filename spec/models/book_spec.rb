@@ -14,8 +14,6 @@ RSpec.describe Book, type: :model do
   it { is_expected.to validate_numericality_of(:quantity) }
   it { is_expected.to validate_numericality_of(:year) }
 
-  #let(:book) { create(:book) }
-
   describe '#ended?' do
     context 'when there are some books in stock' do
       it do

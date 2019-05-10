@@ -53,7 +53,7 @@ feature 'Checkout' do
       context 'when form incorrectly filled' do
         scenario 'Shows error message' do
           visit cart_path
-          click_button(I18n.t('checkout'))
+          click_button(I18n.t('checkout'), match: :first)
           fill_in 'order[shipping_address_attributes][first_name]', with: ''
           click_button(I18n.t('save_and_continue'))
           expect(page).to have_content "can't be blank"
@@ -87,7 +87,7 @@ feature 'Checkout' do
         visit root_path
         click_button(I18n.t('buy_now'))
         visit cart_path
-        click_button(I18n.t('checkout'))
+        click_button(I18n.t('checkout'), match: :first)
 
         fill_in 'order[billing_address_attributes][first_name]', with: billing_address_attributes[:first_name]
         fill_in 'order[billing_address_attributes][last_name]', with: billing_address_attributes[:last_name]

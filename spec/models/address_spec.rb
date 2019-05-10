@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Address, type: :model do
   let(:address) { create(:address) }
 
-  #it { should belong_to(:addressable) }
+  it { should belong_to(:addressable) }
 
   context 'validations' do
     %i[first_name last_name address city zip country phone].each do |column|

@@ -5,7 +5,7 @@ RSpec.describe CreditCardDecorator do
 
   describe '#secure_card_number' do
     it 'shows only last four numbers and hides others' do
-      expect(credit_card.secure_card_number).to eq(credit_card.number.last(4))
+      expect(credit_card.secure_card_number).to eq("** ** ** #{credit_card.number.last(4)}")
     end
   end
 end
