@@ -19,6 +19,7 @@ class SettingsService
   def form_valid?
     return @user_address[:billing].valid? if @params[:commit] == 'billing_address'
     return @user_address[:shipping].valid? if @params[:commit] == 'shipping_address'
+
     @user.valid?
   end
 

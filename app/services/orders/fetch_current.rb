@@ -1,4 +1,4 @@
-module Orders 
+module Orders
   class FetchCurrent
     def initialize(current_user, session_order_id)
       @current_user = current_user

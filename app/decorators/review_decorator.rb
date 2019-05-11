@@ -6,7 +6,7 @@ class ReviewDecorator < Draper::Decorator
   end
 
   def review_user_initials
-    "#{user.first_name[0].capitalize}"
+    user.first_name[0].capitalize.to_s
   end
 
   def review_time

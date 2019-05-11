@@ -1,6 +1,6 @@
 .mb-80
-  %h3.in-gold-500.mb-25= pluralize(@reviews.size, 'review')
-  - @reviews.each do |review|
+  %h3.in-gold-500.mb-25= pluralize(@books_show.reviews.size, 'review')
+  - @books_show.reviews.each do |review|
     .general-message-wrap.divider-lg
       .clearfix
         %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.decorate.review_user_initials
@@ -9,8 +9,8 @@
             .general-message-date.hidden-xs= review.decorate.review_time
             .max-240
               .general-message-name= review.decorate.review_user_fullname
-              -# if review.user.books.include?(review.book)
-              .general-message-verified Verified Reviewer
+              - if review.user.books.include?(review.book)
+                .general-message-verified Verified Reviewer
               .general-message-title= review.title
           .mb-15
             - review.rating.times do

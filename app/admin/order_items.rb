@@ -1,3 +1,3 @@
 ActiveAdmin.register OrderItem do
-    actions :index, :show
-  end
+  actions :index, :show
+end

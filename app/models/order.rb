@@ -42,7 +42,7 @@ class Order < ApplicationRecord
   end
 
   def subtotal
-    items_price = order_items.map(&:subtotal).sum
+    order_items.map(&:subtotal).sum
   end
 
   def total

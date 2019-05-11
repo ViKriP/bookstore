@@ -1,6 +1,6 @@
 ActiveAdmin.register Book do
   permit_params :title, :price, :quantity, :year, :description, :materials,
-  :height, :width, :depth, author_ids: [], category_ids: [], images: []
+                :height, :width, :depth, author_ids: [], category_ids: [], images: []
 
   form do |f|
     f.inputs do

@@ -1,5 +1,5 @@
 class OrderItemsController < ApplicationController
-  before_action :set_order_item, only: [:update, :destroy]
+  before_action :set_order_item, only: %i[update destroy]
 
   load_and_authorize_resource
 

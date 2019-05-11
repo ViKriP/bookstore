@@ -6,7 +6,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
-    @reviews = @book.reviews.approved
+    @books_show = Books::ShowPresenter.new(params[:id])
   end
 end
