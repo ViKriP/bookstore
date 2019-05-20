@@ -3,11 +3,11 @@
   %p.lead.small.mb-10.visible-xs= t('sort_by')
   = render 'dropdown'
   .visible-xs
-    - if @orders.none?
+    - if @index_presenter.filter.none?
       .jumbotron.text-center.mb-0
         %p= t('no_orders')
     - else
-      - @orders.each do |order|
+      - @index_presenter.filter.each do |order|
         .general-cart-item.divider-lg-bottom.pt-0
           %table.table
             %tr
@@ -31,7 +31,7 @@
               %td
                 %strong.font-16= order.decorate.order_total
   .hidden-xs.mb-res-50
-    - if @orders.none?
+    - if @index_presenter.filter.none?
       .jumbotron.text-center.mb-0
         %p= t('no_orders')
     - else
@@ -47,7 +47,7 @@
             %th
               %span.in-grey-600= t('total')
         %tbody
-          - @orders.each do |order|
+          - @index_presenter.filter.each do |order|
             %tr
               %td
                 = link_to order.track_number, order_path(order.id), class: "general-order-number"

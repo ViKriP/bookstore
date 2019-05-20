@@ -22,7 +22,7 @@
       .row
         .col-xs-12.col-md-4
           %p.h1.in-gold-500.mt-10= @book.decorate.book_price
-        = form_for current_user_order.order_items.build do |f|
+        = form_for tmp_order.order_items.build do |f|
           = f.hidden_field :book_id, value: @book.id
           = f.hidden_field :book_quantity, id: 'quantity', value: @book.quantity.to_s
           .col-xs-5.col-md-3
@@ -33,7 +33,7 @@
               %a#increase.input-link{href: "#"}
                 %i.fa.fa-plus.line-height-40
           .col-xs-7.col-md-5
-          - if @book.ended? || current_user_order.book_added?(@book.id)
+          - if @book.ended? || tmp_order.book_added?(@book.id)
             = f.submit t('add_to_card'), class: "btn btn-default pull-right general-position", disabled: "disabled"
           - else
             = f.submit t('add_to_card'), class: "btn btn-default pull-right general-position"

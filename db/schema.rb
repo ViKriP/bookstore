@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_202441) do
+ActiveRecord::Schema.define(version: 2019_05_17_144744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,11 +65,22 @@ ActiveRecord::Schema.define(version: 2019_05_07_202441) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "authors_books", id: false, force: :cascade do |t|
-    t.bigint "book_id", null: false
-    t.bigint "author_id", null: false
-    t.index ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
-    t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id", unique: true
+  create_table "book_authors", force: :cascade do |t|
+    t.bigint "author_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_book_authors_on_author_id"
+    t.index ["book_id"], name: "index_book_authors_on_book_id"
+  end
+
+  create_table "book_categories", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_book_categories_on_book_id"
+    t.index ["category_id"], name: "index_book_categories_on_category_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -87,13 +98,6 @@ ActiveRecord::Schema.define(version: 2019_05_07_202441) do
     t.string "images", default: [], array: true
   end
 
-  create_table "books_categories", id: false, force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.bigint "book_id", null: false
-    t.index ["book_id", "category_id"], name: "index_books_categories_on_book_id_and_category_id"
-    t.index ["category_id", "book_id"], name: "index_books_categories_on_category_id_and_book_id", unique: true
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -105,6 +109,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_202441) do
     t.float "discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
   end
 
   create_table "credit_cards", force: :cascade do |t|
@@ -124,6 +129,14 @@ ActiveRecord::Schema.define(version: 2019_05_07_202441) do
     t.float "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "guest_orders", force: :cascade do |t|
+    t.bigint "order_id"
+    t.string "guest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_guest_orders_on_order_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -180,6 +193,11 @@ ActiveRecord::Schema.define(version: 2019_05_07_202441) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "book_authors", "authors"
+  add_foreign_key "book_authors", "books"
+  add_foreign_key "book_categories", "books"
+  add_foreign_key "book_categories", "categories"
+  add_foreign_key "guest_orders", "orders"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "credit_cards"

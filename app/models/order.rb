@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   has_one :billing_address, as: :addressable, dependent: :destroy
   has_one :shipping_address, as: :addressable, dependent: :destroy
   has_one :credit_card, dependent: :destroy
+  has_one :guest_order, dependent: :destroy
 
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address

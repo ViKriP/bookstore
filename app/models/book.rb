@@ -1,6 +1,8 @@
 class Book < ApplicationRecord
-  has_and_belongs_to_many :categories
-  has_and_belongs_to_many :authors
+  has_many :book_authors
+  has_many :authors, through: :book_authors
+  has_many :book_categories
+  has_many :categories, through: :book_categories
   has_many :reviews, dependent: :destroy
   has_many :order_items, dependent: :nullify
   has_many :orders, through: :order_items

@@ -7,7 +7,7 @@
           .general-thumb-link-wrap
             = link_to book, class: "thumb-hover-link" do
               %i.fa.fa-eye.thumb-icon{"aria-hidden": "true"}
-            = form_for current_user_order.order_items.build, :html => {:class => 'thumb-hover-link'} do |f|
+            = form_for tmp_order.order_items.build, :html => {:class => 'thumb-hover-link'} do |f|
               = f.hidden_field :book_id, value: book.id
               = f.hidden_field :quantity, value: 1
               = f.button "", class: "btn btn-link", style: "padding: 0px;" do
