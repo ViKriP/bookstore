@@ -1,6 +1,7 @@
 $(document).ready ->
   $('#credit-card').mask '0000 0000 0000 0000'
-  $('#exp-date').mask '00/00'
+  $('#exp-month').mask '00'
+  $('#exp-year').mask '00'
   $('#cvv').mask '0000'
   $('#phone').mask '+000000000000000'
   $('[data-toggle="tooltip"]').tooltip()

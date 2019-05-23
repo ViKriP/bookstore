@@ -38,7 +38,7 @@
       %p.general-address
         = @order.credit_card.decorate.secure_card_number
         %br
-        = @order.credit_card.exp_date
+        = @order.credit_card.decorate.exp_date
   = render 'mobile_completed_order_items'
   = render 'completed_order_items'
   .text-center.general-text-right

@@ -41,7 +41,13 @@ class CheckoutService
   end
 
   def card_params
-    @params.require(:order).require(:credit_card_attributes).permit(:number, :name, :cvv, :exp_date)
+    puts "--- #{@params} ---"
+    params = @params.require(:order).require(:credit_card_attributes).permit(:last4, :name, :exp_month, :exp_year)
+    {:last4 => params[:last4],#.last(4),
+     :name => params[:name],
+     :exp_month => params[:exp_month],
+     :exp_year => params[:exp_year]
+    }
   end
 
   def add_addresses_to_user

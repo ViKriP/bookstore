@@ -4,26 +4,36 @@
   %h3.general-subtitle= t('payment.credit_card')
   = form_for @order, url: wizard_path, method: :put, html: { class: "max-600 mb-80" } do |f|
     = f.fields_for :credit_card, @order.credit_card do |ff|
-      .form-group{class: "#{error_class(@order.credit_card, :number)}"}
-        = ff.label :number, t('payment.card_number'), class: "control-label input-label"
-        = ff.text_field :number, id: "credit-card", class: "form-control", placeholder: t('payment.card_number')
-        %span.help-block= show_errors(@order.credit_card, :number)
+      .form-group{class: "#{error_class(@order.credit_card, :last4)}"}
+        = ff.label :last4, t('payment.card_number'), class: "control-label input-label"
+        = ff.text_field :last4, id: "credit-card", class: "form-control", placeholder: t('payment.card_number')
+        %span.help-block= show_errors(@order.credit_card, :last4)
       .row
         .col-sm-6
           .form-group{class: "#{error_class(@order.credit_card, :name)}"}
             = ff.label :name, t('payment.name_on_card'), class: "control-label input-label"
             = ff.text_field :name, class: "form-control", placeholder: t('payment.name_on_card')
             %span.help-block= show_errors(@order.credit_card, :name)
-        .col-sm-3
-          .form-group{class: "#{error_class(@order.credit_card, :exp_date)}"}
-            = ff.label :exp_date, t('payment.exp'), class: "control-label input-label"
-            = ff.text_field :exp_date, id: "exp-date",class: "form-control", placeholder: t('payment.exp'), maxlength: 5
-            %span.help-block= show_errors(@order.credit_card, :exp_date)
-        .col-sm-3
-          .form-group.relative{class: "#{error_class(@order.credit_card, :cvv)}"}
+        .col-sm-4
+          .exp-month
+            .form-group{class: "#{error_class(@order.credit_card, :exp_month)}"}
+              = ff.label :exp_month, t('payment.exp_month'), class: "control-label input-label"
+              = ff.text_field :exp_month, id: "exp-month", class: "form-control", placeholder: t('payment.exp_month'), maxlength: 2, required: true
+              %span.help-block= show_errors(@order.credit_card, :exp_month)
+          .exp-splitter
+            .form-group
+              = label :exp_splitter, t('payment.exp_splitter'), class: "control-label input-label"
+              = text_field :exp_splitter, :splitter, id: "exp_splitter", class: "form-control", placeholder: t('payment.exp_splitter'), disabled: true
+          .exp-year
+            .form-group{class: "#{error_class(@order.credit_card, :exp_year)}"}
+              = ff.label :exp_year, t('payment.exp_year'), class: "control-label input-label"
+              = ff.text_field :exp_year, id: "exp-year", class: "form-control", placeholder: t('payment.exp_year'), maxlength: 2, min: '19', required: true
+              %span.help-block= show_errors(@order.credit_card, :exp_year)
+        .col-sm-2
+          .form-group.relative
             = ff.label :cvv, t('payment.cvv'), class: "control-label input-label"
-            = ff.text_field :cvv, id: "cvv", class: "form-control", placeholder: t('payment.cvv'), maxlength: 4
-            %span.help-block= show_errors(@order.credit_card, :cvv)
+            = ff.password_field :cvv, id: "cvv", class: "form-control", placeholder: t('payment.cvv'), minlength:3, maxlength: 4, required: true
+            %span.form__error "can't be blank, is too short (minimum is 3 characters), is invalid"
             %i.fa.fa-question-circle.general-form-help{"data-placement" => "bottom", "data-toggle" => "tooltip", title: "3-4 numbers on the back of your card"}
     .general-text-align
       %p.in-gold-500.font-18= t('order_summary')

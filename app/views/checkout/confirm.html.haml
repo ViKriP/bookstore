@@ -41,7 +41,7 @@
         = @order.credit_card.decorate.secure_card_number
         = link_to 'edit', wizard_path(:payment), class: "general-edit"
         %br
-        = @order.credit_card.exp_date
+        = @order.credit_card.decorate.exp_date
   = render 'orders/mobile_completed_order_items'
   = render 'orders/completed_order_items'
   .text-center.general-text-right

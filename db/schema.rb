@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_17_144744) do
+ActiveRecord::Schema.define(version: 2019_05_20_141728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,9 +114,9 @@ ActiveRecord::Schema.define(version: 2019_05_17_144744) do
 
   create_table "credit_cards", force: :cascade do |t|
     t.string "name"
-    t.string "number"
-    t.string "exp_date"
-    t.string "cvv"
+    t.string "last4"
+    t.string "exp_month"
+    t.string "exp_year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "order_id"

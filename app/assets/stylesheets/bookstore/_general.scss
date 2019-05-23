@@ -334,3 +334,38 @@ img {
     margin-bottom: 85px;
   }
 }
+
+.exp-month {
+  padding: 0px;
+  width: 60px;
+  text-align: right;
+  float: left;
+ }
+  
+ .exp-splitter {
+   padding: 0px;
+   width: 35px;
+   text-align: center;
+   float: left;
+ }
+  
+ .exp-year {
+   padding: 0px;
+   width: 60px;
+   float: left;
+ }
+
+.form__error {
+	color: red;
+	text-align: left;
+	font-size: 12px;
+	display: block;
+	margin-top: 3px;
+	display: none;
+}
+input:invalid:not(:placeholder-shown) {
+	border-color: red;
+}
+input:invalid:not(:placeholder-shown) + .form__error {
+	display: block;
+}

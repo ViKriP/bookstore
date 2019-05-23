@@ -133,7 +133,9 @@ en:
     credit_card: 'Credit Card'
     card_number: 'Card Number'
     name_on_card: 'Name on Card'
-    exp: 'MM / YY'
+    exp_splitter: '/'
+    exp_month: 'MM'
+    exp_year: 'YY'
     cvv: 'CVV'
   admin:
     view_on_site: 'View on site'
