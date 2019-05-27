@@ -29,7 +29,7 @@ class GuestOrdersCleanerService
   end
 
   def guest_order_clear(order_in_progress, guest_order)
-    if order_in_progress.order_items.first
+    if order_in_progress.order_items.first #any?
       order_destroy(guest_order.order_id) if guest_order
     else
       order_item_to_user(guest_order, order_in_progress)

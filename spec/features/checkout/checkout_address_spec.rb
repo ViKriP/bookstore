@@ -67,9 +67,9 @@ feature 'Checkout' do
         visit root_path
         click_button(I18n.t('buy_now'))
         visit cart_path
-        click_button(I18n.t('checkout'))
+        click_button(I18n.t('checkout'), match: :first)
       end
-
+ 
       scenario 'Form already filled with user address' do
         expect(page).to have_field 'order[billing_address_attributes][first_name]', with: user_with_billing.billing_address.first_name
         expect(page).to have_field 'order[billing_address_attributes][last_name]', with: user_with_billing.billing_address.last_name

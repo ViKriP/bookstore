@@ -5,7 +5,7 @@ FactoryBot.define do
     address { 'My address' }
     city { 'Dnepr' }
     zip { 5555 }
-    country { 'Ukraine' }
+    country { 'UA' }
     phone { '+0998887766' }
     association :addressable, factory: :user
 

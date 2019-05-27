@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :billing_address
   accepts_nested_attributes_for :shipping_address
-
+ 
   validates_associated :billing_address
   validates_associated :shipping_address
 

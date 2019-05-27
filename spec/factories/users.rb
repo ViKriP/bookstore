@@ -6,14 +6,14 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
     confirmed_at { Date.today }
-    #address_type { :billing }
 
-    #trait :with_addresses do
-    #  after(:create) do |user|
-    # user.addresses.billing
-    #    user.address.billing = create(address: :billing)
-    #    user.address.shipping = create(address: :shipping)
-    #  end
-    #end
+    trait :with_addresses do
+      after(:create) do |user|
+        user.billing_address = create(:billing_address)
+        user.shipping_address = create(:shipping_address)
+        #user.address.billing = create(address: :billing)
+        #user.address.shipping = create(address: :shipping)
+      end
+    end
   end
 end

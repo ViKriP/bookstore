@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :credit_card do
-    number { '1234567890123456' }
-    cvv { '333' }
-    exp_date { '12/25' }
+    last4 { '1234567890123456' }
+    exp_month { '12' }
+    exp_year { '25' }
     name { FFaker::Name.html_safe_name }
     order
 

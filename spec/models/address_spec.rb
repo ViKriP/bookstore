@@ -22,7 +22,7 @@ RSpec.describe Address, type: :model do
 
   describe '#country_name' do
     it 'returns full country name' do
-      expect(address.country).to eq 'Ukraine'
+      expect(address.country).to eq 'UA'
     end
   end
 end

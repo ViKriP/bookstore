@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  it { is_expected.to have_and_belong_to_many(:categories) }
-  it { is_expected.to have_and_belong_to_many(:authors) }
+  it { should have_many(:categories).through(:book_categories) }
+  it { should have_many(:authors).through(:book_authors) }
+  it { should have_many(:orders).through(:order_items) }
+
   it { is_expected.to have_many(:reviews).dependent(:destroy) }
 
   it { is_expected.to validate_presence_of(:title) }
