@@ -147,3 +147,12 @@ en:
     unapproved_reviews: 'Unapproved reviews'
     orders_in_queue: 'Orders in queue'
     order_items: 'Order Items'
+    state: 'State'
+  id: 'Id'
+  form:
+    in_delivery: 'in_delivery'
+    canceled: 'canceled'
+    delivered: 'delivered'
+  comment: 'Comment'
+  user: 'User'
+  approved: 'Approved'

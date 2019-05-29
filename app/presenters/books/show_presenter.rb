@@ -4,14 +4,8 @@ module Books
       @params = params
     end
 
-    #def book
-    #  Book.find(@params)
-    #  #@book = 
-    #end
-
     def reviews
       Book.find(@params).reviews.approved
-      #@reviews = 
     end
   end
 end
