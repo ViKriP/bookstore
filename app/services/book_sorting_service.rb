@@ -26,7 +26,7 @@ class BookSortingService
   end
 
   def sort_title
-    return SORT_TITLES[:title_asc] unless @sort_type
+    return SORT_TITLES[:title_asc] unless SORT_TITLES[@sort_type]
 
     SORT_TITLES[@sort_type]
   end

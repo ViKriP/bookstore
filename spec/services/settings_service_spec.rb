@@ -55,6 +55,14 @@ describe SettingsService do
     end
   end
 
+  describe '#user_info' do
+    it do
+      service = described_class.new(user, { commit: 'info' })
+      expect(user).to receive(:update)
+      service.call
+    end
+  end
+
   describe '#user_password' do
     it do
       service = described_class.new(user, { commit: 'password' })

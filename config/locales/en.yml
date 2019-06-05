@@ -113,6 +113,7 @@ en:
   order_summary: 'Order Summary'
   quantity: 'Quantity'
   success_coupon_use: 'Coupon successfully activated'
+  invalid_coupon: 'Sorry, there is no such coupon'
   returning_customer: 'Returning Customer'
   new_customer: 'New Customer'
   quick_register: 'Quick Register'
