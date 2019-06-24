@@ -1,12 +1,11 @@
 module Books
   class ShowPresenter
     def initialize(params)
-      @params = params
+      @book_id = params
     end
 
     def reviews
-      #puts "--- #{@params} ---"
-      Book.find(@params).reviews.approved
+      Book.find(@book_id).reviews.approved
     end
   end
 end
