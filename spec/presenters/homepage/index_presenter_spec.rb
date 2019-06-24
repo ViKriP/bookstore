@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 describe Homepage::IndexPresenter do
-  describe '#reviews' do
-    #let(:params_with_filter) { { sort_with: 'title desc' } }
+  describe '#last_books' do
+    it 'returns collection' do
+      expect(described_class.new.last_books).to be_a Array
+    end
+  end
 
-    xit 'returns collection' do
-      #create_list(:book, 5)
-      #expect(BookSortingService.new(params_with_filter).sort(Book.all)).to be_a ActiveRecord::Relation
+  describe '#best_sellers' do
+    it 'returns collection' do
+      expect(described_class.new.best_sellers).to be_a ActiveRecord::Relation
     end
   end
 end

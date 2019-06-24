@@ -39,5 +39,4 @@ describe Books::IndexPresenter do
       expect(described_class.new(params).sort_title).to eq I18n.t('title_desc')
     end
   end
-
 end
