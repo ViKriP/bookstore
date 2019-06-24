@@ -3,5 +3,6 @@ FactoryBot.define do
     user
     discount { 1 }
     state { 'in_progress' }
+    #credit_card
   end
 end
