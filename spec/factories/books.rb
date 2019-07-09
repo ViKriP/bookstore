@@ -9,6 +9,7 @@ FactoryBot.define do
     depth { 3.0 }
     materials { 'Hardcove, glossy paper' }
     description { FFaker::Book.description }
+    #images { [url="uploads/book/images/6/1.jpg"] }
     factory :categories do
       category
     end

@@ -12,12 +12,6 @@ class GuestOrdersCleanerService
 
   private
 
-  def cleaning_time
-    guest_orders_bad = GuestOrder.where('created_at >= :one_day_ago', :one_day_ago => Time.now - 1.day)
-
-    guest_orders_bad.each { |guest_order| order_destroy(guest_order.order_id) }
-  end
-
   def cleaning_guest_order
     order_in_progress = @current_user.orders.find_by(state: 'in_progress')
     return unless order_in_progress
@@ -29,7 +23,7 @@ class GuestOrdersCleanerService
   end
 
   def guest_order_clear(order_in_progress, guest_order)
-    if order_in_progress.order_items.first #any?
+    if order_in_progress.order_items.first
       order_destroy(guest_order.order_id) if guest_order
     else
       order_item_to_user(guest_order, order_in_progress)
@@ -44,6 +38,12 @@ class GuestOrdersCleanerService
     return unless order_progress
 
     guest_order_items.each { |order_item| order_item.update(order_id: order_progress.id) }
+  end
+
+  def cleaning_time
+    guest_orders_bad = GuestOrder.where('created_at <= :one_day_ago', one_day_ago: Time.zone.now - 1.day)
+
+    guest_orders_bad.each { |guest_order| order_destroy(guest_order.order_id) }
   end
 
   def order_destroy(id)

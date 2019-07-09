@@ -6,11 +6,13 @@ class CheckoutService
 
   def add_addresses
     @order.create_billing_address(billing_address_params)
+
     if @params[:use_billing] == 'true'
       @order.create_shipping_address(billing_address_params)
     else
       @order.create_shipping_address(shipping_address_params)
     end
+    
     add_addresses_to_user if @order.valid?
   end
 
@@ -41,12 +43,13 @@ class CheckoutService
   end
 
   def card_params
-    puts "--- #{@params} ---"
     params = @params.require(:order).require(:credit_card_attributes).permit(:last4, :name, :exp_month, :exp_year)
-    {:last4 => params[:last4],#.last(4),
-     :name => params[:name],
-     :exp_month => params[:exp_month],
-     :exp_year => params[:exp_year]
+
+    {
+      last4: params[:last4],
+      name: params[:name],
+      exp_month: params[:exp_month],
+      exp_year: params[:exp_year]
     }
   end
 

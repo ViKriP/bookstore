@@ -1,12 +1,24 @@
 require 'rails_helper'
 
 describe Carts::UpdatePresenter do
-  describe '#reviews' do
-    #let(:params_with_filter) { { sort_with: 'title desc' } }
+  let(:coupon) { create(:coupon) }
+  let(:order) { create(:order) }
 
-    xit 'returns collection' do
-      #create_list(:book, 5)
-      #expect(BookSortingService.new(params_with_filter).sort(Book.all)).to be_a ActiveRecord::Relation
+  describe '#coupon' do
+    it 'when coupon there is' do
+      expect(described_class.new(order, coupon.code).coupon).to be_a Coupon
+    end
+  end
+  
+  describe '#deactivate_coupon' do
+    it 'when diactivate coupon is successfully' do
+      expect(described_class.new(order, coupon.code).deactivate_coupon).to be true
+    end
+  end
+
+  describe '#update_order' do
+    it 'when update oreder is successfully' do
+      expect(described_class.new(order, coupon.code).update_order).to be true
     end
   end
 end

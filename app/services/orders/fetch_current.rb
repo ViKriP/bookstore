@@ -25,11 +25,9 @@ module Orders
         order = Order.find_by(id: order_id)
 
         unless order
-         order = Order.new(user_id: @current_user.id)
-         order.save(validate: false)
+          order = Order.new(user_id: @current_user.id)
+          order.save(validate: false)
         end
-
-        order
       else
         order = Order.find_or_create_by(id: order_id)
         guest_order = GuestOrder.find_by(guest_id: @session_id)
@@ -38,9 +36,9 @@ module Orders
           guest_order = GuestOrder.new(order_id: order.id, guest_id: @session_id)
           guest_order.save
         end
-
-        order
       end
+
+      order
     end
   end
 end

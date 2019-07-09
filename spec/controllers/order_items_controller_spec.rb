@@ -34,7 +34,7 @@ RSpec.describe OrderItemsController, type: :controller do
         expect{ invalid_post_action }.not_to change(OrderItem, :count)
       end
 
-      it 'sends alert notice' do
+      it 'sends error alert' do
         invalid_post_action
         expect(flash[:alert]).to eq I18n.t('error')
       end
@@ -47,6 +47,9 @@ RSpec.describe OrderItemsController, type: :controller do
       patch :update, params: { id: order_item.id, order_item: order_item_params }
     end
 
+    let(:order_item_params_error) { { quantity: '0' } }
+    let(:invalid_patch) { patch :update, params: { id: order_item.id, order_item: order_item_params_error } }
+
     it 'assigns order item to @order_item' do
       expect(assigns(:order_item)).to eq(order_item)
     end
@@ -58,13 +61,18 @@ RSpec.describe OrderItemsController, type: :controller do
     it 'sends success notice' do
       expect(flash[:notice]).to eq I18n.t('item_updated')
     end
+
+    it 'sends error alert' do
+      invalid_patch
+      expect(flash[:alert]).to eq I18n.t('error')
+    end
   end
 
   describe 'DELETE #destroy' do
     before { allow(controller).to receive(:current_user_order).and_return(order_item.order) }
 
     let(:destroy_action) { delete :destroy, params: { id: order_item.id, order_item: order_item_params } }
-
+    
     it 'removes order item' do
       expect{ destroy_action }.to change(OrderItem, :count).by(-1)
     end

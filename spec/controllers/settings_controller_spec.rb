@@ -24,7 +24,7 @@ RSpec.describe SettingsController, type: :controller do
     before do
       patch :update
     end
-
+ 
     it { expect(response).to redirect_to settings_path }
 
     it 'sends flash notice' do
@@ -33,6 +33,12 @@ RSpec.describe SettingsController, type: :controller do
 
     it 'returns 302 http status' do
       expect(response.status).to eq(302)
+    end
+
+    it 'sends error alert' do
+      allow(user).to receive(:valid?).and_return(false)
+      patch :update
+      expect(flash[:alert]).to eq I18n.t('fail')
     end
   end
 

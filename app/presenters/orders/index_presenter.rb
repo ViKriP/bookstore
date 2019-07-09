@@ -9,7 +9,6 @@ module Orders
     }.freeze
 
     def initialize(orders, params)
-      #puts "--- #{params} ---"
       @orders = orders
       @filter = params[:filter]&.to_sym
     end
