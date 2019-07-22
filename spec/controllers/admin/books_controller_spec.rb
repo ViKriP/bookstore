@@ -4,7 +4,25 @@ RSpec.describe Admin::BooksController, type: :controller do
   render_views
   let(:page) { Capybara::Node::Simple.new(response.body) }
   let(:admin_user) { create(:admin_user) }
+  let(:book) { create(:book) }
   before { sign_in admin_user }
+
+  describe 'GET index' do
+    it "should render the expected columns" do
+      book.save
+      get :index
+      expect(page).to have_content('Title')
+      expect(page).to have_content('Price')
+      expect(page).to have_content('Quantity')
+      expect(page).to have_content('Description')
+      expect(page).to have_content('Year')
+      expect(page).to have_content('Materials')
+      expect(page).to have_content('Height')
+      expect(page).to have_content('Width')
+      expect(page).to have_content('Depth')
+      expect(page).to have_content('Images')
+    end
+  end
 
   describe "GET new" do
     it "should render the form elements" do

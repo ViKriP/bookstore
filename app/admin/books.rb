@@ -2,6 +2,34 @@ ActiveAdmin.register Book do
   permit_params :title, :price, :quantity, :year, :description, :materials,
                 :height, :width, :depth, author_ids: [], category_ids: [], images: []
 
+  index do
+    selectable_column
+
+    id_column
+    column :title
+    column :price
+    column :quantity
+    column :description
+    column :year
+    column :materials
+    column :height
+    column :width
+    column :depth
+    column :images
+
+    actions
+  end
+
+  filter :title
+  filter :price
+  filter :quantity
+  filter :description
+  filter :year
+  filter :materials
+  filter :height
+  filter :width
+  filter :depth
+
   form do |f|
     f.inputs do
       f.input :title

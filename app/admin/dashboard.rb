@@ -6,6 +6,15 @@ ActiveAdmin.register_page 'Dashboard' do
       span class: 'blank_slate' do
         span I18n.t('active_admin.dashboard_welcome.welcome')
         small I18n.t('active_admin.dashboard_welcome.call_to_action')
+        br
+        div "Authors count: #{Author.count}"
+        div "Categories count: #{Category.count}"
+        div "Books count: #{Book.count}"
+        div "Reviews count: #{Review.count}"
+        br
+        div "Users count: #{User.count}"
+        div "Orders count: #{Order.count}"
+        div "Delivery type count: #{Delivery.count}"
       end
     end
   end
