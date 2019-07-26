@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Carts::UpdatePresenter do
+describe CartPresenter do
   let(:coupon) { create(:coupon) }
   let(:order) { create(:order) }
 
