@@ -41,7 +41,7 @@ ActiveAdmin.register Book do
       f.input :height
       f.input :width
       f.input :depth
-      f.input :categories
+      f.input :categories, as: :select, collection: Category.pluck(:title, :id)
       f.input :authors, as: :select, collection: Author.pluck(:last_name, :id)
       f.file_field :images, multiple: true
     end

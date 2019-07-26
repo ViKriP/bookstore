@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper Pagy::Frontend
   helper_method :current_user_order, :tmp_order
 
   def current_user_order

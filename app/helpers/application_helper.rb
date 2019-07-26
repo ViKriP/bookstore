@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def show_errors(object, field)
     object.errors.messages[field].join(', ') if object && object.errors[field]
   end

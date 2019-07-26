@@ -18,6 +18,7 @@ ActiveAdmin.register Review do
 
   index do
     selectable_column
+    id_column
     column :book
     column :title
     column :comment

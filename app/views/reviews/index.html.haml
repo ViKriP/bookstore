@@ -1,6 +1,6 @@
 .mb-80
-  %h3.in-gold-500.mb-25= pluralize(@books_show.reviews.size, 'review')
-  - @books_show.reviews.each do |review|
+  %h3.in-gold-500.mb-25= pluralize(@presenter.reviews.size, 'review')
+  - @presenter.reviews.each do |review|
     .general-message-wrap.divider-lg
       .clearfix
         %span.img-circle.logo-size.inlide-block.pull-left.logo-empty= review.decorate.review_user_initials

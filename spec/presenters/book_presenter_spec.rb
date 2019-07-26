@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Books::ShowPresenter do
+describe BookPresenter do
   describe '#reviews' do
     let(:review) { create(:review) }
 
