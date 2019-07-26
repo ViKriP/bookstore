@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @index_presenter = Orders::IndexPresenter.new(current_user.orders, params)
+    @presenter = OrdersPresenter.new(current_user.orders, params)
   end
 
   def show
