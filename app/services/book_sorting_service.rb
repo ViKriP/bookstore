@@ -1,4 +1,5 @@
 class BookSortingService
+=begin  
   SORT_TITLES = {
     date_asc: I18n.t('newest_first'),
     popular: I18n.t('popular_first'),
@@ -7,7 +8,7 @@ class BookSortingService
     title_asc: I18n.t('title_asc'),
     title_desc: I18n.t('title_desc')
   }.freeze
-
+=end
   def initialize(params)
     @sort_type = params[:sort]&.to_sym
   end
@@ -25,9 +26,11 @@ class BookSortingService
     end
   end
 
+=begin
   def sort_title
     return SORT_TITLES[:title_asc] unless SORT_TITLES[@sort_type]
 
     SORT_TITLES[@sort_type]
   end
+=end  
 end

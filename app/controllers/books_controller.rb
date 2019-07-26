@@ -7,7 +7,6 @@ class BooksController < ApplicationController
 
     sorted_books = BookSortingService.new(params).sort(@presenter.category&.books)
     @pagy, @books = pagy(sorted_books, items: Book::BOOKS_PER_PAGE)
-    @sort_title = BookSortingService.new(params).sort_title
   end
 
   def show

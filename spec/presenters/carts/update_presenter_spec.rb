@@ -9,7 +9,7 @@ describe Carts::UpdatePresenter do
       expect(described_class.new(order, coupon.code).coupon).to be_a Coupon
     end
   end
-  
+
   describe '#deactivate_coupon' do
     it 'when diactivate coupon is successfully' do
       expect(described_class.new(order, coupon.code).deactivate_coupon).to be true

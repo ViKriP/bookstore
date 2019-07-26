@@ -37,3 +37,4 @@ end
     end
     Category.all.sample.books << book
   end
+  
