@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Homepage::IndexPresenter do
+describe HomepagePresenter do
   describe '#last_books' do
     it 'returns collection' do
       expect(described_class.new.last_books).to be_a Array
