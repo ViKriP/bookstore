@@ -21,7 +21,6 @@ RSpec.describe User, type: :model do
     let(:review) { create(:review, user: user) }
 
     it { is_expected.to be_able_to(:read, review) }
-    it { is_expected.to be_able_to(:manage, order) }
     it { is_expected.to be_able_to(:manage, user) }
     it { is_expected.to be_able_to(:create, review) }
     it { is_expected.to be_able_to(:read, review) }

@@ -5,7 +5,7 @@ describe BookPresenter do
     let(:review) { create(:review) }
 
     it 'returns collection' do
-      expect(described_class.new(review.book.id).reviews).to be_a ActiveRecord::Relation
+      expect(described_class.new(review.book).reviews).to be_a ActiveRecord::Relation
     end
   end
 end

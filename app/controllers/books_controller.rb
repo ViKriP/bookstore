@@ -10,6 +10,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    @presenter = BookPresenter.new(params[:id])
+    @presenter = BookPresenter.new(@book)
   end
 end

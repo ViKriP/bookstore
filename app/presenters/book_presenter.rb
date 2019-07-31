@@ -1,9 +1,9 @@
 class BookPresenter
-  def initialize(params)
-    @book_id = params
+  def initialize(book)
+    @book = book
   end
 
   def reviews
-    Book.find(@book_id).reviews.approved
+    Book.find(@book.id).reviews.approved
   end
 end
