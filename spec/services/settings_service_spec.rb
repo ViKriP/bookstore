@@ -43,13 +43,13 @@ describe SettingsService do
 
   describe '#user_email' do
     it do
-      service = described_class.new(user, { commit: 'email' })
+      service = described_class.new(user, { commit: 'email' } )
       expect(user).to receive(:skip_reconfirmation!)
       service.call
     end
 
     it do
-      service = described_class.new(user, { commit: 'email' })
+      service = described_class.new(user, { commit: 'email' } )
       expect(user).to receive(:update)
       service.call
     end

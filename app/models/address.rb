@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
   VALID_NAMES_REGEX = /\A[a-z A-Z]+\z/.freeze
-  VALID_ADDRESS_REGEX = /\A[a-z A-Z,-]+\z/.freeze
+  VALID_ADDRESS_REGEX = /\A[a-zA-Z0-9 \-\,]*\z/.freeze
   VALID_ZIP_REGEX = /\A[0-9]+\z/.freeze
   VALID_PHONE_REGEX = /\A^\+[0-9]+\z/.freeze
 
@@ -11,7 +11,7 @@ class Address < ApplicationRecord
   validates :first_name, :last_name, :city,
             format: { with: VALID_NAMES_REGEX, message: 'only allows letters' }
   validates :address,
-            format: { with: VALID_ADDRESS_REGEX, message: "only allows letters, commas and '-' symbol" }
+            format: { with: VALID_ADDRESS_REGEX, message: "only allows letters, numbers, commas and '-' symbol" }
   validates :zip, length: { maximum: 10 },
                   format: { with: VALID_ZIP_REGEX, message: 'only allows numbers' }
   validates :phone, length: { maximum: 15 },

@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :address do
-    first_name { 'My first name' }
-    last_name { 'My last name' }
-    address { 'My address' }
+    first_name { FFaker::Name.first_name }
+    last_name { FFaker::Name.last_name }
+    address { FFaker::Address.street_address }
     city { 'Dnepr' }
     zip { 5555 }
     country { 'UA' }
-    phone { '+0998887766' }
+    phone { '+38099888776'}
     association :addressable, factory: :user
 
     factory :billing_address, class: BillingAddress do
