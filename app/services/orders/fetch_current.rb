@@ -17,7 +17,9 @@ module Orders
     private
 
     def unfinished_order
-      @current_user.orders.where(state: 'in_progress').last if @current_user
+      return unless @current_user
+
+      @current_user.orders.where(state: 'in_progress').last
     end
 
     def current_order(order_id)
