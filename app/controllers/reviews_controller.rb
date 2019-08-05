@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.new(review_params)
     authorize! :create, @review
-    
+
     if @review.save
       redirect_to @review.book, notice: t('review_success')
     else

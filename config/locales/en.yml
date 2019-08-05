@@ -90,6 +90,8 @@ en:
     in_delivery: 'In delivery'
     delivered: 'Delivered'
     canceled: 'Canceled'
+  order_state:
+    in_progress: 'in_progress'
   item_added: 'Book added to your cart'
   item_updated: 'Item updated'
   item_removed: 'Item removed'

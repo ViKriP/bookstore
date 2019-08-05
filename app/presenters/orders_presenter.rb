@@ -13,7 +13,7 @@ class OrdersPresenter
   end
 
   def filter
-    return @orders.where.not(state: 'in_progress') unless @filter
+    return @orders.where.not(state: I18n.t('order_state.in_progress')) unless @filter
 
     @orders.where(state: @filter)
   end
@@ -23,5 +23,4 @@ class OrdersPresenter
 
     ORDER_SORT_TITLES[@filter]
   end
- end
-  
+end

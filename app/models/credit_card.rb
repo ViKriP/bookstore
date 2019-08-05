@@ -5,7 +5,7 @@ class CreditCard < ApplicationRecord
   VALID_CARDHOLDER_NAME_REGEX = /\A[a-z A-Z]+\z/.freeze
 
   belongs_to :order
-  
+
   validates :last4, :exp_month, :exp_year, :name, presence: true
 
   validates :last4, length: { is: 16 }, format: { with: VALID_NUMBER_REGEX }

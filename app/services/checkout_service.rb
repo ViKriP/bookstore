@@ -12,7 +12,7 @@ class CheckoutService
     else
       @order.create_shipping_address(shipping_address_params)
     end
-    
+
     add_addresses_to_user if @order.valid?
   end
 
