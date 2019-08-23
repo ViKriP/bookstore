@@ -4,7 +4,6 @@ class Order < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :delivery, optional: true
   has_many :order_items, dependent: :destroy
-  has_many :guest_orders, dependent: :destroy
   has_one :billing_address, as: :addressable, dependent: :destroy
   has_one :shipping_address, as: :addressable, dependent: :destroy
   has_one :credit_card, dependent: :destroy

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe GuestOrdersCleanerService do
+describe OrdersCleanerService do
   describe '#call' do
     let(:guest_order_bad) { create(:order, user_id: nil, created_at: Time.now - 1.day) }
 
