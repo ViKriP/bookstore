@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-describe Orders::FetchCurrent do
-  let(:session) { 'bf5cc77ea7f77bf9a0dac3354beda98a' }
-
+describe OrderService, type: :controller do
   describe '#call' do
     let(:user) { create(:user) }
 
@@ -10,8 +8,10 @@ describe Orders::FetchCurrent do
       let(:order) { create(:order, user_id: user.id) }
 
       it 'returned order' do
-        user_order = described_class.new(user, order.id, session).call
-        expect(user_order).to be_a Order
+        session[:order_id] = order.id
+        service = described_class.new(user, session).call
+        expect(service).to be_a Order
+        expect(service.id).to eql order.id
       end
     end
 
@@ -19,15 +19,17 @@ describe Orders::FetchCurrent do
       let(:order) { create(:order)}
 
       it 'returned order' do
-        user_order = described_class.new(nil, order.id, session).call
-        expect(user_order).to be_a Order
+        session[:order_id] = order.id
+        service = described_class.new(nil, session).call
+        expect(service).to be_a Order
       end
     end
 
     context "When guest and he isn't order" do
       it 'returned new order' do
-        user_order = described_class.new(user, nil, session).call
-        expect(user_order).to be_a Order
+        session[:order_id] = nil
+        service = described_class.new(user, session).call
+        expect(service).to be_a Order
       end
     end
   end
@@ -43,8 +45,9 @@ describe Orders::FetchCurrent do
       order.save
       order_item1.save
       order_item2.save
-      
-      order_items = described_class.new(user, order.id, session).order_items
+
+      session[:order_id] = order.id
+      order_items = described_class.new(user, session).order_items
       expect(order_items).to be_a ActiveRecord::AssociationRelation
       expect(order_items[0].created_at).to eql "2019-08-05 14:00:01".to_time
     end

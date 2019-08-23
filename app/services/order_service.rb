@@ -1,0 +1,56 @@
+class OrderService
+  def initialize(current_user, session)
+    @current_user = current_user
+    @session_order = session[:order_id]
+  end
+
+  def call
+    return guest_order unless @current_user
+
+    user_order
+  end
+
+  def order_items
+    call.order_items.order(:created_at)
+  end
+
+  private
+
+  def guest_order
+    return session_order if session_order
+
+    create_order
+  end
+
+  def user_order
+    return session_user_order if session_user_order
+
+    return create_order unless session_order
+
+    destroy_order(unfinished_user_order) if unfinished_user_order
+    session_order.update(user_id: @current_user.id)
+    session_order
+  end
+
+  def session_order
+    Order.find_by(id: @session_order)
+  end
+
+  def unfinished_user_order
+    @current_user.orders.where(state: I18n.t('order_state.in_progress')).last
+  end
+
+  def session_user_order
+    Order.find_by(id: @session_order, user_id: @current_user.id)
+  end
+
+  def create_order
+    order = Order.new(user_id: @current_user)
+    order.save(validate: false)
+    order
+  end
+
+  def destroy_order(id)
+    Order.where(id: id).destroy_all
+  end
+end
