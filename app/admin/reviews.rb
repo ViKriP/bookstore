@@ -32,10 +32,9 @@ ActiveAdmin.register Review do
     end
   end
 
-  batch_action :approve do |ids|
-    batch_action_collection.find(ids).each do |review|
-      review.update(approved: true)
-    end
+  batch_action :approve do
+    batch_action_collection.update_all(approved: true)
+
     redirect_to collection_path, notice: 'Reviews have been approved.'
   end
 end
