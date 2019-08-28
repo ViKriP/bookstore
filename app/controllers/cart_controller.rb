@@ -5,12 +5,12 @@ class CartController < ApplicationController
   def show; end
 
   def update
-    @presenter = CartPresenter.new(current_user_order, params[:code])
+    @presenter = CartPresenter.new(params[:code]).coupon
 
-    return redirect_to cart_path, alert: I18n.t('invalid_coupon') unless @presenter.coupon
+    return redirect_to cart_path, alert: I18n.t('invalid_coupon') unless @presenter
 
-    @presenter.update_order
-    @presenter.deactivate_coupon
+    Coupons::UseService.new(@order, @presenter).call
+
     redirect_to cart_path, notice: I18n.t('success_coupon_use')
   end
 

@@ -5,7 +5,7 @@ class Ability
     @user = user
 
     guest
-    registered if user
+    registered if @user
   end
 
   def registered
@@ -16,6 +16,7 @@ class Ability
   def guest
     can :read, Book
     can :read, Review
+    can :update, Order
     can :manage, OrderItem
     can :read, :all
   end

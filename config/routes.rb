@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   root 'homepage#index'
 
   resources :categories, only: [:index] do
-  #scope '/categories/:category_id', as: 'category' do
     resources :books, only: [:index]
   end
 
