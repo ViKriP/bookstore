@@ -14,12 +14,12 @@ class BookDecorator < Draper::Decorator
   end
 
   def shorten_description
-    h.truncate(description, length: Book::SHORT_DESCRIPTION_LENGTH) do
+    h.truncate(description, length: BookPresenter::SHORT_DESCRIPTION_LENGTH) do
       h.link_to I18n.t('read_more'), '#', class: 'in-gold-500 ml-10', id: 'read-more'
     end
   end
 
   def preview_description
-    h.truncate(description, length: Book::SHORT_DESCRIPTION_LENGTH)
+    h.truncate(description, length: BookPresenter::SHORT_DESCRIPTION_LENGTH)
   end
 end

@@ -14,9 +14,9 @@ class Book < ApplicationRecord
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
   validates :year, numericality: { less_than_or_equal_to: Time.current.year }
 
-  CAROUSEL_LIMIT = 3
-  BESTSELLERS_LIMIT = 4
-  SHORT_DESCRIPTION_LENGTH = 150
+  #CAROUSEL_LIMIT = 3
+  #BESTSELLERS_LIMIT = 4
+  #SHORT_DESCRIPTION_LENGTH = 150
   BOOKS_PER_PAGE = 12
 
   def ended?

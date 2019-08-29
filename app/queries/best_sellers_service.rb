@@ -1,5 +1,5 @@
 class BestSellersService
-  def initialize(limit = Book::BESTSELLERS_LIMIT)
+  def initialize(limit = BookPresenter::BESTSELLERS_LIMIT)
     @limit = limit
   end
 
