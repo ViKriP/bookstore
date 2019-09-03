@@ -16,10 +16,4 @@ RSpec.describe OrderItem, type: :model do
     is_expected.to validate_numericality_of(:quantity).is_greater_than(0)
     is_expected.to validate_numericality_of(:quantity).only_integer
   end
-
-  describe '#subtotal' do
-    it 'returns total price for item' do
-      expect(order_item.subtotal).to eq(order_item.book.price * order_item.quantity)
-    end
-  end
 end

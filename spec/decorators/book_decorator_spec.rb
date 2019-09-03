@@ -25,7 +25,7 @@ RSpec.describe BookDecorator do
   describe '#shorten_description' do
     let(:book) { build_stubbed(:book_with_long_description).decorate }
 
-    context "when book description length is more than #{Book::SHORT_DESCRIPTION_LENGTH} chars" do
+    context "when book description length is more than #{BookPresenter::SHORT_DESCRIPTION_LENGTH} chars" do
       it "adds link with Read more text" do
         expect(book.shorten_description).to include(I18n.t('read_more'))
       end
@@ -33,19 +33,19 @@ RSpec.describe BookDecorator do
   end
 
   describe '#preview_description' do
-    context "when book description length is less than #{Book::SHORT_DESCRIPTION_LENGTH} chars" do
+    context "when book description length is less than #{BookPresenter::SHORT_DESCRIPTION_LENGTH} chars" do
       let(:book) { build_stubbed(:book, description: 'some description').decorate }
 
-      it "truncates description to #{Book::SHORT_DESCRIPTION_LENGTH}" do
+      it "truncates description to #{BookPresenter::SHORT_DESCRIPTION_LENGTH}" do
         expect(book.preview_description.length).to eq(book.description.length)
       end
     end
 
-    context "when book description length is more than #{Book::SHORT_DESCRIPTION_LENGTH} chars" do
+    context "when book description length is more than #{BookPresenter::SHORT_DESCRIPTION_LENGTH} chars" do
       let(:book) { build_stubbed(:book, description: 'a' * 200).decorate }
 
-      it "truncates description to #{Book::SHORT_DESCRIPTION_LENGTH}" do
-        expect(book.preview_description.length).to eq(Book::SHORT_DESCRIPTION_LENGTH)
+      it "truncates description to #{BookPresenter::SHORT_DESCRIPTION_LENGTH}" do
+        expect(book.preview_description.length).to eq(BookPresenter::SHORT_DESCRIPTION_LENGTH)
       end
     end
   end

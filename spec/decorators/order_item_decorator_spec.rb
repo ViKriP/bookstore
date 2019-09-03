@@ -8,4 +8,10 @@ RSpec.describe OrderItemDecorator do
       expect(order_item.order_item_subtotal).to eq("€#{order_item.subtotal}")
     end
   end
+
+  describe '#subtotal' do
+    it 'returns total price for item' do
+      expect(order_item.subtotal).to eq(order_item.book.price * order_item.quantity)
+    end
+  end
 end

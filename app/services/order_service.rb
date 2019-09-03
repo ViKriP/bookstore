@@ -45,12 +45,16 @@ class OrderService
   end
 
   def create_order
-    order = Order.new(user_id: @current_user)
+    order = Order.new(user_id: @current_user, number: checout_number )
     order.save(validate: false)
     order
   end
 
   def destroy_order(id)
     Order.where(id: id).destroy_all
+  end
+
+  def checout_number
+    "#R" + Time.zone.now.strftime('%Y%m%d%H%M%S')
   end
 end

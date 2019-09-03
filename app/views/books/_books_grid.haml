@@ -1,13 +1,13 @@
 - books.each do |book|
   .col-sm-6.col-md-3
     .general-thumb-wrap
-      .thumbnail.general-thumbnail{class: ("disabled" if book.ended?)}
+      .thumbnail.general-thumbnail{class: ("disabled" if book.ended? || current_user_order.decorate.book_added?(book.id))}
         = image_tag BookImageService.new(book).image_url, class: 'img-shadow general-thumbnail-img'
         .thumb-hover
           .general-thumb-link-wrap
             = link_to book, class: "thumb-hover-link" do
               %i.fa.fa-eye.thumb-icon{"aria-hidden": "true"}
-            = form_for tmp_order.order_items.build, :html => {:class => 'thumb-hover-link'} do |f|
+            = form_for current_user_order.order_items.build, :html => {:class => 'thumb-hover-link'} do |f|
               = f.hidden_field :book_id, value: book.id
               = f.hidden_field :quantity, value: 1
               = f.button "", class: "btn btn-link", style: "padding: 0px;" do

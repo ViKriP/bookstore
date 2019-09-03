@@ -40,24 +40,4 @@ class Order < ApplicationRecord
       transitions from: %i[in_progress in_queue in_delivery], to: :canceled
     end
   end
-
-  def subtotal
-    order_items.map(&:subtotal).sum
-  end
-
-  def total
-    total = subtotal - discount
-    total += delivery.price if delivery
-    return total if total > discount
-
-    1
-  end
-
-  def book_added?(book_id)
-    order_items.any? { |item| item.book_id == book_id }
-  end
-
-  def track_number
-    "R#{id}"
-  end
 end

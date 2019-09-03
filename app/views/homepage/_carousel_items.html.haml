@@ -12,10 +12,10 @@
             %p.lead.small
               = book.decorate.book_authors
             .general-align
-              - if book.ended?
+              - if book.ended? || current_user_order.decorate.book_added?(book.id)
                 %button.disabled.btn= t('buy_now')
               - else
-                = form_for tmp_order.order_items.build do |f|
+                = form_for current_user_order.order_items.build do |f|
                   = f.hidden_field :book_id, value: book.id
                   = f.hidden_field :quantity, value: 1
                   = f.button t('buy_now'), class: "btn btn-primary"

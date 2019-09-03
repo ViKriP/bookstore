@@ -22,4 +22,20 @@ class OrderDecorator < Draper::Decorator
 
     h.number_to_currency(delivery.price, unit: '€', precision: 2)
   end
+
+  def subtotal
+    order_items.joins(:book).sum('books.price * order_items.quantity')
+  end
+
+  def total
+    total = subtotal - discount
+    total += delivery.price if delivery
+    return total if total > discount
+
+    1
+  end
+
+  def book_added?(book_id)
+    OrderItem.exists?(order_id: self, book_id: book_id)
+  end
 end
