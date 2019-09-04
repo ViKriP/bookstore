@@ -15,7 +15,7 @@ describe OrdersPresenter do
       end
     end
 
-    context "When aren't params" do
+    context 'When is not params' do
       it do
         expect(described_class.new(orders, nil).filtered_orders).to be_a ActiveRecord::Relation
       end
@@ -35,9 +35,15 @@ describe OrdersPresenter do
       end
     end
 
-    context "When aren't params" do
+    context 'When is not params' do
       it do
         expect(described_class.new(orders, nil).filter_title).to eq I18n.t("order_filters.all")
+      end
+    end
+
+    context 'when the parameter is wrong' do
+      it do
+        expect(described_class.new(orders, 'wrong').filter_title).to eq I18n.t("order_filters.all")
       end
     end
   end

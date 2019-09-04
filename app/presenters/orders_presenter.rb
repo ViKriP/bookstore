@@ -21,7 +21,7 @@ class OrdersPresenter
   end
 
   def filter_title
-    return ORDER_SORT_TITLES[:all] unless @filter
+    return ORDER_SORT_TITLES[:all] unless ORDER_SORT_TITLES[@filter]
 
     ORDER_SORT_TITLES[@filter]
   end
