@@ -1,9 +1,11 @@
 class HomepagePresenter
+  CAROUSEL_LIMIT = 3
+
   def last_books
-    Book.last(BookPresenter::CAROUSEL_LIMIT)
+    Book.last(CAROUSEL_LIMIT)
   end
 
   def best_sellers
-    BestSellersService.new.call
+    Books::BestSellersQuery.new.call
   end
 end

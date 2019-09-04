@@ -2,11 +2,12 @@ class SettingsController < ApplicationController
   before_action :authenticate_user!
 
   def show
-    AddressesPresenter.new(current_user).addresses
+    AddressesService.new(current_user).call
   end
 
   def update
     SettingsService.new(current_user, params).call
+
     if current_user.valid?
       bypass_sign_in(current_user) if params[:commit] == I18n.t('password_params')
       redirect_to settings_path, notice: I18n.t('update_success')

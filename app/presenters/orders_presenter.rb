@@ -7,12 +7,14 @@ class OrdersPresenter
     canceled: I18n.t('order_filters.canceled')
   }.freeze
 
-  def initialize(orders, params)
+  def initialize(orders, filter)
     @orders = orders
-    @filter = params[:filter]&.to_sym
+    @filter = filter&.to_sym
   end
 
-  def filter
+  def filtered_orders
+    return unless @orders
+
     return @orders.where.not(state: I18n.t('order_state.in_progress')) unless @filter
 
     @orders.where(state: @filter)

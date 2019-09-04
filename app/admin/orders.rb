@@ -11,6 +11,7 @@ ActiveAdmin.register Order do
 
   index do
     id_column
+    column :number
     column I18n.t('admin.date'), :created_at
     column :state
     actions defaults: false do |order|
