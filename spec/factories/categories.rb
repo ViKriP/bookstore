@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    title { 'Web development' }
+    title { FFaker::AddressUS.country_code } #'Web development'
   end
 end

@@ -19,7 +19,7 @@ describe BooksPresenter do
 
   describe '#category' do
     it 'returns category' do
-      expect(described_class.new(params).category.title).to eq 'Web development'
+      expect(described_class.new(params).category.title).to eq category.title
     end
 
     it 'when no category' do
