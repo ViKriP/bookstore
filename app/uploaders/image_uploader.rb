@@ -1,10 +1,6 @@
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  if Rails.env.production?
-    storage :fog
-  end
-
   process resize_to_fit: [400, 400]
 
   version :thumb do

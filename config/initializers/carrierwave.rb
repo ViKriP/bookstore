@@ -18,9 +18,9 @@ if Rails.env.test? || Rails.env.cucumber?
     config.storage = :file
     config.enable_processing = false
   end
- 
+
   ImageUploader
- 
+
   CarrierWave::Uploader::Base.descendants.each do |klass|
     next if klass.anonymous?
     klass.class_eval do

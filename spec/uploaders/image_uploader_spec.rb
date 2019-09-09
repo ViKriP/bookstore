@@ -4,10 +4,6 @@ require 'carrierwave/test/matchers'
 describe ImageUploader do
   include CarrierWave::Test::Matchers
 
-  if Rails.env.production?
-    storage :fog
-  end
-
   let(:path_to_file) { "#{fixture_path}/images/default.png" }
   let(:uploader) { ImageUploader.new }
 
