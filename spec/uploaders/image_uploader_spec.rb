@@ -30,4 +30,10 @@ describe ImageUploader do
       expect(uploader.default_url).to eql '/assets/default.png'
     end
   end
+
+  context 'the extension_whitelist' do
+    it 'has the correct extension_whitelist' do
+      expect(uploader.extension_whitelist).to eql %w(jpg jpeg gif png)
+    end
+  end
 end

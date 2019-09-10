@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe BookSortingService do
-  let(:params_title_asc) { { sort: 'title_asc' } }
-  let(:params_title_desc) { { sort: 'title_desc' } }
-  let(:params_price_asc) { { sort: 'price_asc' } }
-  let(:params_price_desc) { { sort: 'price_desc' } }
-  let(:params_date_asc) { { sort: 'date_asc' } }
-  let(:params_popular) { { sort: 'popular' } }
+  let(:params_title_asc) { { sort: 'title asc' } }
+  let(:params_title_desc) { { sort: 'title desc' } }
+  let(:params_price_asc) { { sort: 'price asc' } }
+  let(:params_price_desc) { { sort: 'price desc' } }
+  let(:params_created_at_desc) { { sort: 'created_at desc' } }
+  let(:params_popular_desc) { { sort: 'popular desc' } }
   let(:params_wrong) { { sort: 'wrong' } }
 
   describe '#sort' do

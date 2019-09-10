@@ -1,9 +1,7 @@
 class BooksPresenter
-  attr_accessor :params
-
   SORT_TITLES = {
-    date_asc: I18n.t('newest_first'),
-    popular: I18n.t('popular_first'),
+    created_at_desc: I18n.t('newest_first'),
+    popular_desc: I18n.t('popular_first'),
     price_asc: I18n.t('price_asc'),
     price_desc: I18n.t('price_desc'),
     title_asc: I18n.t('title_asc'),
@@ -11,8 +9,8 @@ class BooksPresenter
   }.freeze
 
   def initialize(params)
-    @params = params
-    @sort_type = params[:sort]&.to_sym
+    @params = params[:category_id]
+    @sort_type = params[:sort].gsub(' ', '_').to_sym if params[:sort]
   end
 
   def categories
@@ -20,7 +18,7 @@ class BooksPresenter
   end
 
   def category
-    Category.find_by(id: @params[:category_id])
+    Category.find_by(id: @params) if @params
   end
 
   def sort_title
