@@ -6,9 +6,6 @@ class User < ApplicationRecord
   has_many :order_items, through: :orders
   has_many :books, through: :order_items
 
-  accepts_nested_attributes_for :billing_address
-  accepts_nested_attributes_for :shipping_address
- 
   validates_associated :billing_address
   validates_associated :shipping_address
 

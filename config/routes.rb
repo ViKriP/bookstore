@@ -18,13 +18,16 @@ Rails.application.routes.draw do
     resources :books, only: [:index]
   end
 
-  resources :books, only: [:index, :show] do
-    resources :reviews, only: [:index, :create]
+  resources :books, only: %i[index show] do
+    resources :reviews, only: %i[index create]
   end
 
-  resource :settings
-  resource :cart, only: [:show, :update], controller: 'cart'
-  resources :order_items, only: [:create, :update, :destroy]
-  resources :orders, only: [:index, :show]
+  resource :settings, only: %i[show] do
+    collection { patch :address, :user }
+  end
+
+  resource :cart, only: %i[show update], controller: 'cart'
+  resources :order_items, only: %i[create update destroy]
+  resources :orders, only: %i[index show]
   resources :checkout, controller: 'checkout'
 end

@@ -1,0 +1,9 @@
+%p.in-gold-500.font-18.mb-25
+  = t('email_label')
+= form_for current_user, url: user_settings_path, method: :patch, class: "general-form-md" do |f|
+  .form-group.mb-35{class: "#{error_class(current_user, :email)}"}
+    = f.label :email, t('enter_email'),class: "control-label input-label"
+    = f.email_field :email, placeholder: t('enter_email'), class: "form-control"
+    %span.help-block= show_errors(current_user, :email)
+  .general-text-align
+    = f.button t('save'), class: 'btn btn-default mb-35', name: "commit", value: "email"

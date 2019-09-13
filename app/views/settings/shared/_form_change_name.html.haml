@@ -1,0 +1,13 @@
+%p.in-gold-500.font-18.mb-25
+  = t('info')
+= form_for current_user, url: user_settings_path, method: :patch, class: "general-form-md" do |f|
+  .form-group.mb-35{class: "#{error_class(current_user, :first_name)}"}
+    = f.label :first_name, t('your_name'), class: "control-label input-label"
+    = f.text_field :first_name, class: "form-control"
+    %span.help-block= show_errors(current_user, :first_name)
+  .form-group.mb-35{class: "#{error_class(current_user, :last_name)}"}
+    = f.label :last_name, t('your_last_name'), class: "control-label input-label"
+    = f.text_field :last_name, class: "form-control"
+    %span.help-block= show_errors(current_user, :last_name)
+  .general-text-align
+    = f.button t('save'), class: 'btn btn-default mb-35', name: "commit", value: "info"

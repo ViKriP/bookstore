@@ -19,10 +19,10 @@ RSpec.describe SettingsController, type: :controller do
       expect(response.status).to eq(200)
     end
   end
- 
-  describe 'PATCH #update' do
+
+  describe 'PATCH #address' do
     before do
-      patch :update
+      patch :address
     end
  
     it { expect(response).to redirect_to settings_path }
@@ -37,45 +37,30 @@ RSpec.describe SettingsController, type: :controller do
 
     it 'sends error alert' do
       allow(user).to receive(:valid?).and_return(false)
-      patch :update
+      patch :address
       expect(flash[:alert]).to eq I18n.t('fail')
     end
   end
 
-  describe 'DELETE #destroy' do
-    context 'when user agrees to destroy account' do
-      before do
-        allow(controller).to receive_message_chain(:params, :[]).and_return(true)
-      end
+  describe 'PATCH #user' do
+    before do
+      patch :user
+    end
+ 
+    it { expect(response).to redirect_to settings_path }
 
-      it 'destroys user' do
-        expect { delete :destroy }.to change { User.count }
-      end
-
-      it 'redirects to root path' do
-        delete :destroy
-        expect(response).to redirect_to(root_path)
-      end
-
-      it 'sends flash notice' do
-        delete :destroy
-        expect(flash[:notice]).to eq(I18n.t('destroy_success'))
-      end
+    it 'sends flash notice' do
+      expect(flash[:notice]).to eq I18n.t('update_success')
     end
 
-    context 'when user not agrees to destroy account' do
-      before do
-        allow(controller).to receive_message_chain(:params, :[]).and_return(false)
-      end
+    it 'returns 302 http status' do
+      expect(response.status).to eq(302)
+    end
 
-      it 'not destroys user' do
-        expect { delete :destroy }.not_to change { User.count }
-      end
-
-      it 'redirects to settings path' do
-        delete :destroy
-        expect(response).to redirect_to(settings_path)
-      end
+    it 'sends error alert' do
+      allow(user).to receive(:valid?).and_return(false)
+      patch :user
+      expect(flash[:alert]).to eq I18n.t('fail')
     end
   end
 end

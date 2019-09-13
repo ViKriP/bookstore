@@ -1,0 +1,10 @@
+%p.in-gold-500.font-18.mb-25= t('remove_account')
+= form_for current_user, url: user_settings_path, method: :patch do |f|
+  .general-settings-btn
+    %button.btn.mb-20.btn-default.disabled#button_delete_account= t('please_remove')
+  .form-group.checkbox.general-settings-checkbox
+    %label.checkbox-label
+      %input.checkbox-input#checkbox_consent{type: "checkbox", hidden: "true", name: "delete_confirmation"}
+      %span.checkbox-icon
+        %i.fa.fa-check
+      %span.checkbox-text= t('understand')
