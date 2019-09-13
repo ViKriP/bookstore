@@ -10,7 +10,7 @@ class BooksPresenter
 
   def initialize(params)
     @params = params[:category_id]
-    @sort_type = params[:sort].gsub(' ', '_').to_sym if params[:sort]
+    @sort_type = params[:sort].tr(' ', '_').to_sym if params[:sort]
   end
 
   def categories

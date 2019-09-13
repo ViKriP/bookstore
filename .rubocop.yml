@@ -18,3 +18,5 @@ Style/Documentation:
   Enabled: false
 Layout/EndOfLine:
   Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false  

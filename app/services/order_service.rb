@@ -45,7 +45,7 @@ class OrderService
   end
 
   def create_order
-    order = Order.new(user_id: @current_user, number: checout_number )
+    order = Order.new(user_id: @current_user, number: checout_number)
     order.save(validate: false)
     order
   end
@@ -55,6 +55,6 @@ class OrderService
   end
 
   def checout_number
-    "#R" + Time.zone.now.strftime('%Y%m%d%H%M%S')
+    '#R' + Time.zone.now.strftime('%Y%m%d%H%M%S')
   end
 end

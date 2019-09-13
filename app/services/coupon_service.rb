@@ -10,10 +10,10 @@ class CouponService
   end
 
   def use
-    @order.update(discount: @coupon.discount) if  @order && @coupon
+    @order.update(discount: @coupon.discount) if @order && @coupon
   end
 
   def deactivate
-    @coupon.update(active: false) if @coupon
+    @coupon&.update(active: false)
   end
 end

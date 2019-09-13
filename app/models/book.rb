@@ -12,10 +12,11 @@ class Book < ApplicationRecord
   scope :title, ->(ord) { order(title: ord) }
   scope :price, ->(ord) { order(price: ord) }
   scope :created_at, ->(ord) { order(created_at: ord) }
-  scope :popular, ->(ord) { left_joins(:orders)
-                            .group(:id)
-                            .order(Arel.sql("COUNT(orders.id) #{ord}")) }
-
+  scope :popular, lambda { |ord|
+    left_joins(:orders)
+      .group(:id)
+      .order(Arel.sql("COUNT(orders.id) #{ord}"))
+  }
   validates :title, :price, :quantity, :description, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 1 }
   validates :quantity, numericality: { greater_than_or_equal_to: 0 }
