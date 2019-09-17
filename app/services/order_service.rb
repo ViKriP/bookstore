@@ -1,7 +1,7 @@
 class OrderService
   def initialize(current_user, session)
     @current_user = current_user
-    @session_order = session[:order_id]
+    @session_order_id = session[:order_id]
   end
 
   def call
@@ -17,9 +17,7 @@ class OrderService
   private
 
   def guest_order
-    return session_order if session_order
-
-    create_order
+    session_order || create_order
   end
 
   def user_order
@@ -28,12 +26,13 @@ class OrderService
     return create_order unless session_order
 
     destroy_order(unfinished_user_order) if unfinished_user_order
+    #unfinished_user_order.destroy
     session_order.update(user_id: @current_user.id)
     session_order
   end
 
   def session_order
-    Order.find_by(id: @session_order)
+    Order.find_by(id: @session_order_id)
   end
 
   def unfinished_user_order
@@ -41,7 +40,7 @@ class OrderService
   end
 
   def session_user_order
-    Order.find_by(id: @session_order, user_id: @current_user.id)
+    Order.find_by(id: @session_order_id, user_id: @current_user.id)
   end
 
   def create_order

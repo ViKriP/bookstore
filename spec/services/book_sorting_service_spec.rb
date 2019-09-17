@@ -15,7 +15,7 @@ describe BookSortingService do
     context 'when params are correct' do
       BooksPresenter::SORT_TITLES.each do |phrase|
         it "returns collection sorted of #{phrase[0]}" do
-          service = described_class.new(send("params_#{phrase[0]}"), books)
+          service = described_class.new(public_send("params_#{phrase[0]}"), books)
 
           expect(service.call).to be_a ActiveRecord::Relation
         end

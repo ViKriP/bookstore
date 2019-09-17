@@ -8,8 +8,8 @@ class Books::BestSellersQuery
   def call
     bestseller = []
 
-    Category.distinct.each_with_index do |item, idx|
-      bestseller.push(bestseller_category(item.id)) if idx <= @limit - 1
+    Category.distinct.each_with_index do |category, idx|
+      bestseller.push(bestseller_category(category.id)) if idx <= @limit - 1
     end
 
     bestseller.compact
@@ -17,10 +17,10 @@ class Books::BestSellersQuery
 
   private
 
-  def bestseller_category(category)
+  def bestseller_category(category_id)
     Book.joins(:orders, :categories)
         .where.not(orders: { state: 'in_progress' })
-        .where(book_categories: { category_id: category.to_s })
+        .where(book_categories: { category_id: category_id })
         .group(:id).order(Arel.sql('COUNT(orders.id) DESC'))
         .limit(1).first
   end

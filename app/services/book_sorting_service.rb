@@ -7,9 +7,9 @@ class BookSortingService
   def call
     @given_books = @books || Book.all
 
-    return unless @given_books
+    return Book.none unless @given_books
 
-    @given_books.send("by_#{@sort_type[0]}", @sort_type[1].to_sym)
+    @given_books.public_send("by_#{@sort_type[0]}", @sort_type[1].to_sym)
 
     rescue
       @given_books.by_title(:asc)
