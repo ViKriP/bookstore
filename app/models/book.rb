@@ -9,6 +9,9 @@ class Book < ApplicationRecord
 
   mount_uploaders :images, ImageUploader
 
+  scope :by_category, ->(id) { joins(:book_categories)
+                               .where(book_categories: { category_id: id })
+  }
   scope :title, ->(ord) { order(title: ord) }
   scope :price, ->(ord) { order(price: ord) }
   scope :created_at, ->(ord) { order(created_at: ord) }

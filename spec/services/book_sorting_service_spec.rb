@@ -9,12 +9,12 @@ describe BookSortingService do
   let(:params_popular_desc) { { sort: 'popular desc' } }
   let(:params_wrong) { { sort: 'wrong' } }
 
-  describe '#sort' do
+  describe '#call' do
     let(:books) { Book.where(id: create_list(:book, 5).map(&:id)) }
 
     BooksPresenter::SORT_TITLES.each do |phrase|
       it "returns collection sorted of #{phrase[0]}" do
-        expect(described_class.new(send("params_#{phrase[0]}")).sort(books)).to be_a ActiveRecord::Relation
+        expect(described_class.new(send("params_#{phrase[0]}"), books).call).to be_a ActiveRecord::Relation
       end
     end
   end
