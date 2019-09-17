@@ -4,10 +4,8 @@ class BookImageService
   end
 
   def image_url
-    if @book.images.any?
-      @book.images.first.url
-    else
-      'noimage.png'
-    end
+    return 'noimage.png' unless @book.images.any?
+
+    @book.images.first.url
   end
 end

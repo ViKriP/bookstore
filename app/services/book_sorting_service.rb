@@ -9,8 +9,9 @@ class BookSortingService
 
     return unless @given_books
 
-    return @given_books.title(:asc) unless @sort_type
+    @given_books.send("by_#{@sort_type[0]}", @sort_type[1].to_sym)
 
-    @given_books.send(@sort_type[0], @sort_type[1].to_sym)
+    rescue
+      @given_books.by_title(:asc)
   end
 end

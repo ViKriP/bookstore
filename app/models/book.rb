@@ -12,10 +12,10 @@ class Book < ApplicationRecord
   scope :by_category, ->(id) { joins(:book_categories)
                                .where(book_categories: { category_id: id })
   }
-  scope :title, ->(ord) { order(title: ord) }
-  scope :price, ->(ord) { order(price: ord) }
-  scope :created_at, ->(ord) { order(created_at: ord) }
-  scope :popular, lambda { |ord|
+  scope :by_title, ->(ord) { order(title: ord) }
+  scope :by_price, ->(ord) { order(price: ord) }
+  scope :by_created_at, ->(ord) { order(created_at: ord) }
+  scope :by_popular, lambda { |ord|
     left_joins(:orders)
       .group(:id)
       .order(Arel.sql("COUNT(orders.id) #{ord}"))

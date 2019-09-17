@@ -29,10 +29,10 @@ class OrderDecorator < Draper::Decorator
 
   def total
     total = subtotal - discount
-    total += delivery.price if delivery
-    return total if total > discount
 
-    1
+    total += delivery.price if delivery
+
+    total > discount ? total : 1
   end
 
   def book_added?(book_id)

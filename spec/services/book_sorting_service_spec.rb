@@ -12,9 +12,21 @@ describe BookSortingService do
   describe '#call' do
     let(:books) { Book.where(id: create_list(:book, 5).map(&:id)) }
 
-    BooksPresenter::SORT_TITLES.each do |phrase|
-      it "returns collection sorted of #{phrase[0]}" do
-        expect(described_class.new(send("params_#{phrase[0]}"), books).call).to be_a ActiveRecord::Relation
+    context 'when params are correct' do
+      BooksPresenter::SORT_TITLES.each do |phrase|
+        it "returns collection sorted of #{phrase[0]}" do
+          service = described_class.new(send("params_#{phrase[0]}"), books)
+
+          expect(service.call).to be_a ActiveRecord::Relation
+        end
+      end
+    end
+
+    context 'when params are wrong' do
+      it 'returns collection sorted of title_asc' do
+        service = described_class.new(params_wrong, books)
+
+        expect(service.call).to be_a ActiveRecord::Relation
       end
     end
   end
