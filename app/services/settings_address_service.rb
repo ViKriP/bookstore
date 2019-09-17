@@ -11,6 +11,8 @@ class SettingsAddressService
     when 'billing_address' then billing_address
     when 'shipping_address' then shipping_address
     end
+
+    @user.valid?
   end
 
   private

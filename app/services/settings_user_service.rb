@@ -14,6 +14,8 @@ class SettingsUserService
     when 'info' then user_info
     when 'password' then user_password
     end
+
+    @user.valid?
   end
 
   private
