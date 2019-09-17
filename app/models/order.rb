@@ -22,7 +22,7 @@ class Order < ApplicationRecord
 
     event :confirm do
       after do
-        CheckoutCompleteMailer.order_confirm_email(user, self).deliver_now
+        CheckoutCompleteMailer.order_confirm_email(user, self).deliver_later
       end
 
       transitions from: :in_progress, to: :in_queue

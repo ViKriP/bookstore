@@ -19,7 +19,7 @@ class Books::BestSellersQuery
 
   def bestseller_category(category)
     Book.joins(:orders, :categories)
-        .where.not(orders: { state: I18n.t('order_state.in_progress') })
+        .where.not(orders: { state: 'in_progress' })
         .where(book_categories: { category_id: category.to_s })
         .group(:id).order(Arel.sql('COUNT(orders.id) DESC'))
         .limit(1).first

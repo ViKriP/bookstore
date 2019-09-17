@@ -9,8 +9,8 @@ class BooksPresenter
   }.freeze
 
   def initialize(params)
-    @params = params[:category_id]
-    @sort_type = params[:sort].tr(' ', '_').to_sym if params[:sort]
+    @category_id = params[:category_id]
+    @sort_type = params[:sort]&.tr(' ', '_')&.to_sym
   end
 
   def categories
@@ -18,12 +18,12 @@ class BooksPresenter
   end
 
   def category
-    Category.find_by(id: @params) if @params
+    Category.find_by(id: @category_id) if @category_id
   end
 
   def sort_title
-    return SORT_TITLES[:title_asc] unless SORT_TITLES[@sort_type]
+    return SORT_TITLES.fetch(:title_asc) unless SORT_TITLES.has_key?(@sort_type.to_sym)
 
-    SORT_TITLES[@sort_type]
+    SORT_TITLES.fetch(@sort_type.to_sym)
   end
 end

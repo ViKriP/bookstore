@@ -35,7 +35,7 @@ describe BooksPresenter do
     end
 
     it 'should returns default if wrong param' do
-      expect(described_class.new(params_wrong).sort_title).to be(BooksPresenter::SORT_TITLES[:title_asc])
+      expect(described_class.new(params_wrong).sort_title).to be(BooksPresenter::SORT_TITLES.fetch(:title_asc))
     end
   end
 end

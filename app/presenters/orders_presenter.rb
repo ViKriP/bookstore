@@ -15,7 +15,7 @@ class OrdersPresenter
   def filtered_orders
     return unless @orders
 
-    return @orders.where.not(state: I18n.t('order_state.in_progress')) unless @filter
+    return @orders.where.not(state: 'in_progress') unless @filter
 
     @orders.where(state: @filter)
   end

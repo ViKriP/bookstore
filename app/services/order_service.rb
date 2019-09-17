@@ -37,7 +37,7 @@ class OrderService
   end
 
   def unfinished_user_order
-    @current_user.orders.where(state: I18n.t('order_state.in_progress')).last
+    @current_user.orders.where(state: 'in_progress').last
   end
 
   def session_user_order
