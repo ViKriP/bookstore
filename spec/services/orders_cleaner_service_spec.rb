@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe OrdersCleanerService do
   describe '#call' do
-    let(:guest_order_bad) { create(:order, user_id: nil, created_at: Time.now - 1.day) }
+    let(:guest_order_bad) { create(:order, user_id: nil, created_at: 1.day.ago) }
 
     let(:service) { described_class.new }
 
