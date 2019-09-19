@@ -10,7 +10,6 @@ class CartController < ApplicationController
     return redirect_to cart_path, alert: I18n.t('invalid_coupon') unless coupon.coupon
 
     coupon.use
-    coupon.deactivate
 
     redirect_to cart_path, notice: I18n.t('success_coupon_use')
   end

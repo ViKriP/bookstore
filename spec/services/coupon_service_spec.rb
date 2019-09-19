@@ -28,14 +28,4 @@ describe CouponService do
       expect(service_without_code.use).to be_nil
     end
   end
-
-  describe '#deactivate' do
-    it 'when order and coupon code there are' do
-      expect(service.deactivate).to eql true
-    end
-
-    it 'when is not coupon code' do
-      expect(service_without_code.use).to be_nil
-    end
-  end
 end
