@@ -8,26 +8,6 @@ describe OrdersPresenter do
   let(:params_canceled) { 'canceled' }
   let(:orders) { Order.where(id: create_list(:order, 5).map(&:id), state: 'in_delivery') }
 
-  describe '#filtered_orders' do
-    OrdersPresenter::ORDER_SORT_TITLES.each do |phrase|
-      it "returns collection sorted of '#{phrase[0]}'" do
-        expect(described_class.new(orders, send("params_#{phrase[0]}")).filtered_orders).to be_a ActiveRecord::Relation
-      end
-    end
-
-    context 'When is not params' do
-      it do
-        expect(described_class.new(orders, nil).filtered_orders).to be_a ActiveRecord::Relation
-      end
-    end
-
-    context "When aren't orders" do
-      it do
-        expect(described_class.new(nil, nil).filtered_orders).to be_nil
-      end
-    end
-  end
-
   describe '#filter_title' do
     OrdersPresenter::ORDER_SORT_TITLES.each do |phrase|
       it "when title '#{phrase[0]}' there is" do

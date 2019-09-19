@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
 
   def index
     @presenter = OrdersPresenter.new(current_user.orders, filter_params[:filter])
+
+    @filtered_orders = Orders::FilteredStateQuery.new(current_user.orders, filter_params[:filter]).call
   end
 
   private

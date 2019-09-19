@@ -25,32 +25,27 @@ class OrderService
 
     return create_order unless session_order
 
-    destroy_order(unfinished_user_order) if unfinished_user_order
-    #unfinished_user_order.destroy
+    unfinished_user_order.destroy if unfinished_user_order
+
     session_order.update(user_id: @current_user.id)
+
     session_order
   end
 
   def session_order
-    Order.find_by(id: @session_order_id)
+    @session_order ||= Order.find_by(id: @session_order_id)
   end
 
   def unfinished_user_order
-    @current_user.orders.where(state: 'in_progress').last
+    @unfinished_user_order ||= @current_user.orders.where(state: 'in_progress').last
   end
 
   def session_user_order
-    Order.find_by(id: @session_order_id, user_id: @current_user.id)
+    @session_user_order ||= Order.find_by(id: @session_order_id, user_id: @current_user.id)
   end
 
   def create_order
-    order = Order.new(user_id: @current_user, number: checout_number)
-    order.save(validate: false)
-    order
-  end
-
-  def destroy_order(id)
-    Order.where(id: id).destroy_all
+    Order.create(user_id: @current_user, number: checout_number)
   end
 
   def checout_number

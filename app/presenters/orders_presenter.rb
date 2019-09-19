@@ -12,17 +12,9 @@ class OrdersPresenter
     @filter = filter&.to_sym
   end
 
-  def filtered_orders
-    return unless @orders
-
-    return @orders.where.not(state: 'in_progress') unless @filter
-
-    @orders.where(state: @filter)
-  end
-
   def filter_title
-    return ORDER_SORT_TITLES[:all] unless ORDER_SORT_TITLES[@filter]
+    return ORDER_SORT_TITLES.fetch(:all) unless ORDER_SORT_TITLES.has_key?(@filter)
 
-    ORDER_SORT_TITLES[@filter]
+    ORDER_SORT_TITLES.fetch(@filter)
   end
 end
