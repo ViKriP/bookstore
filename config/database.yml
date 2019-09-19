@@ -3,8 +3,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   host: localhost
-  username: adm
-  password: qwerty123
+  username: <%= Rails.application.credentials.db_user_name %>
+  password: <%= Rails.application.credentials.db_password %>
 
 development:
   <<: *default
