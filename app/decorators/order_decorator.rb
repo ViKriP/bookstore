@@ -18,7 +18,7 @@ class OrderDecorator < Draper::Decorator
   end
 
   def delivery_price
-    return h.number_to_currency(0, unit: '€', precision: 2) unless delivery
+    return h.number_to_currency(delivery&.price.to_f, unit: '€', precision: 2) unless delivery
 
     h.number_to_currency(delivery.price, unit: '€', precision: 2)
   end
@@ -30,7 +30,7 @@ class OrderDecorator < Draper::Decorator
   def total
     total = subtotal - discount
 
-    total += delivery.price if delivery
+    total += delivery&.price.to_f
 
     total > discount ? total : 1
   end
