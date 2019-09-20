@@ -19,7 +19,7 @@ describe Books::BestSellersQuery do
     let(:categories) { create_list(:category, 4) }
 
     context 'when there are bestsellers in each of the four categories' do
-      it 'four bestsellers determined' do
+      it 'returns four bestsellers' do
         book_categories = []
         start_i = 0
         categories.each_with_index do |category, index|
@@ -47,7 +47,7 @@ describe Books::BestSellersQuery do
     end
 
     context 'when best seller is in only one category' do
-      it 'bestseller defined' do
+      it 'returns one bestseller' do
         book_categories = []
         start_i = 0
         categories.each_with_index do |category, index|
