@@ -25,7 +25,7 @@ class OrderService
 
     return create_order unless session_order
 
-    unfinished_user_order.destroy if unfinished_user_order
+    unfinished_user_order&.destroy
 
     session_order.update(user_id: @current_user.id)
 

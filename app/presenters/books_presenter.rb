@@ -22,7 +22,7 @@ class BooksPresenter
   end
 
   def sort_title
-    return SORT_TITLES.fetch(:title_asc) unless SORT_TITLES.has_key?(@sort_type&.to_sym)
+    return SORT_TITLES.fetch(:title_asc) unless SORT_TITLES.key?(@sort_type&.to_sym)
 
     SORT_TITLES.fetch(@sort_type&.to_sym)
   end

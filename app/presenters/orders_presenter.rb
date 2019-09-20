@@ -13,7 +13,7 @@ class OrdersPresenter
   end
 
   def filter_title
-    return ORDER_SORT_TITLES.fetch(:all) unless ORDER_SORT_TITLES.has_key?(@filter)
+    return ORDER_SORT_TITLES.fetch(:all) unless ORDER_SORT_TITLES.key?(@filter)
 
     ORDER_SORT_TITLES.fetch(@filter)
   end

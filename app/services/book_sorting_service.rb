@@ -9,9 +9,10 @@ class BookSortingService
 
     return Book.none unless @given_books
 
-    @given_books.public_send("by_#{@sort_type[0]}", @sort_type[1].to_sym)
-
-    rescue
+    begin
+      @given_books.public_send("by_#{@sort_type[0]}", @sort_type[1].to_sym)
+    rescue StandardError
       @given_books.by_title(:asc)
+    end
   end
 end

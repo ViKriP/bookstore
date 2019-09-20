@@ -9,6 +9,6 @@ class OrderItemService
 
     return if @params.value?(nil)
 
-    @order.order_items.new(@params) if @order
+    @order&.order_items&.new(@params)
   end
 end
