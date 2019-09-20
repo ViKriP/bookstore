@@ -22,7 +22,8 @@ module Books
       Book.joins(:orders, :categories)
           .where.not(orders: { state: 'in_progress' })
           .where(book_categories: { category_id: category_id })
-          .group(:id).order(Arel.sql('COUNT(order_items.quantity) DESC'))
+          .group(:id)
+          .order(Arel.sql('SUM(order_items.quantity) DESC'))
           .limit(1).first
     end
   end
