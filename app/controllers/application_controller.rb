@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
   private
 
   def add_user_to_order
-    OrdersCleanerService.new.call
-
     current_user_order.update(user: current_user)
   end
 end

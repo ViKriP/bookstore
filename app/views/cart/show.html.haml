@@ -1,6 +1,6 @@
 %main.container.general-main-wrap
   %h1.general-title-margin= t('cart')
-  - if @order.order_items.any?
+  - if current_user_order.order_items.any?
     = render 'orders/mobile_order_items'
     = render 'orders/order_items'
     = render 'coupon_section'

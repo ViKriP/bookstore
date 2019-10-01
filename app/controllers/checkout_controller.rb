@@ -1,6 +1,7 @@
 class CheckoutController < ApplicationController
   before_action :set_order
   before_action :check_cart_emptiness
+  before_action :authenticate_user!
 
   include Wicked::Wizard
 
@@ -20,14 +21,8 @@ class CheckoutController < ApplicationController
   end
 
   def update
-    case step
-    when :address then CheckoutService.new(@order, params).add_addresses
-    when :delivery then CheckoutService.new(@order, params).add_delivery
-    when :payment then CheckoutService.new(@order, params).add_card
-    when :confirm
-      @order.confirm
-      @order.save
-    end
+    checkout_service.public_send("process_#{step}")
+
     render_wizard(@order)
   end
 
@@ -53,5 +48,9 @@ class CheckoutController < ApplicationController
   def end_checkout
     session.delete(:order_id)
     add_user_to_order
+  end
+
+  def checkout_service
+    @checkout_service ||= CheckoutService.new(@order, params)
   end
 end

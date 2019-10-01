@@ -1,5 +1,5 @@
 .visible-xs
-  - @order.order_items.each do |order_item|
+  - current_user_order.order_items.each do |order_item|
     .general-cart-item.divider-lg-bottom
       = link_to order_item, method: :delete, data: {confirm: "Sure?"}, class: "close general-cart-close", "aria-label": "Close" do
         %span{'aria-hidden': "true"} &times;

@@ -4,7 +4,7 @@ class SettingsController < ApplicationController
   def address
     service = SettingsAddressService.new(current_user, params).call
 
-    result_valid(service)
+    handle_result(service)
   end
 
   def user
@@ -20,7 +20,7 @@ class SettingsController < ApplicationController
 
     bypass_sign_in(current_user) if params[:commit] == I18n.t('password_params')
 
-    result_valid(service)
+    handle_result(service)
   end
 
   def delete_user
@@ -29,7 +29,7 @@ class SettingsController < ApplicationController
     redirect_to root_path, notice: I18n.t('destroy_success')
   end
 
-  def result_valid(service)
+  def handle_result(service)
     if service
       redirect_to settings_path, notice: I18n.t('update_success')
     else

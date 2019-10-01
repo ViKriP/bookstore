@@ -19,10 +19,6 @@ RSpec.describe CartController, type: :controller do
     it 'responds with success status' do
       expect(response.status).to eq(200)
     end
-
-    it 'assigns the order to @order' do
-      expect(assigns(:order)).to eq order
-    end
   end
 
   describe 'PUT #update' do

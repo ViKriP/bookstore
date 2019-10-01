@@ -4,7 +4,7 @@ class CheckoutService
     @params = params
   end
 
-  def add_addresses
+  def process_address
     @order.create_billing_address(billing_address_params)
 
     if @params[:use_billing] == 'true'
@@ -16,12 +16,17 @@ class CheckoutService
     add_addresses_to_user if @order.valid?
   end
 
-  def add_delivery
+  def process_delivery
     @order.update(order_delivery_params)
   end
 
-  def add_card
+  def process_payment
     @order.create_credit_card(card_params)
+  end
+
+  def process_confirm
+    @order.confirm
+    @order.save
   end
 
   private

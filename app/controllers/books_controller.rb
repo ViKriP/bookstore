@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   include Pagy::Backend
 
-  load_and_authorize_resource :book, exept: :index
+  load_and_authorize_resource exept: :index
   load_and_authorize_resource :category, only: :index
   before_action :preload_books, only: :index
 
@@ -19,7 +19,7 @@ class BooksController < ApplicationController
   private
 
   def preload_books
-    @books = @category.nil? ? Book.all : Book.by_category(params[:category_id])
+    @books = @category ? Book.by_category(params[:category_id]) : Book.all
   end
 
   def params_sort

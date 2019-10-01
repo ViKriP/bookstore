@@ -13,12 +13,12 @@ describe CheckoutService do
                                     order: { billing_address_attributes: { first_name: '3', last_name: 'Gold', address: '10', zip: '20', city: 'den', country: 'UA', phone: '+380991112233' },
                                              shipping_address_attributes: { first_name: '4', last_name: 'Gold', address: '10', zip: '20', city: 'den', country: 'UA', phone: '+380991112233' } } } }
 
-  describe '#add_addresse' do
+  describe '#process_address' do
     context 'when shipping address is billing address' do
       let(:subject) { described_class.new(order, ActionController::Parameters.new(params_address_billing)) }
 
       it do
-        tmp = subject.add_addresses
+        tmp = subject.process_address
         expect(order.shipping_address.first_name).to eq '1'
       end
     end
@@ -27,28 +27,28 @@ describe CheckoutService do
       let(:subject) { described_class.new(order, ActionController::Parameters.new(params_address_shipping)) }
 
       it do
-        tmp = subject.add_addresses
+        tmp = subject.process_address
         expect(order.shipping_address.first_name).to eq '4'
       end
     end
   end
 
-  describe '#add_delivery' do
+  describe '#process_delivery' do
     let(:subject) { described_class.new(order, ActionController::Parameters.new(params_delivery)) }
 
     it 'calls update on order' do
-      order_tmp = subject.add_delivery
+      order_tmp = subject.process_delivery
 
       expect(order_tmp).to be true
       expect(order.delivery_id).to eq delivery.id
     end
   end
 
-  describe '#add_card' do
+  describe '#process_payment' do
     let(:subject) { described_class.new(order, ActionController::Parameters.new(params_card)) }
 
     it 'creates credit card for order' do
-      card = subject.add_card
+      card = subject.process_payment
 
       expect(card.name).to eq 'Gold'
     end

@@ -5,12 +5,14 @@ RSpec.describe SettingsController, type: :controller do
   
   before do
     allow(controller).to receive(:current_user).and_return(user)
+
     sign_in user
   end
 
   describe 'GET #show' do
     it do
       get :show
+
       expect(response).to render_template :show
     end
 
@@ -38,6 +40,7 @@ RSpec.describe SettingsController, type: :controller do
     it 'sends error alert' do
       allow(user).to receive(:valid?).and_return(false)
       patch :address
+
       expect(flash[:alert]).to eq I18n.t('fail')
     end
   end
@@ -60,7 +63,14 @@ RSpec.describe SettingsController, type: :controller do
     it 'sends error alert' do
       allow(user).to receive(:valid?).and_return(false)
       patch :user
+
       expect(flash[:alert]).to eq I18n.t('fail')
+    end
+
+    it 'delete user' do
+      patch :user, params: { delete_confirmation: 'on' }
+
+      expect(flash[:notice]).to eq I18n.t('destroy_success')
     end
   end
 end
