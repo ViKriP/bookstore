@@ -7,8 +7,7 @@ class OrdersPresenter
     canceled: I18n.t('order_filters.canceled')
   }.freeze
 
-  def initialize(orders, filter)
-    @orders = orders
+  def initialize(filter)
     @filter = filter&.to_sym
   end
 
