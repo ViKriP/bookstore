@@ -10,10 +10,6 @@ class OrderService
     user_order
   end
 
-  def order_items
-    call.order_items.order(:created_at)
-  end
-
   private
 
   def guest_order

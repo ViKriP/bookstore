@@ -1,6 +1,6 @@
 class BookSortingService
   def initialize(params, books)
-    @sort_type = params[:sort].split(' ') if params[:sort]
+    @sort_type = params[:sort]&.split(' ')
     @books = books
   end
 

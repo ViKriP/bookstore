@@ -7,7 +7,7 @@
       .jumbotron.text-center.mb-0
         %p= t('no_orders')
     - else
-      - @filtered_orders.each do |order|
+      - @filtered_orders.order(:created_at).each do |order|
         .general-cart-item.divider-lg-bottom.pt-0
           %table.table
             %tr
@@ -47,7 +47,7 @@
             %th
               %span.in-grey-600= t('total')
         %tbody
-          - @filtered_orders.each do |order|
+          - @filtered_orders.order(:created_at).each do |order|
             %tr
               %td
                 = link_to order.number, order_path(order.id), class: "general-order-number"

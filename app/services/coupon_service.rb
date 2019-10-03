@@ -11,8 +11,8 @@ class CouponService
   def use
     return unless @order && coupon
 
-    @order&.update(discount: coupon.discount)
+    @order.update(discount: coupon.discount)
 
-    coupon&.update(active: false)
+    coupon.update(active: false)
   end
 end
