@@ -7,7 +7,7 @@ describe BookSortingService do
   let(:params_price_desc) { { sort: 'price desc' } }
   let(:params_created_at_desc) { { sort: 'created_at desc' } }
   let(:params_popular_desc) { { sort: 'popular desc' } }
-  let(:params_wrong) { { sort: 'wrong' } }
+  let(:params_wrong) { { sort: '' } }
 
   describe '#call' do
     let(:books) { Book.where(id: create_list(:book, 5).map(&:id)) }

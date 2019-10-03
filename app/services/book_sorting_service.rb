@@ -5,14 +5,12 @@ class BookSortingService
   end
 
   def call
+    return Book.none if @books.blank? && Book.blank?
+
     @given_books = @books || Book.all
 
-    return Book.none unless @given_books
+    return @given_books.by_title(:asc) if @sort_type.blank?
 
-    begin
-      @given_books.public_send("by_#{@sort_type[0]}", @sort_type[1].to_sym)
-    rescue StandardError
-      @given_books.by_title(:asc)
-    end
+    @given_books.public_send("by_#{@sort_type[0]}", @sort_type[1].to_sym)
   end
 end

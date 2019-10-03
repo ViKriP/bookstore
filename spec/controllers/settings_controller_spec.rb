@@ -47,9 +47,9 @@ RSpec.describe SettingsController, type: :controller do
 
   describe 'PATCH #user' do
     before do
-      patch :user
+      patch :user, params: { user: { email: 'test@test.ua'}, commit: 'email' }
     end
- 
+
     it { expect(response).to redirect_to settings_path }
 
     it 'sends flash notice' do
