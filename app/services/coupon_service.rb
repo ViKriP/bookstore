@@ -11,8 +11,9 @@ class CouponService
   def use
     return unless @order && coupon
 
-    @order.update(discount: coupon.discount)
-
-    coupon.update(active: false)
+    ActiveRecord::Base.transaction do
+      @order.update(discount: coupon.discount)
+      coupon.update(active: false)
+    end
   end
 end
