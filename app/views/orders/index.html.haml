@@ -7,29 +7,7 @@
       .jumbotron.text-center.mb-0
         %p= t('no_orders')
     - else
-      - @filtered_orders.order(:created_at).each do |order|
-        .general-cart-item.divider-lg-bottom.pt-0
-          %table.table
-            %tr
-              %td.col-half
-                %span.in-grey-600= t('number')
-              %td.col-half
-                = link_to order.number, order_path(order.id), class: "general-order-number"
-            %tr
-              %td
-                %span.in-grey-600= t('completed_at')
-              %td
-                %span.in-grey-900.font-16.fw-300= order.decorate.order_date
-            %tr
-              %td
-                %span.in-grey-600= t('status')
-              %td
-                %span.font-16.in-grey-900.fw-300= order.state.titleize
-            %tr
-              %td
-                %span.in-grey-600= t('total')
-              %td
-                %strong.font-16= order.decorate.order_total
+      = render partial: 'order_xs', collection: @filtered_orders.order(:created_at)
   .hidden-xs.mb-res-50
     - if @filtered_orders.none?
       .jumbotron.text-center.mb-0
@@ -47,13 +25,4 @@
             %th
               %span.in-grey-600= t('total')
         %tbody
-          - @filtered_orders.order(:created_at).each do |order|
-            %tr
-              %td
-                = link_to order.number, order_path(order.id), class: "general-order-number"
-              %td
-                %span.in-grey-900.font-16.fw-300= order.decorate.order_date
-              %td
-                %span.font-16.in-grey-900.fw-300= order.state.titleize
-              %td
-                %strong.font-16= order.decorate.order_total
+          = render partial: 'order', collection: @filtered_orders.order(:created_at)

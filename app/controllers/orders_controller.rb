@@ -6,6 +6,8 @@ class OrdersController < ApplicationController
     @presenter = OrdersPresenter.new(filter_params[:filter])
 
     @filtered_orders = Orders::FilteredStateQuery.new(current_user.orders, filter_params[:filter]).call
+
+    @orders = @filtered_orders
   end
 
   private

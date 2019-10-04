@@ -1,0 +1,22 @@
+.general-cart-item.divider-lg-bottom.pt-0
+  %table.table
+    %tr
+      %td.col-half
+        %span.in-grey-600= t('number')
+      %td.col-half
+        = link_to order_xs.number, order_path(order_xs.id), class: "general-order-number"
+    %tr
+      %td
+        %span.in-grey-600= t('completed_at')
+      %td
+        %span.in-grey-900.font-16.fw-300= order_xs.decorate.order_date
+    %tr
+      %td
+        %span.in-grey-600= t('status')
+      %td
+        %span.font-16.in-grey-900.fw-300= order_xs.state.titleize
+    %tr
+      %td
+        %span.in-grey-600= t('total')
+      %td
+        %strong.font-16= order_xs.decorate.order_total
