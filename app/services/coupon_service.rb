@@ -12,8 +12,8 @@ class CouponService
     return unless @order && coupon
 
     ActiveRecord::Base.transaction do
-      @order.update(discount: coupon.discount)
-      coupon.update(active: false)
+      @order.update!(discount: coupon.discount)
+      coupon.update!(active: false)
     end
   end
 end

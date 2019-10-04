@@ -50,7 +50,7 @@ RSpec.describe CartController, type: :controller do
       end
 
       it 'deactivate current coupon' do
-        expect(coupon).to receive(:update)
+        expect(coupon).to receive(:update!)
         put :update
       end
 

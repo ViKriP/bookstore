@@ -27,5 +27,13 @@ describe CouponService do
     it 'when order there is and is not coupon code' do
       expect(service_without_code.use).to be_nil
     end
+
+    it 'when transaction of coupon use is failed' do
+      allow(service).to receive_message_chain(:use, :coupon, :update!).and_return false
+
+      service.use
+      
+      expect(order.discount).to be_nil
+    end
   end
 end
