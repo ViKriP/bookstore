@@ -1,7 +1,9 @@
 class CartController < ApplicationController
   load_and_authorize_resource class: Order
 
-  def show; end
+  def show
+    @order = current_user_order
+  end
 
   def update
     coupon = CouponService.new(current_user_order, params[:code])
