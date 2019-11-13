@@ -5,9 +5,7 @@ class BookSortingService
   end
 
   def call
-    return Book.none if @books.blank? && Book.blank?
-
-    @given_books = @books || Book.all
+    @given_books = @books.presence || Book.all
 
     return @given_books.by_title(:asc) if @sort_type.blank?
 

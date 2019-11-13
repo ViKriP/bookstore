@@ -21,6 +21,10 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       it 'should set current_user to proper user' do
         expect(subject.current_user).to eq(user)
       end
+
+      it 'redirect to sign_up path' do
+        expect(response).to redirect_to('/users/sign_up')
+      end
     end
 
     context 'when non-persisting User' do

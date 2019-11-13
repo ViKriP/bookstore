@@ -11,8 +11,6 @@ FactoryBot.define do
       after(:create) do |user|
         user.billing_address = create(:billing_address)
         user.shipping_address = create(:shipping_address)
-        #user.address.billing = create(address: :billing)
-        #user.address.shipping = create(address: :shipping)
       end
     end
   end

@@ -1,16 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CartController, type: :controller do
-  let(:order) { create(:order) }
-  let(:order_item) { create(:order_item) }
-  before { 
-    allow_any_instance_of(CanCan::ControllerResource).to receive(:load_and_authorize_resource){ nil }
-  }
-
   describe 'GET #show' do
     before do
-      allow(order).to receive(:order_items).and_return([order_item])
-      allow(controller).to receive(:current_user_order).and_return(order)
       get :show
     end
 
@@ -19,6 +11,10 @@ RSpec.describe CartController, type: :controller do
     it 'responds with success status' do
       expect(response.status).to eq(200)
     end
+
+    it 'assigns the order to @order' do
+      expect(assigns(:order)).to be_a Order
+    end
   end
 
   describe 'PUT #update' do
@@ -26,7 +22,6 @@ RSpec.describe CartController, type: :controller do
 
     context 'when invalid coupon code passed' do
       before do
-        allow(Coupon).to receive(:find_by)
         put :update
       end
 
@@ -40,22 +35,21 @@ RSpec.describe CartController, type: :controller do
     end
 
     context 'when valid coupon code passed' do
-      before do
-        allow(Coupon).to receive(:find_by).and_return(coupon)
-      end
+      let(:coupon_service) { instance_double('CouponService') }
 
       it 'redirects to cart page' do
         put :update
         expect(response).to redirect_to cart_path
       end
 
-      it 'deactivate current coupon' do
-        expect(coupon).to receive(:update!)
+      it 'use current coupon' do
+        expect(coupon_service).to receive(:use)
+        coupon_service.use
         put :update
       end
 
       it 'sends success notice' do
-        put :update
+        put :update, params: { code: coupon.code }
         expect(flash[:notice]).to eq I18n.t('success_coupon_use')
       end
     end
