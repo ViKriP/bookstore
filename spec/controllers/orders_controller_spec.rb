@@ -6,6 +6,7 @@ RSpec.describe OrdersController, type: :controller do
 
   before do
     sign_in user
+    session[:order_id] = order.id
   end
 
   describe 'GET #index' do
@@ -18,17 +19,13 @@ RSpec.describe OrdersController, type: :controller do
     it 'responds with success status' do
       expect(response.status).to eq(200)
     end
-  end
 
-  describe 'GET #show' do
-    before do
-      get :show, params: { id: order.id }
+    it 'assigns to @presenter' do
+      expect(assigns(:presenter)).to be_a OrdersPresenter
     end
 
-    it { expect(response).to render_template :show }
-
-    it 'responds with success status' do
-      expect(response.status).to eq(200)
+    it 'assigns to @filtered_orders' do
+      expect(assigns(:filtered_orders)).to be_a ActiveRecord::Relation
     end
   end
 end

@@ -4,22 +4,7 @@ RSpec.describe SettingsController, type: :controller do
   let(:user) { create(:user) }
   
   before do
-    allow(controller).to receive(:current_user).and_return(user)
-
     sign_in user
-  end
-
-  describe 'GET #show' do
-    it do
-      get :show
-
-      expect(response).to render_template :show
-    end
-
-    it 'responds with success status' do
-      get :show
-      expect(response.status).to eq(200)
-    end
   end
 
   describe 'PATCH #address' do
@@ -38,7 +23,7 @@ RSpec.describe SettingsController, type: :controller do
     end
 
     it 'sends error alert' do
-      allow(user).to receive(:valid?).and_return(false)
+      allow(SettingsAddressService).to receive_message_chain(:new, :call).and_return(false)
       patch :address
 
       expect(flash[:alert]).to eq I18n.t('fail')

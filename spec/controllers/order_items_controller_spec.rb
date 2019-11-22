@@ -43,7 +43,6 @@ RSpec.describe OrderItemsController, type: :controller do
 
   describe 'PATCH #update' do
     before do
-      allow(order).to receive_message_chain(:order_items, :find).and_return(order_item)
       patch :update, params: { id: order_item.id, order_item: order_item_params }
     end
 
@@ -69,7 +68,7 @@ RSpec.describe OrderItemsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    before { allow(controller).to receive(:current_user_order).and_return(order_item.order) }
+    before { session[:order_id] = order_item.order.id }
 
     let(:destroy_action) { delete :destroy, params: { id: order_item.id, order_item: order_item_params } }
     
