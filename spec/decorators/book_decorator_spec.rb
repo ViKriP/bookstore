@@ -23,7 +23,7 @@ RSpec.describe BookDecorator do
   end
 
   describe '#shorten_description' do
-    let(:book) { build_stubbed(:book_with_long_description).decorate }
+    let(:book) { build_stubbed(:book, :long_description).decorate }
 
     context "when book description length is more than #{BookPresenter::SHORT_DESCRIPTION_LENGTH} chars" do
       it "adds link with Read more text" do

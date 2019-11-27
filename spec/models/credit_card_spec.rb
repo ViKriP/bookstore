@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CreditCard, type: :model do
-  INVALID_MONTH = '13'
-  VALID_MONTH = '12'
-  PAST_YEAR = '13'
+  INVALID_MONTH = 13
+  VALID_MONTH = (1..12)
+  PAST_YEAR = 13
 
   it { is_expected.to belong_to(:order) }
 
@@ -13,34 +13,31 @@ RSpec.describe CreditCard, type: :model do
   it { is_expected.to validate_presence_of(:name) }
 
   it { is_expected.to validate_length_of(:last4).is_equal_to(16) }
-  it { is_expected.to validate_length_of(:exp_month).is_at_least(1).is_at_most(2) }
+  it { expect(subject).to validate_numericality_of(:exp_month).is_greater_than(0).is_less_than(13).only_integer }
   it { is_expected.to validate_length_of(:exp_year).is_equal_to(2) }
   it { is_expected.to validate_length_of(:name).is_at_most(50) }
 
-  context 'when expiration date is outdated' do
-    let(:credit_card) { create(:credit_card, :skip_validate, exp_month: VALID_MONTH) }
-    let(:credit_card) { create(:credit_card, :skip_validate, exp_year: PAST_YEAR) }
+  context 'definition of the month' do
+    it { expect(subject).to_not allow_value(INVALID_MONTH).for(:exp_month) }
+    it { expect(subject).to_not allow_value(1.5).for(:exp_month) }
 
-    it 'is invalid' do
-      expect(credit_card).not_to be_valid
-      expect(credit_card.errors.messages[:exp_year]).to include("can't be in the past")
-    end
+    VALID_MONTH.each { |number|
+      it { expect(subject).to allow_value(number).for(:exp_month) }
+    }
   end
 
-  context 'when expiration date month is out of range' do
-    let(:credit_card) { create(:credit_card, :skip_validate, exp_year: PAST_YEAR) }
-    let(:credit_card) { create(:credit_card, :skip_validate, exp_month: INVALID_MONTH) }
-
-    it 'is invalid' do
-      expect(credit_card).not_to be_valid
-      expect(credit_card.errors.messages[:exp_year]).to include('date invalid')
-    end
-  end
-
-  context 'when expiration date is valid' do
+  context 'definition of the year' do
     let(:credit_card) { create(:credit_card) }
 
-    it 'is valid' do
+    it 'when wrong date' do
+      expect(FactoryBot.build(:credit_card, exp_year: 'wrong')).not_to be_valid
+    end
+
+    it 'when year is invalid' do
+      expect(FactoryBot.build(:credit_card, exp_year: PAST_YEAR)).not_to be_valid
+    end
+
+    it 'when year is valid' do
       expect(credit_card).to be_valid
     end
   end

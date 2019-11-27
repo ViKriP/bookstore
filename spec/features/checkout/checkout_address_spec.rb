@@ -8,7 +8,7 @@ feature 'Checkout' do
   given(:shipping_address_attributes) { attributes_for(:shipping_address) }
 
   before do
-    create(:book, :have_long_description_author_and_cover)
+    create(:book, :have_long_description_author)
   end
 
   context 'Addresses' do

@@ -10,15 +10,8 @@ FactoryBot.define do
     materials { 'Hardcove, glossy paper' }
     description { FFaker::Book.description }
     images { [File.open('spec/fixtures/images/default.png')] } #[url="uploads/book/images/6/1.jpg"]
-    factory :categories do
-      category
-    end
 
-    factory :authors do
-      author
-    end
-
-    trait :have_long_description_author_and_cover do
+    trait :have_long_description_author do
       description { FFaker::Lorem.paragraphs.join }
 
       after(:create) do |book|
@@ -30,7 +23,5 @@ FactoryBot.define do
     trait :long_description do
       description { FFaker::Lorem.paragraphs.join }
     end
-
-    factory :book_with_long_description, traits: [:long_description]
   end
 end
