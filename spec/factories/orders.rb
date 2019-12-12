@@ -5,6 +5,10 @@ FactoryBot.define do
     state { 'in_progress' }
     #delivery
 
+    trait :delivery_step do
+      state { 'in_delivery' }
+    end
+
     trait :with_addresses do
       after(:create) do |user|
         user.billing_address = create(:billing_address)

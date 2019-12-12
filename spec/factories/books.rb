@@ -9,7 +9,7 @@ FactoryBot.define do
     depth { 3.0 }
     materials { 'Hardcove, glossy paper' }
     description { FFaker::Book.description }
-    images { [File.open('spec/fixtures/images/default.png')] } #[url="uploads/book/images/6/1.jpg"]
+    images { [File.open('spec/fixtures/images/default.png')] }
 
     trait :have_long_description_author do
       description { FFaker::Lorem.paragraphs.join }

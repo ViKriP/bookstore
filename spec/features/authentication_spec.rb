@@ -36,5 +36,9 @@ RSpec.feature "Authentications", type: :feature do
     scenario 'Redirects to log in path' do
       expect(page).to have_current_path new_user_session_path
     end
+
+    scenario 'Error message when authorization fails' do
+      expect(page).to have_content I18n.t('invalid_auth')
+    end
   end
 end
