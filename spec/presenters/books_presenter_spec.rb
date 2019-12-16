@@ -29,7 +29,7 @@ describe BooksPresenter do
 
   describe '#sort_title' do
     BooksPresenter::SORT_TITLES.each do |phrase|
-      it '' do
+      it "when parameter -#{phrase[0]}- then result -#{phrase[1]}-" do
         expect(described_class.new(send("params_#{phrase[0]}")).sort_title).to be(phrase[1])
       end
     end

@@ -12,17 +12,4 @@ RSpec.describe User, type: :model do
 
   it { is_expected.to validate_length_of(:first_name).is_at_most(50) }
   it { is_expected.to validate_length_of(:last_name).is_at_most(50) }
-
-  describe 'abilities' do
-    let(:user) { create(:user) }
-    subject(:ability) { Ability.new(user) }
-    let(:book) { create(:book) }
-    let(:order) { create(:order, user: user) }
-    let(:review) { create(:review, user: user) }
-
-    it { is_expected.to be_able_to(:read, review) }
-    it { is_expected.to be_able_to(:manage, user) }
-    it { is_expected.to be_able_to(:create, review) }
-    it { is_expected.to be_able_to(:read, review) }
-  end
 end

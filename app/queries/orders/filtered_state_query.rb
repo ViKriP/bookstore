@@ -8,7 +8,7 @@ module Orders
     def call
       return unless @orders
 
-      return @orders.where.not(state: 'in_progress') unless @filter_state
+      return @orders.where.not(state: 'in_progress') if !@filter_state || @filter_state == 'all'
 
       @orders.where(state: @filter_state)
     end

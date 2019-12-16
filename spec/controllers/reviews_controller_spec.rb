@@ -1,23 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe ReviewsController, type: :controller do
+  let(:user) { create(:user) }
+  let(:book) { create(:book) }
+
   describe 'GET #index' do
     before do
-    #  get :index
+      sign_in user
+
+      get :index, params: { book_id: book.id,
+                            review: attributes_for(:review, book_id: book.id)
+                          }
     end
 
-    #it { expect(response).to render_template :books.index }
+    it { expect(response).to render_template :index }
 
     it 'responds with success status' do
-    #  puts "-- #{response} --"
-    #  expect(response.status).to eq(200)
+      expect(response.status).to eq(200)
     end
   end
 
   describe 'POST #create' do
-    let(:user) { create(:user) }
-    let(:book) { create(:book) }
-
     before do
       sign_in user
     end
