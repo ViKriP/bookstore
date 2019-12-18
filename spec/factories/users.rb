@@ -3,7 +3,6 @@ FactoryBot.define do
     first_name { FFaker::Name.first_name }
     last_name { FFaker::Name.last_name }
     sequence(:email) { |n| "person#{n}@example.com" }
-#    email { FFaker::Internet.email }
     password { 'password' }
     password_confirmation { 'password' }
     confirmed_at { Date.today }

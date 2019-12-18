@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  VALID_NAMES_REGEX = /\A[a-z A-Z]+\z/.freeze
+  VALID_NAMES_REGEX = /\A[a-zA-ZА-Яа-я]+\z/.freeze
   VALID_ADDRESS_REGEX = /\A[a-zA-Z0-9 \-\,]*\z/.freeze
   VALID_ZIP_REGEX = /\A[0-9]+\z/.freeze
   VALID_PHONE_REGEX = /\A^\+[0-9]+\z/.freeze

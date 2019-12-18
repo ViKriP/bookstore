@@ -1,6 +1,4 @@
 class SettingsAddressService
-  attr_accessor :update_required
-
   def initialize(user, params)
     @user = user
     @params = params

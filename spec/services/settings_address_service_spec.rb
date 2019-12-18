@@ -1,64 +1,39 @@
 require 'rails_helper'
 
 describe SettingsAddressService do
-  let(:user) { create(:user) }
-
-  before do
-    allow_any_instance_of(SettingsAddressService).to receive(:user_params).and_return({})
-  end
+  let(:user_with_addresses) { create(:user, :with_addresses) }
+  let(:user_without_addresses) { create(:user) }
+  let(:params_billing_address) { ActionController::Parameters.new( { user: { billing_address: attributes_for(:address, first_name: 'Testname') },
+                                                                     commit: 'billing_address' } ) }
+  let(:params_shipping_address) { ActionController::Parameters.new( { user: { shipping_address: attributes_for(:address, first_name: 'Testname') },
+                                                                     commit: 'shipping_address' } ) }
 
   describe '#call' do
-    context 'when user wish to change billing address' do
-      it do
-        service = described_class.new(user, { commit: 'billing_address' })
-        expect(service).to receive(:billing_address)
-        service.call
+    context 'when the address (billing/shipping) is already there' do
+      it 'billing address is updated' do
+        described_class.new(user_with_addresses, params_billing_address).call
+
+        expect(user_with_addresses.billing_address[:first_name]).to eql 'Testname'
+      end
+
+      it 'shipping address is updated' do
+        described_class.new(user_with_addresses, params_shipping_address).call
+
+        expect(user_with_addresses.shipping_address[:first_name]).to eql 'Testname'
       end
     end
 
-    context 'when user wish to change shipping address' do
-      it do
-        service = described_class.new(user, { commit: 'shipping_address' })
-        expect(service).to receive(:shipping_address)
-        service.call
-      end
-    end
-  end
+    context 'when user has no address (billing/shipping) address yet' do
+      it 'billing address is created' do
+        described_class.new(user_without_addresses, params_billing_address).call
 
-  describe '#user_billing_address' do
-    context 'when user has no billing address yet' do
-      it do
-        service = described_class.new(user, { commit: 'billing_address' })
-        expect(user).to receive(:create_billing_address)
-        service.call
+        expect(user_without_addresses.billing_address[:first_name]).to eql 'Testname'
       end
-    end
 
-    context 'when user has billing address' do
-      it do
-        user.billing_address = create(:billing_address)
-        service = described_class.new(user, { commit: 'billing_address' })
-        expect(user.billing_address).to receive(:update)
-        service.call
-      end
-    end
-  end
+      it 'shipping address is created' do
+        described_class.new(user_without_addresses, params_shipping_address).call
 
-  describe '#user_shipping_address' do
-    context 'when user has no shipping address yet' do
-      it do
-        service = described_class.new(user, { commit: 'shipping_address' })
-        expect(user).to receive(:create_shipping_address)
-        service.call
-      end
-    end
-
-    context 'when user has shipping address' do
-      it do
-        user.shipping_address = create(:shipping_address)
-        service = described_class.new(user, { commit: 'shipping_address' })
-        expect(user.shipping_address).to receive(:update)
-        service.call
+        expect(user_without_addresses.shipping_address[:first_name]).to eql 'Testname'
       end
     end
   end

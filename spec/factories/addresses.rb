@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :address do
-    first_name { FFaker::Name.first_name }
-    last_name { FFaker::Name.last_name }
+    first_name { FFaker::NameRU.first_name }
+    last_name { FFaker::NameRU.last_name }
     sequence(:address) { |n| "#{n} Kensington Street" }
     city { 'Dnepr' }
     zip { 5555 }
