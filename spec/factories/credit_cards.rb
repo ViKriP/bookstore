@@ -3,7 +3,7 @@ FactoryBot.define do
     last4 { 1234567890123456 }
     exp_month { 12 }
     exp_year { 25 }
-    name { FFaker::Name.html_safe_name }
+    name { FFaker::NameRU.last_name }
     order
   end
 end

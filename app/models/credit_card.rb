@@ -2,7 +2,7 @@ class CreditCard < ApplicationRecord
   before_validation :formatted_card_number
 
   VALID_NUMBER_REGEX = /\A[0-9]+\z/.freeze
-  VALID_CARDHOLDER_NAME_REGEX = /\A[a-z A-Z]+\z/.freeze
+  VALID_CARDHOLDER_NAME_REGEX = /\A[a-zA-ZА-Яа-я]+\z/.freeze
   MONTH_NUMBER_GREATER_THAN = 0
   MONTH_NUMBER_LESS_THAN = 13
 

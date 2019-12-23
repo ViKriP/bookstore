@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   devise_scope(:user) do
     get('users/checkout_login', to: 'users/registrations#checkout_login', as: 'checkout_login')
+    get '/auth/failure', to: 'users/omniauth_callbacks#failure', as: 'oauth_failure'
   end
 
   root 'homepage#index'

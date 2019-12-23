@@ -85,5 +85,11 @@ RSpec.describe OrderItemsController, type: :controller do
       destroy_action
       expect(flash[:notice]).to eq I18n.t('item_removed')
     end
+
+    it 'sends alert error' do
+      allow_any_instance_of(OrderItem).to receive(:destroy).and_return(false)
+      destroy_action
+      expect(flash[:alert]).to eq I18n.t('error')
+    end
   end
 end

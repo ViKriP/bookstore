@@ -5,19 +5,25 @@ FactoryBot.define do
         provider: provider,
         uid: uid,
         info: {
-          email: email
+          email: email,
+          provider: provider,
+          uid: uid,
+          first_name: first_name,
+          last_name: last_name
         }
       })
     end
 
     trait :facebook do
-      provider { "facebook" }
+      provider { 'facebook' }
       sequence(:uid)
-      email { "testuser@facebook.com" }
+      email { 'testuser@facebook.com' }
+      first_name { FFaker::NameRU.first_name }
+      last_name { FFaker::NameRU.last_name }
     end
 
     trait :does_not_persist do
-      email { "" }
+      email { '' }
     end
   end
 end
