@@ -5,18 +5,20 @@
 version: 2
 jobs:
   build:
+    parallelism: 2
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.5.1-node-browsers
         environment:
-          PGHOST: localhost
+          PGHOST: 127.0.0.1
           PGUSER: adm
           RAILS_ENV: test
-      - image: postgres:9.4
+      - image: postgres:9.5.19
         environment:
           POSTGRES_USER: adm
           POSTGRES_PASSWORD: qwerty123
           POSTGRES_DB: bookstore_test
+          DATABASE_URL: "postgres://ubuntu@localhost:5432/bookstore_test"
 
     working_directory: ~/repo
 
@@ -56,6 +58,7 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
       - run: bundle exec rake db:migrate
+      - run: bundle exec rake db:seed
 
       # run tests!
       - run:

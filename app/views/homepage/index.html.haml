@@ -8,4 +8,5 @@
   .mb-35
     %h3= I18n.t('best_sellers')
     .row
-      = render partial: 'bestseller', collection: @presenter.best_sellers
+      - if @presenter.best_sellers
+        = render partial: 'bestseller', collection: @presenter.best_sellers
