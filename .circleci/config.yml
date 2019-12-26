@@ -55,10 +55,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package-lock.json" }}
 
       # Database setup
-      - run: bundle exec rake db:drop
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
-      - run: bundle exec rake db:migrate
+      - run:
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+            bundle exec rake db:migrate
 
       # run tests!
       - run:
@@ -76,4 +77,4 @@ jobs:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
-destination: test-results
+          destination: test-results
