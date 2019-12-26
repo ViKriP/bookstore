@@ -142,14 +142,17 @@ ActiveRecord::Schema.define(version: 2019_09_01_215556) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "discount", default: 0
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "delivery_id"
-    t.integer "credit_card_id"
+    t.bigint "delivery_id"
+    t.bigint "credit_card_id"
     t.string "number"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
+    t.index ["delivery_id"], name: "index_orders_on_delivery_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
