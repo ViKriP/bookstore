@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe CartController, type: :controller do
   describe 'GET #show' do
+    let(:user) { create :user }
+    let(:order) { create(:order, user: user) }
+
     before do
+      sign_in user
+      session[:order_id] = order.id
       get :show
     end
 
@@ -13,7 +18,7 @@ RSpec.describe CartController, type: :controller do
     end
 
     it 'assigns the order to @order' do
-      expect(assigns(:order)).to be_a Order
+      expect(assigns(:order).id).to eql order.id
     end
   end
 
