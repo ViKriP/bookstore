@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe OrdersController, type: :controller do
   let(:user) { create :user }
   let(:order) { create(:order, user: user) }
+  let!(:order_in_queue) { create(:order, user: user, state: 'in_queue') }
 
   before do
     sign_in user
@@ -11,7 +12,7 @@ RSpec.describe OrdersController, type: :controller do
 
   describe 'GET #index' do
     before do
-      get :index
+      get :index, params: { filter: 'in_queue' }
     end
 
     it { expect(response).to render_template :index }
@@ -21,11 +22,11 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it 'assigns to @presenter' do
-      expect(assigns(:presenter)).to be_a OrdersPresenter
+      expect(assigns(:presenter).filter_title).to eql I18n.t('order_filters.in_queue')
     end
 
     it 'assigns to @filtered_orders' do
-      expect(assigns(:filtered_orders)).to be_a ActiveRecord::Relation
+      expect(assigns(:filtered_orders).first.id).to eql order_in_queue.id
     end
   end
 end
