@@ -8,7 +8,7 @@ feature 'Checkout' do
 
   context 'Payment' do
     before do
-      create(:book, :have_long_description_author)
+      create(:book, :long_description)
 
       login_as(user, scope: :user)
 

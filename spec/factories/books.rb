@@ -11,15 +11,6 @@ FactoryBot.define do
     description { FFaker::Book.description }
     images { [File.open('spec/fixtures/images/default.png')] }
 
-    trait :have_long_description_author do
-      description { FFaker::Lorem.paragraphs.join }
-
-      after(:create) do |book|
-        create(:author, books: [book])
-        create(:category, books: [book])
-      end
-    end
-
     trait :long_description do
       description { FFaker::Lorem.paragraphs.join }
     end

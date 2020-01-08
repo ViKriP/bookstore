@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Checkout' do
   given(:user) { create(:user, :with_addresses) }
-  given(:book) { create(:book, :have_long_description_author) }
+  given(:book) { create(:book, :long_description) }
   given(:delivery) { create(:delivery) }
   given(:order) { create(:order) }
   given(:credit_card) { attributes_for(:credit_card) }
