@@ -4,7 +4,6 @@ $(document).on "turbolinks:load", ->
       event.preventDefault()
       $('#long-desc').toggle()
       $('#short-desc').toggle()
-      return
     return
   $ ->
     $('#decrease').click (event) ->
@@ -12,7 +11,6 @@ $(document).on "turbolinks:load", ->
       amount_in_input = parseInt($('#order-quantity').val())
       if (amount_in_input > 1)
         $('#order-quantity').val(amount_in_input - 1)
-      return
     return
   $ ->
     $('#increase').click (event) ->
@@ -21,24 +19,22 @@ $(document).on "turbolinks:load", ->
       current_amount = parseInt($('#quantity').val())
       if (amount_in_input < current_amount)
         $('#order-quantity').val(amount_in_input + 1)
-      return
     return
   $ ->
     $('#review').on 'keyup', ->
       length = $(this).val().length
       $('#review-body-count').html 500 - length
-      return
     return
   $ ->
-    $('#order-quantity').on 'keyup', ->
-      if isNaN($('#order-quantity').val())
-        $('#order-quantity').val(1)
-      amount_in_input = parseInt($('#order-quantity').val())
-      current_amount = parseInt($('#quantity').html())
+    order_quantity = $('#order-quantity')
+    order_quantity.on 'keyup', ->
+      if isNaN(order_quantity.val())
+        order_quantity.val(1)
+      amount_in_input = parseInt(order_quantity.val())
+      current_amount = parseInt($('#quantity').val())
       if (amount_in_input > current_amount)
         $('#quantity-info').html 'Sorry, there are only ' + current_amount + ' books.'
-        $('#order-quantity').val(current_amount)
+        order_quantity.val(current_amount)
       else
         $('#quantity-info').empty()
-      return
     return

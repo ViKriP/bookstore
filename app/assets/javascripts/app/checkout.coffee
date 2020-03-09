@@ -10,5 +10,4 @@ $(document).ready ->
       $('#shipping').fadeOut 'fast'
     else
       $('#shipping').fadeIn 'fast'
-    return
   return

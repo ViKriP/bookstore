@@ -7,13 +7,13 @@ ActiveAdmin.register Review do
   scope :unapproved, group: :approve
 
   action_item :approve, only: :show do
-    link_to 'Approve', approve_admin_review_path(review), method: :patch unless review.approved
+    link_to I18n.t('admin.approve'), approve_admin_review_path(review), method: :patch unless review.approved
   end
 
   member_action :approve, method: :patch do
     review = Review.find_by(id: params[:id])
     review.update(approved: true)
-    redirect_to admin_reviews_path, notice: 'Reviews have been approved.'
+    redirect_to admin_reviews_path, notice: I18n.t('admin.review_approved')
   end
 
   index do
@@ -22,19 +22,19 @@ ActiveAdmin.register Review do
     column :book
     column :title
     column :comment
-    column 'Date', :created_at
+    column I18n.t('admin.date'), :created_at
     column :user
     column :approved
     actions defaults: false do |review|
-      item 'Show', admin_review_path(review)
+      item I18n.t('admin.show'), admin_review_path(review)
       span
-      item 'Approve', approve_admin_review_path(review), method: :patch unless review.approved
+      item I18n.t('admin.approve'), approve_admin_review_path(review), method: :patch unless review.approved
     end
   end
 
   batch_action :approve do
     batch_action_collection.update_all(approved: true)
 
-    redirect_to collection_path, notice: 'Reviews have been approved.'
+    redirect_to collection_path, notice: I18n.t('admin.review_approved')
   end
 end

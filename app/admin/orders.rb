@@ -31,7 +31,7 @@ ActiveAdmin.register Order do
 
       column do
         panel I18n.t('admin.order_items') do
-          ul style: 'margin: 0' do
+          ul do
             order.order_items.each do |item|
               li link_to("#{item.book.title} (#{item.quantity})", admin_order_item_path(item))
             end
@@ -45,8 +45,9 @@ ActiveAdmin.register Order do
 
   form do |f|
     f.inputs do
-      f.input :state, as: :select, collection: %i[in_delivery canceled] if order.state == 'in_queue'
+      f.input :state, as: :select, collection: %i[in_delivery delivered canceled] if order.state == 'in_queue'
       f.input :state, as: :select, collection: %i[delivered canceled] if order.state == 'in_delivery'
+      f.input :state, as: :select, collection: %i[canceled] if order.state == 'delivered'
     end
     f.actions
   end
