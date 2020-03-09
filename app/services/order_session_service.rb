@@ -1,7 +1,7 @@
-class OrderService
+class OrderSessionService
   def initialize(current_user, session)
     @current_user = current_user
-    @session_order_id = session[:order_id]
+    @session = session
   end
 
   def call
@@ -29,7 +29,7 @@ class OrderService
   end
 
   def session_order
-    @session_order ||= Order.find_by(id: @session_order_id)
+    @session_order ||= Order.find_by(id: @session[:order_id])
   end
 
   def unfinished_user_order
@@ -37,14 +37,16 @@ class OrderService
   end
 
   def session_user_order
-    @session_user_order ||= Order.find_by(id: @session_order_id, user_id: @current_user.id)
+    @session_user_order ||= Order.find_by(id: @session[:order_id], user_id: @current_user.id)
   end
 
   def create_order
-    Order.create(user_id: @current_user, number: checout_number)
+    order = Order.create(user_id: @current_user, number: checout_number)
+    @session[:order_id] = order.id
+    order
   end
 
   def checout_number
-    '#R' + Time.zone.now.strftime('%Y%m%d%H%M%S')
+    I18n.t('checout_number', number: Time.zone.now.strftime('%Y%m%d%H%M%S'))
   end
 end

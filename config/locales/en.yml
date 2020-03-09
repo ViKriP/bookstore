@@ -54,6 +54,7 @@ en:
   shop: 'Shop'
   order: 'Order'
   orders: 'Orders'
+  checout_number: '#R%{number}'
   settings: 'Settings'
   edit_profile: 'Edit profile'
   write_review: 'Write a Review'

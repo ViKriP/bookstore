@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe OrderService, type: :controller do
+describe OrderSessionService, type: :controller do
   describe '#call' do
     let(:user) { create(:user) }
 

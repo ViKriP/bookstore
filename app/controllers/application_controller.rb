@@ -4,9 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_order
 
   def current_user_order
-    order = OrderService.new(current_user, session).call
-    session[:order_id] = order.id
-    order
+    OrderSessionService.new(current_user, session).call
   end
 
   private
