@@ -13,7 +13,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'country_select'
 gem 'devise'
 gem 'draper'
-gem 'ffaker'
 gem 'fog-aws'
 gem 'font-awesome-rails'
 gem 'haml-rails'
@@ -34,6 +33,7 @@ gem 'wicked'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
+  gem 'ffaker', '~> 2.10'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
 end

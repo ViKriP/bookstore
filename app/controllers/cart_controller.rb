@@ -6,12 +6,12 @@ class CartController < ApplicationController
   end
 
   def update
-    coupon = CouponService.new(current_user_order, params[:code])
+    if ApplyCouponService.call(current_user_order, params[:code])
+      flash[:notice] = I18n.t('success_coupon_use')
+    else
+      flash[:alert] = I18n.t('invalid_coupon')
+    end
 
-    return redirect_to cart_path, alert: I18n.t('invalid_coupon') unless coupon.coupon
-
-    coupon.use
-
-    redirect_to cart_path, notice: I18n.t('success_coupon_use')
+    redirect_to cart_path
   end
 end

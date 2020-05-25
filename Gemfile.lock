@@ -457,7 +457,7 @@ DEPENDENCIES
   dotenv-rails
   draper
   factory_bot_rails
-  ffaker
+  ffaker (~> 2.10)
   fog-aws
   font-awesome-rails
   haml-rails
@@ -495,4 +495,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.17.1
+   2.1.4

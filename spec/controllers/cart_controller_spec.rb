@@ -18,7 +18,7 @@ RSpec.describe CartController, type: :controller do
     end
 
     it 'assigns the order to @order' do
-      expect(assigns(:order).id).to eql order.id
+      expect(assigns(:order).id).to eq(order.id)
     end
   end
 
@@ -26,36 +26,28 @@ RSpec.describe CartController, type: :controller do
     let(:coupon) { create(:coupon) }
 
     context 'when invalid coupon code passed' do
-      before do
-        put :update
-      end
+      before { put :update }
 
       it 'redirects to cart page' do
-        expect(response).to redirect_to cart_path
+        expect(response).to redirect_to(cart_path)
       end
 
       it 'sends flash alert' do
-        expect(flash[:alert]).to eq I18n.t('invalid_coupon')
+        expect(flash[:alert]).to eq(I18n.t('invalid_coupon'))
       end
     end
 
     context 'when valid coupon code passed' do
-      let(:coupon_service) { instance_double('CouponService') }
+      let(:coupon_service) { instance_double('ApplyCouponService') }
 
       it 'redirects to cart page' do
         put :update
-        expect(response).to redirect_to cart_path
-      end
-
-      it 'use current coupon' do
-        expect(coupon_service).to receive(:use)
-        coupon_service.use
-        put :update
+        expect(response).to redirect_to(cart_path)
       end
 
       it 'sends success notice' do
         put :update, params: { code: coupon.code }
-        expect(flash[:notice]).to eq I18n.t('success_coupon_use')
+        expect(flash[:notice]).to eq(I18n.t('success_coupon_use'))
       end
     end
   end

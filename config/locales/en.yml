@@ -9,7 +9,7 @@ en:
   password: 'Password'
   forgot_password: 'Forgot password?'
   back_to_store: 'Back to Store'
-  account: "My account"
+  my_account: "My account"
   logout: 'Log out'
   login: 'Log In'
   signup: 'Sign up'
