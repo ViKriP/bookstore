@@ -1,5 +1,5 @@
 class CheckoutCompleteMailer < ApplicationMailer
-  default from: 'bookstore@good-bookstore.herokuapp.com'
+  default from: 'viktor.biz17@gmail.com'
 
   def order_confirm_email(user, order)
     @user = user
