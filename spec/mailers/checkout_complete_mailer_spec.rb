@@ -7,7 +7,7 @@ describe CheckoutCompleteMailer, type: :mailer do
     let(:mail) { CheckoutCompleteMailer.order_confirm_email(user, order) }
 
     it 'renders the headers' do
-      expect(mail.from).to eq(["bookstore@good-bookstore.herokuapp.com"])
+      expect(mail.from).to eq(["viktor.biz17@gmail.com"])
       expect(mail.to).to eq([user.email])
       expect(mail.subject).to eq(I18n.t('complete.thank_you'))
     end

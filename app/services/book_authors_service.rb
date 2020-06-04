@@ -8,6 +8,6 @@ class BookAuthorsService
   end
 
   def call
-    @book.authors.map(&:id) if @book.authors.presence
+    @book.authors.pluck(:id) if @book.authors.presence
   end
 end
