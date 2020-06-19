@@ -3,17 +3,19 @@ module Books
     BESTSELLERS_LIMIT = 4
 
     def initialize(limit = BESTSELLERS_LIMIT)
-      @limit = limit
+      @limit = correct_limit(limit)
     end
 
     def call
-      bestseller = []
+      return unless Category.any?
 
-      Category.distinct.each_with_index do |category, idx|
-        bestseller.push(bestseller_category(category.id)) if idx <= @limit - 1
+      bestsellers = []
+
+      Category.distinct.limit(@limit).each do |category|
+        bestsellers.push(bestseller_category(category.id))
       end
 
-      bestseller.compact
+      bestsellers.any? ? bestsellers.compact : nil
     end
 
     private
@@ -25,6 +27,10 @@ module Books
           .group(:id)
           .order(Arel.sql('SUM(order_items.quantity) DESC'))
           .limit(1).first
+    end
+
+    def correct_limit(limit)
+      limit.is_a?(Integer) && limit.positive? ? limit : 1
     end
   end
 end

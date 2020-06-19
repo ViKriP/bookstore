@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'fasterer', '~> 0.1.9'
   gem 'letter_opener'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit'

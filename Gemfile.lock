@@ -105,6 +105,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    colorize (0.8.1)
     concurrent-ruby (1.1.6)
     countries (3.0.1)
       i18n_data (~> 0.10.0)
@@ -143,6 +144,9 @@ GEM
       railties (>= 4.2.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
+    fasterer (0.1.12)
+      colorize (~> 0.7)
+      ruby_parser (~> 3.6)
     ffaker (2.15.0)
     ffi (1.13.0)
     fog-aws (3.6.5)
@@ -463,6 +467,7 @@ DEPENDENCIES
   dotenv-rails
   draper
   factory_bot_rails
+  fasterer (~> 0.1.9)
   ffaker (~> 2.10)
   fog-aws
   font-awesome-rails

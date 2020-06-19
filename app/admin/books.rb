@@ -1,5 +1,4 @@
 ActiveAdmin.register Book do
-
   permit_params :title, :price, :quantity, :year, :description, :materials,
                 :height, :width, :depth, author_ids: [], category_ids: [], images: []
 
