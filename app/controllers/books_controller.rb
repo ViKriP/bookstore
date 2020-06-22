@@ -8,8 +8,9 @@ class BooksController < ApplicationController
   def index
     @presenter = BooksPresenter.new(params_sort)
 
-    sorted_books = BookSortingService.new(params_sort, @books).call
-    @pagy, @books = pagy(sorted_books, items: Book::BOOKS_PER_PAGE)
+    @pagy = pagy_books[0]
+
+    @books = pagy_books[1]
   end
 
   def show
@@ -24,5 +25,13 @@ class BooksController < ApplicationController
 
   def params_sort
     params.permit(:sort, :category_id)
+  end
+
+  def pagy_books
+    @pagy_books ||= pagy(sorted_books, items: Book::BOOKS_PER_PAGE)
+  end
+
+  def sorted_books
+    @sorted_books ||= BookSortingService.new(params_sort, @books).call
   end
 end

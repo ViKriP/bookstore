@@ -17,13 +17,17 @@ RSpec.describe BooksController, type: :controller do
     it 'assigns the books to @books' do
       sorted_books = BookSortingService.new(param, @books).call
 
-      expect(assigns(:books).first.title).to eql sorted_books.first.title
+      expect(assigns(:books).first.title).to eql(sorted_books.first.title)
+    end
+
+    it 'assigns the pages to @pagy' do
+      expect(assigns(:pagy)).to be_a(Pagy)
     end
 
     it 'assigns the presenter' do
       cat = BooksPresenter.new(param).category
 
-      expect(assigns(:presenter).category.title).to eql cat.title
+      expect(assigns(:presenter).category.title).to eql(cat.title)
     end
   end
 
@@ -42,11 +46,11 @@ RSpec.describe BooksController, type: :controller do
     end
 
     it 'assigns the book to @book' do
-      expect(assigns(:book).title).to eq book.title
+      expect(assigns(:book).title).to eq(book.title)
     end
 
     it 'assigns the presenter' do
-      expect(assigns(:presenter).reviews.first.title).to eql review.title
+      expect(assigns(:presenter).reviews.first.title).to eql(review.title)
     end
   end
 end
