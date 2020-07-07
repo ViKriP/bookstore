@@ -8,6 +8,7 @@ require 'devise'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'chromedriver-helper'
+require 'site-prism'
 
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 

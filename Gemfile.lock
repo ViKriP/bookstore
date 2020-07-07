@@ -224,6 +224,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    kwalify (0.7.2)
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.7.0)
@@ -280,6 +281,7 @@ GEM
     pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
+    psych (3.1.0)
     public_suffix (4.0.5)
     puma (3.12.6)
     rack (2.2.2)
@@ -323,6 +325,11 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    reek (6.0.1)
+      kwalify (~> 0.7.0)
+      parser (>= 2.5.0.0, < 2.8, != 2.5.1.1)
+      psych (~> 3.1.0)
+      rainbow (>= 2.0, < 4.0)
     regexp_parser (1.7.0)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -406,6 +413,11 @@ GEM
       docile (~> 1.1)
       simplecov-html (~> 0.11)
     simplecov-html (0.12.2)
+    site_prism (3.4.2)
+      addressable (~> 2.5)
+      capybara (~> 3.3)
+      site_prism-all_there (>= 0.3.1, < 1.0)
+    site_prism-all_there (0.3.2)
     sixarm_ruby_unaccent (1.2.0)
     sort_alphabetical (1.1.0)
       unicode_utils (>= 1.2.2)
@@ -485,6 +497,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.2)
   rails-controller-testing
+  reek (~> 6.0, >= 6.0.1)
   rspec
   rspec-rails
   rubocop
@@ -494,6 +507,7 @@ DEPENDENCIES
   sendgrid-actionmailer
   shoulda-matchers
   simplecov
+  site_prism (~> 3.4, >= 3.4.2)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

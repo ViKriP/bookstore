@@ -34,6 +34,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'dotenv-rails'
   gem 'ffaker', '~> 2.10'
+  gem 'reek', '~> 6.0', '>= 6.0.1'
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
 end
@@ -58,6 +59,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+  gem 'site_prism', '~> 3.4', '>=3.4.2'
 end
 
 group :production do

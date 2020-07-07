@@ -1,5 +1,11 @@
 require 'ffaker'
 
+unless AdminUser.exists?(email: 'admin@example.com')
+  AdminUser.create!(email: 'admin@example.com',
+                    password: 'password',
+                    password_confirmation: 'password')
+end
+
 materials = ['hardcove', 'glossy paper', 'wood pulp', 'uncoated papper']
 
 def rand_book_size(range)
