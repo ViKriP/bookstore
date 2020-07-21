@@ -1,0 +1,21 @@
+- @presenter.last_books.each_with_index do |book, index|
+  .item{class: ("active" if index == 0)}
+    .item
+      .row
+        .col-sm-5
+          .general-img-wrap
+            = image_tag BookImageService.new(book).image_url, class: 'img-shadow general-thumbnail-img'
+        .col-sm-7
+          .mb-60
+            %h1= book.title
+            %p.lead= book.decorate.preview_description
+            %p.lead.small
+              = book.decorate.book_authors
+            .general-align
+              - if book.ended? || current_user_order.decorate.book_added?(book.id)
+                %button.disabled.btn= t('buy_now')
+              - else
+                = form_for current_user_order.order_items.build do |f|
+                  = f.hidden_field :book_id, value: book.id
+                  = f.hidden_field :quantity, value: 1
+                  = f.button t('buy_now'), class: "btn btn-primary"

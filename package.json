@@ -1,0 +1,22 @@
+{
+  "name": "book_store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Viktor",
+  "license": "ISC",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^4.0.2",
+    "gulp-haml": "^1.0.1",
+    "gulp-livereload": "^4.0.1",
+    "gulp-sass": "^4.0.2"
+  },
+  "description": "",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "jquery-mask-plugin": "^1.14.15"
+  }
+}

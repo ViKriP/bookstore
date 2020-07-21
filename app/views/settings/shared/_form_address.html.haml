@@ -1,0 +1,34 @@
+= f.fields_for address_type, address do |ff|
+  .visible-xs.visible-sm
+    %h3.general-subtitle= t(address_type.to_s)
+    %p.general-info-text= t('all_fields_required')
+  %div{id: "#{'shipping' if address_type == :shipping_address}"}
+    .form-group{class: "#{error_class(address, :first_name)}"}
+      = ff.label :first_name, class: "control-label input-label"
+      = ff.text_field :first_name, id: "firstName", placeholder: t('first_name'), class: "form-control"
+      %span.help-block= show_errors(address, :first_name)
+    .form-group{class: "#{error_class(address, :last_name)}"}
+      = ff.label :last_name, class: "control-label input-label"
+      = ff.text_field :last_name, id: "lastName", placeholder: t('last_name'), class: "form-control"
+      %span.help-block= show_errors(address, :last_name)
+    .form-group{class: "#{error_class(address, :address)}"}
+      = ff.label :address, class: "control-label input-label"
+      = ff.text_field :address, id: "address", placeholder: t('address_label'), class: "form-control"
+      %span.help-block= show_errors(address, :address)
+    .form-group{class: "#{error_class(address, :city)}"}
+      = ff.label :city, class: "control-label input-label"
+      = ff.text_field :city, id: "city", placeholder: t('city'), class: "form-control"
+      %span.help-block= show_errors(address, :city)
+    .form-group{class: "#{error_class(address, :zip)}"}
+      = ff.label :zip, class: "control-label input-label"
+      = ff.text_field :zip, id: "zip", placeholder: t('zip'), class: "form-control"
+      %span.help-block= show_errors(address, :zip)
+    .form-group{class: "#{error_class(address, :country)}"}
+      = ff.label :country, class: "control-label input-label"
+      = ff.country_select :country, { include_blank: t('country_select') }, id: "country", class: "form-control"
+      %span.help-block= show_errors(address, :country)
+    .form-group{class: "#{error_class(address, :phone)}"}
+      = ff.label :phone, class: "control-label input-label"
+      = ff.phone_field :phone, id: "phone", placeholder: t('example_phone'), class: 'form-control'
+      %span.help-block= show_errors(address, :phone)
+  = yield if block_given?

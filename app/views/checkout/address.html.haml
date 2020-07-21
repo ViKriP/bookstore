@@ -1,0 +1,26 @@
+%main.container
+  %h1.general-title-margin= t('checkout')
+  = render 'steps'
+  = form_for @order, url: wizard_path, method: :put, class: 'res-mb-100' do |f|
+    .hidden-xs.hidden-sm
+      .row
+        .col-md-5
+          %h3.general-subtitle= t('billing_address')
+          %p.general-info-text= t('all_fields_required')
+        .col-md-5.col-md-offset-1
+          %h3.general-subtitle= t('shipping_address')
+          %p.general-info-text= t('all_fields_required')
+    .row
+      .col-md-5.mb-40
+        = render 'settings/shared/form_address', f: f, address_type: :billing_address, address: (@billing_address || @order.billing_address)
+      .col-md-5.col-md-offset-1.mb-60
+        = render 'settings/shared/form_address', f: f, address_type: :shipping_address, address: (@shipping_address || @order.shipping_address) do
+          .form-group.checkbox
+            %label.checkbox-label
+              = check_box_tag "use_billing", "true", false, class: "checkbox-input"
+              %span.checkbox-text= t('use_billing')
+    .general-text-align.mb-60
+      %p.in-gold-500.font-18= t('order_summary')
+      %table.general-summary-table
+        = render 'orders/order_summary'
+      = f.submit t('save_and_continue'), method: :put, class: "btn btn-default center-block mb-20"

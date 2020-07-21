@@ -1,0 +1,14 @@
+%main.container
+  - if @presenter.last_books
+    #slider.carousel.slide{"data-ride": "carousel"}
+      %ol.carousel-indicators
+        - @presenter.last_books.size.times do |number|
+          %li{class: ("active" if number == 0), "data-target": "#slider", "data-slide-to": "#{number}"}
+      .carousel-inner{role: "listbox"}
+        = render 'carousel_items'
+      %a.left.carousel-control{href: "#slider", role: "button", "data-slide": "prev"}
+        %span.icon-prev{"aria-hidden": "true"}
+        %span.sr-only= I18n.t('previous')
+      %a.right.carousel-control{href: "#slider", role: "button", "data-slide": "next"}
+        %span.icon-next{"aria-hidden": "true"}
+        %span.sr-only= I18n.t('next')

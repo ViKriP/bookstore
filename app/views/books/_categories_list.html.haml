@@ -1,0 +1,10 @@
+%ul.list-inline.pt-10.mb-25.mr-240
+  %li.mr-35
+    = link_to books_path, class: "filter-link" do
+      All
+      %span.badge.general-badge= Book.count
+  - Category.find_each do |category|
+    %li.mr-35
+      = link_to category_books_path(category.id), class: "filter-link" do
+        = category.title
+        %span.badge.general-badge= category.books.count

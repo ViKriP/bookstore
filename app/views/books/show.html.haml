@@ -1,0 +1,61 @@
+%main.container
+  = link_to category_books_path(@book.categories.first), class: "general-back-link" do
+    %i.fa.fa-long-arrow-left.mr-15
+    = I18n.t('back_to_results')
+  .row
+    .col-sm-6
+      .product-gallery
+        .mb-20
+          = image_tag BookImageService.new(@book).image_url, style: 'img-responsive;'
+        .images.clearfix
+          - if @book.images.drop(1).any?
+            - @book.images.drop(1).each do |img|
+              %a.img-link{href: img.url, target: '_blank'}
+                = image_tag img.thumb.url
+          - else
+            - 3.times do
+              %a.img-link
+                = image_tag 'noimage.png', style: 'height:150px;width:150px;'
+    .col-sm-6
+      %h1.mt-res-0= @book.title
+      %p.lead.small= @book.decorate.book_authors
+      .row
+        .col-xs-12.col-md-4
+          %p.h1.in-gold-500.mt-10= @book.decorate.book_price
+        = form_for current_user_order.order_items.build do |f|
+          = f.hidden_field :book_id, value: @book.id
+          = f.hidden_field :book_quantity, id: 'quantity', value: @book.quantity.to_s
+          .col-xs-5.col-md-3
+            .input-group.general-position
+              %a#decrease.input-link{href: "#"}
+                %i.fa.fa-minus.line-height-40
+              = f.text_field :quantity, value: 1, id: "order-quantity", class: "form-control quantity-input"  
+              %a#increase.input-link{href: "#"}
+                %i.fa.fa-plus.line-height-40
+          .col-xs-7.col-md-5
+          - if @book.ended? || current_user_order.decorate.book_added?(@book.id)
+            = f.submit t('add_to_card'), class: "btn btn-default pull-right general-position", disabled: "disabled"
+          - else
+            = f.submit t('add_to_card'), class: "btn btn-default pull-right general-position"
+      .span#quantity-info.lead.small
+      .general-info-wrap.divider-lg
+        %p= I18n.t('book_description')
+        %p.lead.small.line-height-2{id: "short-desc"}
+          = @book.decorate.shorten_description
+        %p.lead.small.line-height-2{style: "display: none", id: "long-desc"}
+          = @book.description
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= I18n.t('book_year')
+          %p.lead.small.pull-right= @book.year
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= I18n.t('book_dimensions')
+          %p.lead.small.pull-right= @book.decorate.book_dimensions
+      .general-info-wrap.divider-lg
+        .clearfix
+          %p.pull-left= I18n.t('book_materials')
+          %p.lead.small.pull-right= @book.materials
+  - if can? :create, Review
+    = render 'reviews/review_form'
+  = render template: 'reviews/index'

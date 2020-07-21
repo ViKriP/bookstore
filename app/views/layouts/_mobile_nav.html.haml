@@ -1,0 +1,26 @@
+.visible-xs
+  %button.close{type: "button", "aria-label": "Close"}
+  %ul.nav.navbar-nav
+    %li
+      = link_to t('home'), root_path
+    %li
+      %a{type: "button", "data-toggle": "collapse", href: "#menu", "aria-expanded": "false", "aria-controls": "menu"}= t('shop')
+      %ul#menu.collapse.list-unstyled.pl-30.mb-10{"aria-expanded": "false"}
+        - Category.find_each do |category|
+          %li
+            = link_to category.title, category_books_path(category.id), class: "collapse-link"
+    - if user_signed_in?
+      %li
+        %a{type: "button", "data-toggle": "collapse", href: "#account-menu", "aria-expanded": "false", "aria-controls": "account-menu"}= t('my_account')
+        %ul#account-menu.collapse.list-unstyled.pl-30.mb-10{"aria-expanded": "false"}
+          %li
+            = link_to t('orders'), root_path, class: "collapse-link"
+          %li
+            = link_to t('settings_label'), settings_path, class: "collapse-link"
+          %li
+            = link_to t('logout'), destroy_user_session_path, method: :delete, class: "collapse-link"
+    - else
+      %li
+        = link_to t('signup'), new_user_session_path
+      %li
+        = link_to t('signup'), new_user_registration_path

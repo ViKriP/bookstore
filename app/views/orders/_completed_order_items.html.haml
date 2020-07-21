@@ -1,0 +1,28 @@
+.hidden-xs.divider-lg.pt-20
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+          %span.in-grey-600= t('book')
+        %th.col-method
+        %th
+          %span.in-grey-600= t('price')
+        %th
+          %span.in-grey-600= t('quantity')
+        %th
+          %span.in-grey-600= t('total')
+    %tbody
+      - @order.order_items.each do |order_item|
+        %tr
+          %td
+            .general-img-wrap-table
+              = image_tag BookImageService.new(order_item.book).image_url, class: "cart-img-shadow"
+          %td
+            %p.title= order_item.book.title
+            %p.in-grey-600.fw-300= order_item.book.decorate.preview_description
+          %td
+            %span.font-16.in-gold-500= order_item.book.decorate.book_price
+          %td
+            %span.ml-30= order_item.quantity
+          %td
+            %span.font-16.in-gold-500= order_item.decorate.order_item_subtotal

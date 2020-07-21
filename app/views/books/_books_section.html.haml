@@ -1,0 +1,10 @@
+.mb-120
+  - if @books.any?
+    .row
+      = render partial: 'books_grid', locals: { books: @books }
+    - if @pagy.pages > 1
+      .text-center
+        = render partial: 'pagy/nav', locals: { pagy: @pagy }
+  - else
+    .jumbotron.text-center.mb-0
+    %p= I18n.t('no_books')

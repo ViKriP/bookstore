@@ -1,0 +1,12 @@
+= render 'carousel'
+.container
+  .jumbotron.text-center.mb-0
+    %h2.h1= I18n.t('welcome')
+    .mb-res-50
+      %p= I18n.t('shop_description')
+    = link_to I18n.t('get_started'), books_path, class: "btn btn-default"
+  .mb-35
+    %h3= I18n.t('best_sellers')
+    .row
+      - if @presenter.best_sellers
+        = render partial: 'bestseller', collection: @presenter.best_sellers

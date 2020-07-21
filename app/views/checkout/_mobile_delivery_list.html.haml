@@ -1,0 +1,22 @@
+.visible-xs
+  - @deliveries.each do |delivery|
+    .general-cart-item.divider-lg-bottom{class: ('mb-30' if delivery == @deliveries.last)}
+      %table.table
+        %tr
+          %td.col-half
+            %span.in-grey-600= t('delivery.method')
+          %td.col-half
+            .form-group.radio.mt-0.mb-0
+              %label.radio-label
+                = f.radio_button :delivery_id, delivery.id, checked: (delivery == @deliveries.first), class: "radio-input"
+                %span.radio-text= delivery.name
+        %tr
+          %td
+            %span.in-grey-600= t('delivery.days')
+          %td
+            %span.font-16.fw-300= delivery.period
+        %tr
+          %td
+            %span.in-grey-600= t('price')
+          %td
+            %span.font-16.in-gold-500= delivery.decorate.delivery_price

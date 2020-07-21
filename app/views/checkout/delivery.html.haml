@@ -1,0 +1,13 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= t('checkout')
+  = render 'steps'
+  %h3.general-subtitle= t('delivery_label')
+  = form_for @order, url: wizard_path, method: :put do |f|
+    = render partial: 'mobile_delivery_list', locals: {f: f}
+    = render partial: 'delivery_list', locals: {f: f}
+    .general-text-align
+      %p.in-gold-500.font-18= t('order_summary')
+      %table.general-summary-table
+        = render 'orders/order_summary'
+    .text-center
+      = f.submit t('save_and_continue'), class: "btn btn-default center-block mb-20"

@@ -1,0 +1,47 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin
+    = t('order')
+    = @order.number
+  .row.mb-20
+    .col-sm-3
+      %h3.general-subtitle.mt-0= t('shipping_address')
+      %p.general-address
+        = @order.shipping_address.decorate.full_name
+        %br
+        = @order.shipping_address.address
+        %br
+        = @order.shipping_address.zip
+        %br
+        = @order.shipping_address.country_name
+        %br
+        = t('phone')
+        = @order.shipping_address.phone
+    .col-sm-3
+      %h3.general-subtitle.mt-0= t('billing_address')
+      %p.general-address
+        = @order.billing_address.decorate.full_name
+        %br
+        = @order.billing_address.address
+        %br
+        = @order.billing_address.zip
+        %br
+        = @order.billing_address.country_name
+        %br
+        = t('phone')
+        = @order.billing_address.phone
+    .col-sm-3
+      %h3.general-subtitle.mt-0= t('shipments')
+      %p.general-address
+        = @order.delivery.name
+    .col-sm-3
+      %h3.general-subtitle.mt-0= t('payment_info')
+      %p.general-address
+        = @order.credit_card.decorate.secure_card_number
+        %br
+        = @order.credit_card.decorate.exp_date
+  = render 'mobile_completed_order_items'
+  = render 'completed_order_items'
+  .text-center.general-text-right
+    %p.in-gold-500.font-18= t('order_summary')
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      = render 'order_summary'
